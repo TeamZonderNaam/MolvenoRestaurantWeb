@@ -3,8 +3,8 @@ package com.capgemini.molveno.model;
 public class Table {
     private int number;
     private int numberOfPersons;
-    private TableStatus status;
     private TableShape shape;
+    private TableStatus status;
     private Reservation reservation; // Dit moet een collection worden.
 
     public void Table(int number, int numberOfPersons, TableShape shape) {
