@@ -6,6 +6,15 @@ public class Ingredient {
     private double pricePerUnit;
     private Unit unit;
 
+    public Ingredient() {
+    }
+
+    public Ingredient(String name, double pricePerUnit, Unit unit) {
+        this.name = name;
+        this.pricePerUnit = pricePerUnit;
+        this.unit = unit;
+    }
+
     public int getId() {
         return id;
     }
