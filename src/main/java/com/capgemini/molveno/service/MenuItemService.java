@@ -17,21 +17,25 @@ public class MenuItemService {
     private MenuItemRepository menuItemRepository;
 
     @PostMapping
-    public MenuItem create(@RequestBody MenuItem menuItem) {
-        this.menuItemRepository.save(menuItem); //the function in PersonService returns an int
-        return menuItem;
+    public int create(@RequestBody MenuItem menuItem) {
+        MenuItem created = this.menuItemRepository.save(menuItem);
+        return created.getId();
     }
 
-    public Iterable<MenuItem> all(){ //in the other example this returns a collection
+    public Iterable<MenuItem> all(){
         return this.menuItemRepository.findAll();
     }
 
-    public MenuItem read(final int id) { //in PersonService this method uses the Optional<> value, and this is also used in PersonRepository
-        return this.menuItemRepository.findById(id);
+    public MenuItem read(final int id) {
+        Optional<MenuItem> item = this.menuItemRepository.findById(id);
+        if (item.isPresent()) {
+            return item.get();
+        }
+        return null;
     }
 
-    public void update(MenuItem changedItem) { //returns a menu-item in person-example
-        menuItemRepository.save(changedItem); //this method returns a void, but in person-example it should return a person
+    public MenuItem update(MenuItem changedItem) {
+        return menuItemRepository.save(changedItem);
     }
 
     public void delete(int id) {
