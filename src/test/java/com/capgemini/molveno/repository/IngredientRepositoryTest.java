@@ -87,12 +87,32 @@ public class IngredientRepositoryTest {
         Optional<Ingredient> item = repository.findById(created1.getId());
         assertThat(item.isPresent()).isTrue();
         assertThat(item.get()).isNotNull();
-
         assertThat(item.get().getId()).isEqualTo(created1.getId());
     }
 
     @Test
     public void testDeleteById() {
+        Ingredient ingredient1 = new Ingredient();
+        ingredient1.setName("Name 1");
+        ingredient1.setPricePerUnit(1.0);
+        ingredient1.setUnit(gramUnit);
 
+        Ingredient created1 = repository.save(ingredient1);
+        assertThat(created1.getId()).isEqualTo(0);
+
+        Ingredient ingredient2 = new Ingredient();
+        ingredient2.setName("Name 1");
+        ingredient2.setPricePerUnit(1.0);
+        ingredient2.setUnit(gramUnit);
+
+        Ingredient created2 = repository.save(ingredient2);
+        assertThat(created2.getId()).isEqualTo(1);
+
+        repository.deleteById(created1.getId());
+
+        Optional<Ingredient> item = repository.findById(created2.getId());
+        assertThat(item.isPresent()).isTrue();
+        assertThat(item.get()).isNotNull();
+        assertThat(item.get().getId()).isEqualTo(created2.getId());
     }
 }
