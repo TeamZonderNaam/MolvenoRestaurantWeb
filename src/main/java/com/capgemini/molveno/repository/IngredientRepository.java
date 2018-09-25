@@ -9,12 +9,14 @@ import java.util.Optional;
 
 @Repository
 public class IngredientRepository {
-    private static int id = 0;
+    // Public used for testing
+    public static int id = 0;
     private Map<Integer, Ingredient> store = new HashMap<>();
 
     public Ingredient save(Ingredient ingredient) {
-        store.put(id++, ingredient);
+        store.put(id, ingredient);
         ingredient.setId(id);
+        id ++;
         return ingredient;
     }
 
