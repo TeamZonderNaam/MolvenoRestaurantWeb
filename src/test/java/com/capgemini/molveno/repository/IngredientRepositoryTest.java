@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +35,27 @@ public class IngredientRepositoryTest {
             Ingredient saved = repository.save(ingredient);
             assertThat(saved.getId()).isEqualTo(i);
         }
+    }
+
+    @Test
+    public void testUpdate() {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName("Test Name");
+        ingredient.setPricePerUnit(0.0);
+        ingredient.setUnit(literUnit);
+        Ingredient saved = repository.save(ingredient);
+        assertThat(saved.getId()).isEqualTo(0);
+
+        Ingredient ingredient2 = new Ingredient();
+        ingredient2.setId(saved.getId());
+        ingredient2.setName("Test Name 2");
+        ingredient2.setPricePerUnit(1);
+        ingredient2.setUnit(literUnit);
+        saved = repository.save(ingredient2);
+        assertThat(saved.getId()).isEqualTo(ingredient2.getId());
+        assertThat(saved.getName()).isEqualTo(ingredient2.getName());
+        assertThat(saved.getPricePerUnit()).isEqualTo(ingredient2.getPricePerUnit());
+        assertThat(saved.getUnit()).isEqualTo(ingredient2.getUnit());
     }
 
     @Test

@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DataJpaTest
 public class IngredientServiceTest {
     @Autowired
-    private IngredientServiceTest service;
+    private IngredientService service;
 
     @Test
     public void testCreate() {
