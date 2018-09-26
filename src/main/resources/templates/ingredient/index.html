@@ -14,10 +14,13 @@
                     <th>Name</th>
                     <th>Price</th>
                     <th>Unit</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody class="ingredients"></tbody>
         </table>
+
+        <a href="add">Add</a>
 
         <script id="ingredient-template" type="text/x-custom-template">
             <tr>
@@ -25,10 +28,14 @@
                 <td class="name"></td>
                 <td class="price"></td>
                 <td class="unit"></td>
+                <td>
+                    <a href="edit/{id}">Edit</a>
+                    <a href="delete/{id}">Delete</a>
+                </td>
             </tr>
         </script>
 
-        <script src="lib/jquery/jquery.min.js"></script>
-        <script src="js/ingredient/http.js"></script>
+        <script src="../lib/jquery/jquery.min.js"></script>
+        <script src="../js/ingredient/get.js"></script>
     </body>
 </html>

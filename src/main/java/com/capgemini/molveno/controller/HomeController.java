@@ -25,17 +25,4 @@ public class HomeController {
 
         return new ModelAndView("index", model);
     }
-
-    @RequestMapping("/ingredient")
-    public ModelAndView ingredient() {
-        Unit unit = new Unit("Kilogram");
-        Ingredient ingredient1 = new Ingredient("Flour", 10.0, unit);
-        Ingredient ingredient2 = new Ingredient("Cheese", 13.0, unit);
-        Ingredient ingredient3 = new Ingredient("Tomato", 5.0, unit);
-        service.create(ingredient1);
-        service.create(ingredient2);
-        service.create(ingredient3);
-
-        return new ModelAndView("ingredient");
-    }
 }
