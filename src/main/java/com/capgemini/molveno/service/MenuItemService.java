@@ -7,7 +7,8 @@ import com.capgemini.molveno.repository.MenuItemRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,8 +22,11 @@ public class MenuItemService {
         return created.getId();
     }
 
-    public Iterable<MenuItem> all(){
-        return this.menuItemRepository.findAll();
+    public List<MenuItem> all(){
+        Iterable<MenuItem> source = this.menuItemRepository.findAll();
+        List<MenuItem> target = new ArrayList<MenuItem>();
+        source.forEach(target::add);
+        return target;
     }
 
     public MenuItem read(final int id) {

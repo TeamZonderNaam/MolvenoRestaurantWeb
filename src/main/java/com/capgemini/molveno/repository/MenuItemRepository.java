@@ -19,7 +19,7 @@ public class MenuItemRepository {
 //    }
 
     public MenuItem save(MenuItem newItem) {
-        newItem.setId(++menuItemId); //klopt dit zo?
+        newItem.setId(++menuItemId);
         this.menuItems.put(newItem.getId(), newItem);
         return newItem;
     }
