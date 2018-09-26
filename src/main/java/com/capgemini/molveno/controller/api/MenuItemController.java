@@ -28,8 +28,7 @@ public class MenuItemController {
     @PostMapping(value = "/", produces=MediaType.APPLICATION_JSON_VALUE)
     public MenuItem create(@RequestBody MenuItem item) {
         int id = service.create(item);
-        //set id of item
-        return item;
+        return service.read(id);
     }
 
     @PutMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)

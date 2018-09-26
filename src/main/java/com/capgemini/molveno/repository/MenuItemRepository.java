@@ -13,9 +13,15 @@ public class MenuItemRepository {
     private static int menuItemId; //klopt dit zo?
     private Map<Integer, MenuItem> menuItems = new HashMap<>();
 
+    //make new Hashmap with every new repository
+//    public MenuItemRepository() {
+//        this.menuItems = new HashMap<>();
+//    }
+
     public MenuItem save(MenuItem newItem) {
         newItem.setId(++menuItemId); //klopt dit zo?
-        return this.menuItems.put(newItem.getId(), newItem);
+        this.menuItems.put(newItem.getId(), newItem);
+        return newItem;
     }
 
     public Collection<MenuItem> findAll() {

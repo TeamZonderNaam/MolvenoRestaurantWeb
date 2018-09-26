@@ -16,7 +16,7 @@ public class MenuItemService {
     @Autowired
     private MenuItemRepository menuItemRepository;
 
-    public int create(@RequestBody MenuItem menuItem) {
+    public int create(MenuItem menuItem) {
         MenuItem created = this.menuItemRepository.save(menuItem);
         return created.getId();
     }
