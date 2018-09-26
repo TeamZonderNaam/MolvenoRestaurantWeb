@@ -7,22 +7,31 @@
     <body>
         <h1>Edit</h1>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Unit</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody class="ingredients"></tbody>
-        </table>
+        <form id="ingredient">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Name" name="name" value="{{ingredient.name}}">
+            </div>
+            <div>
+                <label for="name">Price (¥):</label>
+                <input type="text" id="price" placeholder="Price" name="price" value="{{ingredient.pricePerUnit}}">
+            </div>
 
-        <button>Add</button>
+            <div>
+                <label for="unit">Unit: </label>
+                <!--TODO: Currently hard coded-->
+                <select id="unit" name="unit">
+                    <option value="0">Grams</option>
+                    <option value="1">Liter</option>
+                </select>
+            </div>
 
-        <script src="lib/jquery/jquery.min.js"></script>
-        <script src="js/ingredient/get.js"></script>
+            <button type="submit">
+                Save changes
+            </button>
+        </form>
+
+        <script src="../../lib/jquery/jquery.min.js"></script>
+        <script src="../../js/ingredient/edit.js"></script>
     </body>
 </html>

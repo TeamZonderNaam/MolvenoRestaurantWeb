@@ -39,7 +39,8 @@ public class IngredientController {
     @RequestMapping("/edit/{id}")
     public ModelAndView edit(@PathVariable("id") int id) {
         Map<String, Object> model = new HashMap<>();
-        model.put("id", id);
+        System.out.println("Ingredient:"+ service.read(id));
+        model.put("ingredient", service.read(id));
         return new ModelAndView("ingredient/edit", model);
     }
 }
