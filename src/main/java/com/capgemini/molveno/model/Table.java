@@ -7,7 +7,11 @@ public class Table {
     private TableStatus status;
     private Reservation reservation; // Dit moet een collection worden.
 
-    public void Table(int number, int numberOfPersons, TableShape shape) {
+    public Table() {
+
+    }
+
+    public Table(int number, int numberOfPersons, TableShape shape) {
         this.number = number; // Controle dat dit nummer uniek is?
         this.numberOfPersons = numberOfPersons;
         this.status = TableStatus.AVAILABLE;

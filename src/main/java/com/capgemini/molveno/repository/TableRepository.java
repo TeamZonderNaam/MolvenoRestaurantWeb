@@ -1,8 +1,10 @@
 package com.capgemini.molveno.repository;
 
 import com.capgemini.molveno.model.Table;
+import com.capgemini.molveno.model.TableShape;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +12,13 @@ import java.util.Map;
 @Repository
 public class TableRepository {
     Map<Integer, Table> tables = new HashMap<>();
+
+    @PostConstruct
+    public void addSomeTables() {
+        for (int i = 0; i < 5; i++) {
+            this.save(new Table((i + 1), 4, TableShape.RECTANGLE));
+        }
+    }
 
     // Create
     public Table save(Table newTable) {
