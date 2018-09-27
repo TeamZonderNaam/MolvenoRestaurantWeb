@@ -25,7 +25,7 @@
     </div>
 
     <button type="button" data-toggle="modal" data-target="#newTableModal">Add</button>
-    <button type="button" data-toggle="modal" data-target="#newTableModal">Modify</button>
+    <button type="button" data-toggle="modal" data-target="#updateTableModal">Edit</button>
     <button type="button" data-toggle="modal" data-target="#deleteTableModal">Delete</button>
 
     <div class="container">
@@ -50,14 +50,14 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="persons" class="control-label">Capacity:</label>
-                                <input type="number" class="form-control" id="persons" required>
+                                <label for="personsAdd" class="control-label">Capacity:</label>
+                                <input type="number" class="form-control" id="personsAdd" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="shape" class="control-label">Shape:</label>
+                                <label for="shapeAdd" class="control-label">Shape:</label>
                                 <!--TODO: Currently hard coded-->
-                                <select id="shape" name="shape">
+                                <select id="shapeAdd" name="shapeAdd">
                                     <option value="0">RECTANGULAR</option>
                                     <option value="1">ROUND</option>
                                 </select>
@@ -73,6 +73,53 @@
             </div>
         </div>
         <!-- End of new table modal -->
+    </div>
+
+    <div class="container">
+
+        <!-- Update table modal -->
+        <div id="updateTableModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit Table</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form data-toggle="validator" role="form" id="updateTableForm" onsubmit="return false;">
+                            <div class="form-group">
+                                <label for="numberUpdate" class="control-label">Table number:</label>
+                                <input type="number" class="form-control" id="numberUpdate" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="personsUpdate" class="control-label">Capacity:</label>
+                                <input type="number" class="form-control" id="personsUpdate" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="shapeUpdate" class="control-label">Shape:</label>
+                                <!--TODO: Currently hard coded-->
+                                <select id="shapeUpdate" name="shapeUpdate">
+                                    <option value="0">RECTANGULAR</option>
+                                    <option value="1">ROUND</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button id="closeButtonUpdate" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of update table modal -->
     </div>
 
     <div class="container">
@@ -98,7 +145,7 @@
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                <button id="closeButton" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button id="closeButtonDelete" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </form>
                     </div>
@@ -117,8 +164,8 @@
 
             // Get values from html.
             var tableNumber = $("#numberAdd").val();
-            var numberOfPersons = $("#persons").val();
-            var shape = $("#shape").val();
+            var numberOfPersons = $("#personsAdd").val();
+            var shape = $("#shapeAdd").val();
 
             // Create JS object with data.
             var newTable = {
@@ -162,11 +209,42 @@
             });
         }
 
+        function updateData() {
+            console.log("updating data...");
+
+            // Get values from html.
+            var tableNumber = $("#numberUpdate").val();
+            var numberOfPersons = $("#personsUpdate").val();
+            var shape = $("#shapeUpdate").val();
+
+            // Create JS object with data.
+            var updateTable = {
+                number : tableNumber,
+                numberOfPersons : numberOfPersons,
+                shape : shape
+            };
+            console.log(updateTable);
+
+            // Convert JS object to JSON.
+            var validJsonTable = JSON.stringify(updateTable);
+            console.log(validJsonTable);
+
+            // Post JSON to endpoint.
+            $.ajax({
+                url:"api/table/update/" + $("#numberUpdate").val(),
+                type:"put",
+                data: validJsonTable,
+                contentType: "application/json",
+                success: function(result) {
+                    // On successful post, reload data to get the added one as well.
+                    console.log("success put data!");
+                    getData();
+                }
+            });
+        }
+
         function deleteData() {
             console.log("deleting data...");
-            console.log("api/table/delete/" + $("#numberDelete").val());
-            console.log("test");
-
             $.ajax({
                 url:"api/table/delete/" + $("#numberDelete").val(),
                 type:"delete",
@@ -188,8 +266,20 @@
                 // Reset modal to hide and no values.
                 $('#newTableModal').modal('hide');
                 $("#numberAdd").val("");
-                $("#persons").val("");
-                $("#shape").val("");
+                $("#personsAdd").val("");
+                $("#shapeAdd").val("");
+            });
+
+            // Update table modal submit.
+            $("#updateTableForm").on('submit', function(e) {
+                console.log("Submitted update table form");
+
+                updateData();
+                // Reset modal to hide and no values.
+                $('#updateTableModal').modal('hide');
+                $("#numberUpdate").val("");
+                $("#personsUpdate").val("");
+                $("#shapeUpdate").val("");
             });
 
             // Delete table modal submit
