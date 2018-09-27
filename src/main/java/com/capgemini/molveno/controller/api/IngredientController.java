@@ -39,7 +39,7 @@ public class IngredientController {
         return service.update(ingredient);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean delete(@PathVariable(name="id") int id) {
         service.delete(id);
         return true;
