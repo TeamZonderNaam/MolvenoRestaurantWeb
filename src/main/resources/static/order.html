@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+</head>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+        function postData() {
+            console.log("posting data...");
+
+            // Get values from html.
+            var orderNumber = $("#inputId").val();
+            var prepared = $("#inputPrepared").val();
+            var inputItemName = $("#inputItemsName").val();
+            var inputItemPrice = $("#inputItemsPrice").val();
+            var inputItemNumber = $("#inputItemsNumber").val();
+
+            // Create JS object with data.
+            var newOrder = {
+                orderNumber : orderNumber,
+                prepared : prepared,
+                items : [{name : inputItemName,
+                          price : inputItemPrice,
+                          number : inputItemNumber
+                }]
+            };
+            console.log(newOrder);
+
+            // Convert JS object to JSON.
+            var validJsonOrder = JSON.stringify(newOrder);
+            console.log(validJsonOrder);
+
+            // Post JSON to endpoint.
+            $.ajax({
+                url:"api/order/",
+                type:"post",
+                data: validJsonOrder,
+                contentType: "application/json",
+                success: function(result) {
+                    // On successful post, reload data to get the added one as well.
+                    console.log("success post data!");
+                    getData();
+                }
+            });
+        }
+
+        function getData() {
+            console.log("getting data...");
+
+            // Get the data from endpoint.
+            $.ajax({
+                url:"api/order/",
+                type:"get",
+                success: function(order) {
+                    // On successful get, reload the datatable with new data.
+                    console.log("This is the data: " + order);
+                    $('#orderTable').DataTable().clear();
+                    $('#orderTable').DataTable().rows.add(order);
+                    $('#orderTable').DataTable().columns.adjust().draw();
+                }
+            });
+        }
+
+        function updateData() {
+            console.log("updating data...");
+
+            // Get values from html.
+            var orderNumber = $("#editId").val();
+            var prepared = $("#editPrepared").val();
+            var editItemName = $("#editItemsName").val();
+            var editItemPrice = $("#editItemsPrice").val();
+            var editItemNumber = $("#editItemsNumber").val();
+
+            // Create JS object with data.
+            var newOrder = {
+                orderNumber : orderNumber,
+                prepared : prepared,
+                items : [{name : editItemName,
+                          price : editItemPrice,
+                          number : editItemNumber
+                }]
+            };
+            console.log(newOrder);
+
+            // Convert JS object to JSON.
+            var validJsonOrder = JSON.stringify(newOrder);
+            console.log(validJsonOrder);
+
+            // Post JSON to endpoint.
+            $.ajax({
+                url:"api/order/" + orderNumber,
+                type:"PUT",
+                data: validJsonOrder,
+                contentType: "application/json",
+                success: function(result) {
+                    // On successful post, reload data to get the added one as well.
+                    console.log("success update data!");
+                    getData();
+                }
+            });
+        }
+
+        function deleteData() {
+            console.log("deleting order");
+            //Get values from html
+            var orderNumber = $("#inputDeleteOrderNumber").val();
+            // Create JS object with data.
+            var deleteOrder = {
+                orderNumber : orderNumber
+            };
+            console.log(deleteOrder);
+            // Convert JS object to JSON.
+            var validJsonOrder = JSON.stringify(deleteOrder);
+            console.log(validJsonOrder);
+            console.log("Delete order" + orderNumber);
+            // Post JSON to endpoint.
+            $.ajax({
+                url: "api/order/" + orderNumber,
+                type:"delete",
+                data: validJsonOrder,
+                contentType: "application/json",
+                success: function(result) {
+                    // On successful delete.
+                    console.log(result);
+                    console.log("success delete data!");
+                    getData();
+                }
+            });
+        }
+
+        $(document).ready(function () {
+        // Modal submit.
+            $("#newOrderForm").on('submit', function(e) {
+                console.log("Submitted new order form");
+
+                // Post the data from the modal.
+                postData();
+
+                // Reset modal to hide and no values.
+                $('#newOrderModal').modal('hide');
+                $("#inputTitle").val("");
+                $("#inputAuthor").val("");
+            });
+
+            $("#editOrderForm").on('submit', function(e) {
+                console.log("Submitted edit order form");
+
+                // Post the data from the modal.
+                updateData();
+
+                // Reset modal to hide and no values.
+                $('#editOrderModal').modal('hide');
+                $("#inputTitle").val("");
+                $("#inputAuthor").val("");
+            });
+
+             $("#deleteOrderForm").on('submit', function(e) {
+                console.log("Submitted delete order form");
+                // Delete the data.
+                deleteData();
+                // Reset modal to no values.
+                $('#deleteOrderModal').modal('hide');
+                $("#inputDeleteId").val("");
+            });
+
+            console.log($.DataTable);
+         //load table with data format
+         $('#orderTable').DataTable({
+                columns: [
+                    { "data": "orderNumber" },
+                    { "data": "prepared" },
+                    { "data": "items[0].name" },
+                    { "data": "items[0].price" },
+                    { "data": "items[0].number" },
+
+                ]
+            });
+            getData();
+
+        });
+</script>
+
+<table id="orderTable" class="display">
+    <thead>
+    <tr>
+        <th>Order nr</th>
+        <th>Prepared</th>
+        <th>Item name</th>
+        <th>Price</th>
+        <th>Number</th>
+    </tr>
+    </thead>
+    <tbody>
+    <br>
+
+    <div class="container">
+
+
+        <!-- New Book Modal -->
+        <div id="newOrderModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">New Order</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form data-toggle="validator" role="form" id="newOrderForm" onsubmit="return false;">
+                            <div class="form-group">
+                                <label for="inputPrepared" class="control-label">Prepared?</label>
+                                <input type="text" class="form-control" id="inputPrepared" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputItemsName" class="control-label">Item name</label>
+                                <input type="text" class="form-control" id="inputItemsName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputItemsPrice" class="control-label">Item price</label>
+                                <input type="text" class="form-control" id="inputItemsPrice" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputItemsNumber" class="control-label">Item number</label>
+                                <input type="text" class="form-control" id="inputItemsNumber" required>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button id="closeButton" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- End of new Book Modal -->
+
+
+        <!-- edit Order Modal -->
+        <div id="editOrderModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit Order</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form data-toggle="validator" role="form" id="editOrderForm" onsubmit="return false;">
+                            <div class="form-group">
+                                <label for="editId" class="control-label">ID</label>
+                                <input type="text" class="form-control" id="editId" data-error="wrong input" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="editPrepared" class="control-label">Prepared?</label>
+                                <input type="text" class="form-control" id="editPrepared" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="editItemsName" class="control-label">Item name</label>
+                                <input type="text" class="form-control" id="editItemsName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="editItemsPrice" class="control-label">Item price</label>
+                                <input type="text" class="form-control" id="editItemsPrice" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="editItemsNumber" class="control-label">Item number</label>
+                                <input type="text" class="form-control" id="editItemsNumber" required>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button id="closeEditButton" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of edit Order Modal -->
+    </div>
+
+    <!-- Delete Order Modal -->
+    <div id="deleteOrderModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Order</h4>
+                </div>
+
+                <div class="modal-body">
+                    <h2>Delete order</h2>
+                    <form data-toggle="validator" role="form" id="deleteOrderForm" onsubmit="return false;">
+
+                        <div class="form-group">
+                            <label for="inputDeleteOrderNumber" class="control-label">Order number</label>
+                            <input type="text" class="form-control" id="inputDeleteOrderNumber" placeholder="Enter the order number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button id="deleteCloseButton" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Delete Order Modal -->
+    </tbody>
+</table>
+
+<button type="button" data-toggle="modal" data-target="#newOrderModal">new Order</button>
+<button type="button" data-toggle="modal" data-target="#editOrderModal">edit Order</button>
+<button type="button" data-toggle="modal" data-target="#deleteOrderModal">delete Order</button>
+</body>
+</html>

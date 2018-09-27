@@ -2,10 +2,11 @@ package com.capgemini.molveno.model;
 
 public class Table {
     private int number;
-    private int numberOfPersons;
-    private TableShape shape;
+    private int ID;
+    private int numberPersons;
     private TableStatus status;
-    private Reservation reservation; // Dit moet een collection worden.
+    //dit zou een list moeten worden
+    private Reservation reservation;
 
     public Table() {
 
@@ -26,12 +27,12 @@ public class Table {
         this.number = number;
     }
 
-    public int getNumberOfPersons() {
-        return numberOfPersons;
+    public int getNumberPersons() {
+        return numberPersons;
     }
 
-    public void setNumberOfPersons(int numberOfPersons) {
-        this.numberOfPersons = numberOfPersons;
+    public void setNumberPersons(int numberPersons) {
+        this.numberPersons = numberPersons;
     }
 
     public TableStatus getStatus() {
@@ -42,6 +43,21 @@ public class Table {
         this.status = status;
     }
 
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
     public TableShape getShape() {
         return shape;
     }
