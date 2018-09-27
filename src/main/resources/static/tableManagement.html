@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <title>Table Management</title>
+</head>
+<body>
+    <h2>Table Management</h2>
+    <div>
+        <table id="table">
+            <thead>
+            <tr>
+                <th><strong>Table Number</strong></th>
+                <th><strong>Number of Persons</strong></th>
+                <th><strong>Shape</strong></th>
+                <th><strong>Status</strong></th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="button" data-toggle="modal" data-target="#newTableModal">Add</button>
+
+    <div class="container">
+
+        <!-- New Table Modal -->
+        <div id="newTableModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add Table</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form data-toggle="validator" role="form" id="newTableForm" onsubmit="return false;">
+                            <div class="form-group">
+                                <label for="number" class="control-label">Table number:</label>
+                                <input type="text" class="form-control" id="number" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="persons" class="control-label">Capacity:</label>
+                                <input type="text" class="form-control" id="persons" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="shape" class="control-label">Shape:</label>
+                                <!--TODO: Currently hard coded-->
+                                <select id="shape" name="shape">
+                                    <option value="0">RECTANGULAR</option>
+                                    <option value="1">ROUND</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button id="closeButton" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of new Book Modal -->
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function postData() {
+            console.log("posting data...");
+
+            // Get values from html.
+            var tableNumber = $("#number").val();
+            var numberOfPersons = $("#persons").val();
+            var shape = $("#shape").val();
+
+            // Create JS object with data.
+            var newTable = {
+                number : tableNumber,
+                numberOfPersons : numberOfPersons,
+                shape : shape
+            };
+            console.log(newTable);
+
+            // Convert JS object to JSON.
+            var validJsonTable = JSON.stringify(newTable);
+            console.log(validJsonTable);
+
+            // Post JSON to endpoint.
+            $.ajax({
+                url:"http://localhost:8080/api/tables",
+                type:"post",
+                data: validJsonTable,
+                contentType: "application/json",
+                success: function(result) {
+                    // On successful post, reload data to get the added one as well.
+                    console.log("success post data!");
+                    getData();
+                }
+            });
+        }
+
+        function getData() {
+            console.log("getting data...");
+            // Get the data from endpoint.
+            $.ajax({
+                url:"api/tables",
+                type:"get",
+                success: function(result) {
+                    // On successful get, reload the data table with new data.
+                    console.log("This is the data: " + result);
+                    $('#table').DataTable().clear();
+                    $('#table').DataTable().rows.add(result);
+                    $('#table').DataTable().columns.adjust().draw();
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+            // Modal submit.
+            $("#newTableForm").on('submit', function(e) {
+                console.log("Submitted new table form");
+                // Post the data from the modal.
+                postData();
+                // Reset modal to hide and no values.
+                $('#newTableModal').modal('hide');
+                $("#number").val("");
+                $("#persons").val("");
+                $("#shape").val("");
+            });
+
+            $.get("api/tables", function(data){
+
+                // Get json data
+                console.log(data);
+
+                // Load datatable with dataset data.
+                $('#table').DataTable({
+                    data : data,
+                    columns: [
+                        { data: "number" },
+                        { data: "numberOfPersons" },
+                        { data: "shape" },
+                        { data: "status" }
+                    ]
+                });
+            });
+        });
+    </script>
+</body>
+</html>
