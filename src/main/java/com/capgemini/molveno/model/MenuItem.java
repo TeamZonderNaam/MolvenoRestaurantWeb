@@ -1,6 +1,31 @@
 package com.capgemini.molveno.model;
 
 public class MenuItem {
+
+    private String name;
+    private double price;
+    private int number;
+    private int id;
+
+    public MenuItem(String name, double price, int number) {
+        this.name = name;
+        this.price = price;
+        this.number = number;
+    }
+
+    //empty constructor for easy constructing of menu items
+    public MenuItem() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -24,8 +49,4 @@ public class MenuItem {
     public void setNumber(int number) {
         this.number = number;
     }
-
-    private String name;
-    private double price;
-    private int number;
 }
