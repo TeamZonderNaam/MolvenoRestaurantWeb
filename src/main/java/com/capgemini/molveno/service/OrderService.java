@@ -5,6 +5,7 @@ import com.capgemini.molveno.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @Service
@@ -17,7 +18,7 @@ public class OrderService {
         return created.getOrderNumber();
     }
 
-    public Iterable<Order> all() {
+    public Collection<Order> all() {
         return this.repository.findAll();
     }
 

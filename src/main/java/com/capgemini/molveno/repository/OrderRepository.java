@@ -45,10 +45,6 @@ public class OrderRepository {
         return orders;
     }
 
-    //create order
-    public void addMockData(){
-
-    }
     public Order save(Order newOrder){
         //newOrder.setOrderNumber(lastID++);
         if (orders.containsKey(newOrder.getOrderNumber())) {

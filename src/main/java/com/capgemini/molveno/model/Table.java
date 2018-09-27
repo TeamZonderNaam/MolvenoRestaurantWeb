@@ -2,7 +2,7 @@ package com.capgemini.molveno.model;
 
 public class Table {
     private int number;
-
+    private int ID;
     private int numberPersons;
     private TableStatus status;
     //dit zou een list moeten worden
@@ -38,5 +38,13 @@ public class Table {
 
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }

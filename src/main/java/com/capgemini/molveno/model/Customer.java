@@ -5,6 +5,7 @@ public class Customer {
     private String name;
     private String phoneNumber;
     private String emailAddress;
+    private int ID;
 
     public String getName() {
         return name;
@@ -28,5 +29,13 @@ public class Customer {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }

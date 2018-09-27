@@ -13,6 +13,7 @@ public class Reservation {
     private Table reservedTable;
     private LocalDateTime startReservation;
     private int totalTimeInMinutes;
+    private int ID;
 
     public Customer getCustomer() {
         return customer;
@@ -69,5 +70,13 @@ public class Reservation {
 
     public void setTotalTimeInMinutes(int totalTimeInMinutes) {
         this.totalTimeInMinutes = totalTimeInMinutes;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }

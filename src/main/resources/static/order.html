@@ -41,7 +41,7 @@
 
             // Post JSON to endpoint.
             $.ajax({
-                url:"api/order",
+                url:"api/order/",
                 type:"post",
                 data: validJsonOrder,
                 contentType: "application/json",
@@ -58,7 +58,7 @@
 
             // Get the data from endpoint.
             $.ajax({
-                url:"api/order",
+                url:"api/order/",
                 type:"get",
                 success: function(order) {
                     // On successful get, reload the datatable with new data.
@@ -98,7 +98,7 @@
             // Post JSON to endpoint.
             $.ajax({
                 url:"api/order/" + orderNumber,
-                type:"put",
+                type:"PUT",
                 data: validJsonOrder,
                 contentType: "application/json",
                 success: function(result) {

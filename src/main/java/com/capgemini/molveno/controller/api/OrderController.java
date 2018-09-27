@@ -1,44 +1,45 @@
 package com.capgemini.molveno.controller.api;
 
 import com.capgemini.molveno.model.Order;
-import com.capgemini.molveno.repository.OrderRepository;
+import com.capgemini.molveno.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-@RestController
+@RestController("order_api")
 @RequestMapping("/api/order")
 public class OrderController {
 
     @Autowired
-    private OrderRepository orderRepository;
+    private OrderService orderService;
 
-    @GetMapping
+    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<Order> get() {
-        return this.orderRepository.findAll();
+        return this.orderService.all();
     }
 
-    @GetMapping("{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Order getSingle(@PathVariable int id) {
-        return this.orderRepository.findById(id);
+        return this.orderService.read(id);
     }
 
-    @PostMapping
+    @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public Order add(@RequestBody Order order) {
-        this.orderRepository.save(order);
+        this.orderService.create(order);
         return order;
     }
 
-    @PutMapping("{id}")
-    public Order update(@PathVariable("id") int orderNumber, @RequestBody Order order) {
-        return this.orderRepository.update(orderNumber, order);
+    @PutMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Order update(@RequestBody Order order) {
+        return this.orderService.update(order);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean delete(@PathVariable int id, @RequestBody Order order) {
-        if (id >= 0 && id <= this.orderRepository.getOrders().size()) {
-            this.orderRepository.deleteById(id);
+        if (id >= 0 && id <= this.orderService.all().size()) {
+            this.orderService.delete(id);
             return true;
         } else {
             return false;
