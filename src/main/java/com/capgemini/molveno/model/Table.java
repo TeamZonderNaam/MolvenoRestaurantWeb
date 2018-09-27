@@ -7,6 +7,7 @@ public class Table {
     private TableStatus status;
     //dit zou een list moeten worden
     private Reservation reservation;
+    private TableShape shape;
 
     public Table() {
 
@@ -14,7 +15,7 @@ public class Table {
 
     public Table(int number, int numberOfPersons, TableShape shape) {
         this.number = number; // Controle dat dit nummer uniek is?
-        this.numberOfPersons = numberOfPersons;
+        this.numberPersons = numberOfPersons;
         this.status = TableStatus.AVAILABLE;
         this.shape = shape;
     }
@@ -42,15 +43,6 @@ public class Table {
     public void setStatus(TableStatus status) {
         this.status = status;
     }
-
-    public Reservation getReservation() {
-        return reservation;
-    }
-
-    public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
-    }
-
     public int getID() {
         return ID;
     }
