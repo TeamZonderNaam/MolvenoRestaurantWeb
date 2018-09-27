@@ -170,7 +170,7 @@
             // Create JS object with data.
             var newTable = {
                 number : tableNumber,
-                numberOfPersons : numberOfPersons,
+                numberOfPersons : numberPersons,
                 shape : shape
             };
             console.log(newTable);
@@ -220,7 +220,7 @@
             // Create JS object with data.
             var updateTable = {
                 number : tableNumber,
-                numberOfPersons : numberOfPersons,
+                numberOfPersons : numberPersons,
                 shape : shape
             };
             console.log(updateTable);
@@ -296,7 +296,7 @@
             $('#table').DataTable({
                 columns: [
                     { "data": "number" },
-                    { "data": "numberOfPersons" },
+                    { "data": "numberPersons" },
                     { "data": "shape" }
                 ]
             });
