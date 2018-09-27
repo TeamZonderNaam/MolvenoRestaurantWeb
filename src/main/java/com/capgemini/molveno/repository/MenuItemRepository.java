@@ -19,6 +19,7 @@ public class MenuItemRepository {
         for(int i = 1; i < 6; i++) {
             MenuItem item = new MenuItem();
             item.setName("item " + i);
+            item.setCategory("Food");
             this.save(item);
         }
     }
