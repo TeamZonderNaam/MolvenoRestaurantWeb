@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="/css/stylesheet.css" rel="stylesheet" type="text/css" />
+    <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR|Open+Sans" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+
+    function getData() {
+            console.log("getting menu item data...");
+
+            // Get the data from endpoint.
+            $.ajax({
+                url:"/api/menuItem/",
+                type:"get",
+                success: function(items) {
+                    // On successful get, reload the datatable with new data.
+                    console.log("This is the data: " + items);
+                    $('#table').DataTable().clear();
+                    $('#table').DataTable().rows.add(items);
+                    $('#table').DataTable().columns.adjust().draw();
+                }
+            });
+        }
+
+    function postData() {
+            console.log("posting a new item...");
+
+            //Get values from html
+            var name = $("#inputName").val();
+            var price = $("#inputPrice").val();
+            var number = $("#inputNumber").val();
+            var category = $("#inputCategory").val();
+
+            // Create JS object with data.
+            var newItem = {
+                name : name,
+                price : price,
+                number : number,
+                category: category
+            };
+            console.log(newItem);
+
+            // Convert JS object to JSON.
+            var validJsonItem = JSON.stringify(newItem);
+            console.log(validJsonItem);
+
+            // Post JSON to endpoint.
+            $.ajax({
+                url:"api/menuItem/",
+                type:"post",
+                data: validJsonItem,
+                contentType: "application/json",
+                success: function(result) {
+                    // On successful post, reload data to get the added one as well.
+                    console.log("success post data!");
+                    getData();
+                }
+            });
+        }
+
+        function putData() {
+            console.log("changing item...");
+
+            //Get values from html
+            var name = $("#inputChangeName").val();
+            var price = $("#inputChangePrice").val();
+            var number = $("#inputChangeNumber").val();
+            var id = $("#inputChangeId").val();
+            var category = $("#inputCategory").val();
+
+            // Create JS object with data.
+            var changeItem = {
+                name : name,
+                price : price,
+                number : number,
+                category : category
+            };
+            console.log(changeItem);
+
+            // Convert JS object to JSON.
+            var validJsonItem = JSON.stringify(changeItem);
+            console.log(validJsonItem);
+
+            var src = "api/menuItem/" + id;
+
+            // Post JSON to endpoint.
+            $.ajax({
+                url: src,
+                type:"put",
+                data: validJsonItem,
+                contentType: "application/json",
+                success: function(result) {
+                    // On successful post, reload data to get the added one as well.
+                    console.log("success put data!");
+                    getData();
+                }
+            });
+        }
+
+        function deleteData() {
+            console.log("deleting...");
+
+            //Get values from html
+            var id = $("#inputDeleteId").val();
+
+            // Create JS object with data.
+            var deleteItem = {
+                id : id
+            };
+            console.log(deleteItem);
+
+            // Convert JS object to JSON.
+            var validJsonItem = JSON.stringify(deleteItem);
+            console.log(validJsonItem);
+            console.log("Delete item" + id);
+
+
+            var src = "api/menuItem/" + id;
+
+            // Post JSON to endpoint.
+            $.ajax({
+                url: src,
+                type:"delete",
+                data: validJsonItem,
+                contentType: "application/json",
+                success: function(result) {
+                    // On successful post, reload data to get the added one as well.
+                    console.log("success delete data!");
+                    getData();
+                }
+            });
+        }
+
+        $(document).ready(function(){
+
+                $("#newItemForm").on('submit', function(e) {
+                console.log("Submitted new menu item form");
+
+                // Post the data from the modal.
+                postData();
+
+                // Reset modal to no values.
+
+                $('#newItemModal').modal('hide');
+                $("#inputName").val("");
+                $("#inputPrice").val("");
+                $("#inputNumber").val("");
+                $("#inputCategory").val("");
+            });
+
+            $("#changeItemForm").on('submit', function(e) {
+                console.log("Submitted changed menu item form");
+
+                // Put the data from the modal.
+                putData();
+
+                // Reset modal to no values.
+
+                $('#changeItemModal').modal('hide');
+
+                $("#inputChangeId").val("");
+                $("#inputChangeName").val("");
+                $("#inputChangePrice").val("");
+                $("#inputChangeNumber").val("");
+                $("#inputChangeCategory").val("");
+            });
+
+                $("#deleteItemForm").on('submit', function(e) {
+                console.log("Submitted delete menu item form");
+
+                // Delete the data.
+                deleteData();
+
+                // Reset modal to no values.
+
+                $('#deleteItemModal').modal('hide');
+
+                $("#inputDeleteId").val("");
+            });
+
+                $('#table').DataTable({
+                columns: [
+                    { "data": "id" },
+                    { "data": "category" },
+                    { "data": "name" },
+                    { "data": "price" },
+                    { "data": "number" }
+                ]
+            });
+            // Load first data.
+            getData();
+            $("#btn5").click(function(){
+                $('#table tbody').empty();
+                console.log("hiding data..");
+                });
+            $("#btn6").click(function(){
+            getData();
+            });
+            });
+    </script>
+
+    <meta charset="UTF-8">
+    <title>Molveno Menu</title>
+</head>
+<body>
+
+<div class="container">
+
+
+
+
+    <div class=“row”>
+        <div class=“col-md-12”>
+
+    <h2>Menu items</h2>
+
+                <p>Here you can find info about the menu items</p>
+
+
+                <br>
+                <h2>Menu items</h2>
+                <table id="table">
+                    <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Category</td>
+                        <td>Name</td>
+                        <td>Price</td>
+                        <td>Number</td>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            <button id="btn5">Hide data</button>
+            <button id="btn6">Show data</button>
+
+            <br>
+            <br>
+
+            <div class=“row”>
+                <div class=“col-md-12”>
+
+                    <button type="button" data-toggle="modal" data-target="#newItemModal">New Item</button>
+                    <button type="button" data-toggle="modal" data-target="#changeItemModal">Change Item</button>
+                    <button type="button" data-toggle="modal" data-target="#deleteItemModal">Delete Item</button>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+            <!-- New Item Modal -->
+                <div id="newItemModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">New Item</h4>
+                            </div>
+
+                            <div class="modal-body">
+                <h2>Make a new item</h2>
+                <form data-toggle="validator" role="form" id="newItemForm" onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="inputCategory" class="control-label">Category</label>
+                        <input type="text" class="form-control" id="inputCategory" placeholder="Enter the category" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputName" class="control-label">Name</label>
+                        <input type="text" class="form-control" id="inputName" placeholder="Enter a name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPrice" class="control-label">Price</label>
+                        <input type="text" class="form-control" id="inputPrice" placeholder="Enter the price" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputNumber" class="control-label">Number</label>
+                        <input type="text" class="form-control" id="inputNumber" placeholder="Enter the number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button id="closeButton" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+
+                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+    <!-- End of new Item Modal -->
+
+    <!-- Change Item Modal -->
+    <div id="changeItemModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New Item</h4>
+                </div>
+
+                <div class="modal-body">
+                    <h2>Change item</h2>
+                    <form data-toggle="validator" role="form" id="changeItemForm" onsubmit="return false;">
+
+                        <div class="form-group">
+                            <label for="inputChangeId" class="control-label">Id</label>
+                            <input type="text" class="form-control" id="inputChangeId" placeholder="Enter the id" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputChangeCategory" class="control-label">Category</label>
+                            <input type="text" class="form-control" id="inputChangeCategory" placeholder="Enter the category" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputChangeName" class="control-label">Name</label>
+                            <input type="text" class="form-control" id="inputChangeName" placeholder="Enter a name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputChangePrice" class="control-label">Price</label>
+                            <input type="text" class="form-control" id="inputChangePrice" placeholder="Enter the price" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputChangeNumber" class="control-label">Number</label>
+                            <input type="text" class="form-control" id="inputChangeNumber" placeholder="Enter the number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button id="closeButton" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End of change Item Modal -->
+
+    <!-- Delete Item Modal -->
+    <div id="deleteItemModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New Item</h4>
+                </div>
+
+                <div class="modal-body">
+                    <h2>Delete item</h2>
+                    <form data-toggle="validator" role="form" id="deleteItemForm" onsubmit="return false;">
+
+                        <div class="form-group">
+                            <label for="inputDeleteId" class="control-label">Id</label>
+                            <input type="text" class="form-control" id="inputDeleteId" placeholder="Enter the id" required>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button id="closeButton" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End of Delete Item Modal -->
+</div>
+
+</body>
+</html>

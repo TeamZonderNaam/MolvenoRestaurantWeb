@@ -8,6 +8,17 @@ public class Table {
     //dit zou een list moeten worden
     private Reservation reservation;
 
+    public Table() {
+
+    }
+
+    public Table(int number, int numberOfPersons, TableShape shape) {
+        this.number = number; // Controle dat dit nummer uniek is?
+        this.numberOfPersons = numberOfPersons;
+        this.status = TableStatus.AVAILABLE;
+        this.shape = shape;
+    }
+
     public int getNumber() {
         return number;
     }
@@ -46,5 +57,20 @@ public class Table {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+    public TableShape getShape() {
+        return shape;
+    }
+
+    public void setShape(TableShape shape) {
+        this.shape = shape;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
 }

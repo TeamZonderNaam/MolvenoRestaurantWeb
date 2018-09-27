@@ -3,6 +3,7 @@ package com.capgemini.molveno.repository;
 import com.capgemini.molveno.model.MenuItem;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,17 +11,26 @@ import java.util.Optional;
 
 @Repository
 public class MenuItemRepository {
-    private static int menuItemId; //klopt dit zo?
+    private static int menuItemId;
     private Map<Integer, MenuItem> menuItems = new HashMap<>();
 
-    //make new Hashmap with every new repository
-//    public MenuItemRepository() {
-//        this.menuItems = new HashMap<>();
-//    }
+    @PostConstruct
+    public void addSomeItemsToGetStarted() {
+        for(int i = 1; i < 6; i++) {
+            MenuItem item = new MenuItem();
+            item.setName("item " + i);
+            item.setCategory("Food");
+            this.save(item);
+        }
+    }
 
     public MenuItem save(MenuItem newItem) {
-        newItem.setId(++menuItemId);
-        this.menuItems.put(newItem.getId(), newItem);
+        if (this.menuItems.containsKey(newItem.getId())) {
+            this.menuItems.put(newItem.getId(), newItem);
+        } else {
+            newItem.setId(++menuItemId);
+            this.menuItems.put(newItem.getId(), newItem);
+        }
         return newItem;
     }
 

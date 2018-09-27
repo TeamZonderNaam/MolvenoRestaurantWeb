@@ -6,6 +6,7 @@ public class MenuItem {
     private double price;
     private int number;
     private int id;
+    private String category;
 
     public MenuItem(String name, double price, int number) {
         this.name = name;
@@ -48,5 +49,13 @@ public class MenuItem {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

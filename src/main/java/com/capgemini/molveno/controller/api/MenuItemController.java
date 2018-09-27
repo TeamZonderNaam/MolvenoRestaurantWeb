@@ -32,13 +32,13 @@ public class MenuItemController {
         return service.read(id);
     }
 
-    @PutMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public MenuItem update(@RequestBody MenuItem item) {
-        return service.update(item);
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public MenuItem update(@PathVariable int id, @RequestBody MenuItem item) {
+        return service.update(id, item);
     }
 
-    @DeleteMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public void delete(@RequestBody MenuItem item) {
-        service.delete(item.getId());
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void delete(@PathVariable int id) {
+        service.delete(id);
     }
 }

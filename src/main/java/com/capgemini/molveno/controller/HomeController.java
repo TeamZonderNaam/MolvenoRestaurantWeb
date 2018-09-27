@@ -22,6 +22,6 @@ public class HomeController {
         Iterable<Ingredient> ingredients = service.all();
         model.put("hello", "World!");
 
-        return new ModelAndView("index", model);
+        return new ModelAndView("index.html", model);
     }
 }
