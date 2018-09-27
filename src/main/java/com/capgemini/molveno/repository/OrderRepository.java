@@ -50,7 +50,14 @@ public class OrderRepository {
 
     }
     public Order save(Order newOrder){
-        newOrder.setOrderNumber(lastID++);
+        //newOrder.setOrderNumber(lastID++);
+        if (orders.containsKey(newOrder.getOrderNumber())) {
+            orders.put(newOrder.getOrderNumber(), newOrder);
+        } else {
+            orders.put(lastID, newOrder);
+            newOrder.setOrderNumber(lastID);
+            lastID++;
+        }
         return this.orders.put(newOrder.getOrderNumber(), newOrder);
     }
 

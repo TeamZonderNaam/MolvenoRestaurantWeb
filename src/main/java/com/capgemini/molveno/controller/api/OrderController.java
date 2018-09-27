@@ -37,7 +37,7 @@ public class OrderController {
 
     @DeleteMapping("{id}")
     public boolean delete(@PathVariable int id, @RequestBody Order order) {
-        if (id >= 0 && id < this.orderRepository.getOrders().size()) {
+        if (id >= 0 && id <= this.orderRepository.getOrders().size()) {
             this.orderRepository.deleteById(id);
             return true;
         } else {
