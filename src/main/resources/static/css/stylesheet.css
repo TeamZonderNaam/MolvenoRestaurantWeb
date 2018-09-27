@@ -22,6 +22,10 @@ h2 {
     font-size: 18px;
     }
 
+.deactivate {
+    text-decoration: line-through;
+}
+
 .maintable tr td {
        padding-left: 25px;
        padding-right: 25px;
