@@ -7,11 +7,9 @@ public class Ingredient {
     private Unit unit;
 
     public Ingredient() {
-        this.id = -1;
     }
 
     public Ingredient(String name, double pricePerUnit, Unit unit) {
-        this();
         this.name = name;
         this.pricePerUnit = pricePerUnit;
         this.unit = unit;
