@@ -7,9 +7,11 @@ public class Ingredient {
     private Unit unit;
 
     public Ingredient() {
+        this.id = -1;
     }
 
     public Ingredient(String name, double pricePerUnit, Unit unit) {
+        this();
         this.name = name;
         this.pricePerUnit = pricePerUnit;
         this.unit = unit;
@@ -45,5 +47,15 @@ public class Ingredient {
 
     public void setUnit(Unit unit) {
         this.unit = unit;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", pricePerUnit=" + pricePerUnit +
+                ", unit=" + unit +
+                '}';
     }
 }

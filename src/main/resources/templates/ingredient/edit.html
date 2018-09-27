@@ -8,21 +8,23 @@
         <h1>Edit</h1>
 
         <form id="ingredient">
+            <input type="hidden" id="id" name="id" value="{{ingredient.id}}">
             <div>
                 <label for="name">Name:</label>
                 <input type="text" id="name" placeholder="Name" name="name" value="{{ingredient.name}}">
             </div>
             <div>
-                <label for="name">Price (¥):</label>
-                <input type="text" id="price" placeholder="Price" name="price" value="{{ingredient.pricePerUnit}}">
+                <label for="pricePerUnit">Price (¥):</label>
+                <input type="text" id="pricePerUnit" placeholder="Price" name="pricePerUnit" value="{{ingredient.pricePerUnit}}">
             </div>
 
             <div>
                 <label for="unit">Unit: </label>
                 <!--TODO: Currently hard coded-->
                 <select id="unit" name="unit">
-                    <option value="0">Grams</option>
-                    <option value="1">Liter</option>
+                    {{#units}}
+                        <option value="{{id}}">{{name}}</option>
+                    {{/units}}
                 </select>
             </div>
 

@@ -2,6 +2,7 @@ package com.capgemini.molveno.controller.api;
 
 import com.capgemini.molveno.model.Ingredient;
 import com.capgemini.molveno.model.Ingredient;
+import com.capgemini.molveno.model.Unit;
 import com.capgemini.molveno.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -32,8 +33,9 @@ public class IngredientController {
         return ingredient;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public Ingredient update(@RequestBody Ingredient ingredient) {
+        System.out.println("Updating ingredient:"+ingredient);
         return service.update(ingredient);
     }
 
