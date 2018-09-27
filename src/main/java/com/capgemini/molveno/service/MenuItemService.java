@@ -37,7 +37,8 @@ public class MenuItemService {
         return null;
     }
 
-    public MenuItem update(MenuItem changedItem) {
+    public MenuItem update(int id, MenuItem changedItem) {
+        changedItem.setId(id);
         return menuItemRepository.save(changedItem);
     }
 
