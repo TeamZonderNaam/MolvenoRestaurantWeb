@@ -27,19 +27,7 @@ public class IngredientController {
     @RequestMapping("/")
     public ModelAndView ingredient() {
         if(!done) {
-            Unit unit1 = new Unit("Kilogram");
-            unit1.setId(0);
-            Unit unit2 = new Unit("Liter");
-            unit1.setId(1);
-            units.add(unit1);
-            units.add(unit2);
 
-            Ingredient ingredient1 = new Ingredient("Flour", 10.0, unit1);
-            Ingredient ingredient2 = new Ingredient("Cheese", 13.0, unit1);
-            Ingredient ingredient3 = new Ingredient("Tomato", 5.0, unit1);
-            service.create(ingredient1);
-            service.create(ingredient2);
-            service.create(ingredient3);
             done = true;
         }
 
