@@ -1,6 +1,8 @@
 package com.capgemini.molveno.controller.api;
 
 import com.capgemini.molveno.model.Person;
+import com.capgemini.molveno.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +11,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/person")
 public class PersonController {
+    @Autowired
+    private PersonService service;
+
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
     public List<Person> get() {
         return null;

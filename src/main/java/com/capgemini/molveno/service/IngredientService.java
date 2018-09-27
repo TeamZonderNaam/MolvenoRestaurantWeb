@@ -5,6 +5,9 @@ import com.capgemini.molveno.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,8 +20,11 @@ public class IngredientService {
         return created.getId();
     }
 
-    public Iterable<Ingredient> all() {
-        return repository.findAll();
+    public List<Ingredient> all() {
+        Iterable<Ingredient> iterable = repository.findAll();
+        List<Ingredient> ingredients = new ArrayList<>();
+        iterable.forEach(ingredients::add);
+        return ingredients;
     }
 
     public Ingredient read(final int id) {

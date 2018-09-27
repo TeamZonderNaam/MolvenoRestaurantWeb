@@ -10,13 +10,18 @@ import java.util.Optional;
 @Repository
 public class IngredientRepository {
     // Public used for testing
-    public static int id = 0;
+    public static int id = 1;
     private Map<Integer, Ingredient> store = new HashMap<>();
 
     public Ingredient save(Ingredient ingredient) {
-        store.put(id, ingredient);
-        ingredient.setId(id);
-        id ++;
+        if (store.containsKey(ingredient.getId())) {
+            store.put(ingredient.getId(), ingredient);
+        } else {
+            store.put(id, ingredient);
+            ingredient.setId(id);
+            id ++;
+        }
+
         return ingredient;
     }
 
