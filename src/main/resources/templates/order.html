@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+</head>
+<body>
+
+<table class="orderTable" style="display: none" >
+    <tr>
+        <th>ID</th>
+        <th>Prepared</th>
+        <th>Item name</th>
+        <th>Item price</th>
+        <th>Item number</th>
+    </tr>
+</table><br>
+<button type="button" id="showData">Show orders</button>
+<button type="button" id="editData">edit order</button>
+<button type="button" id="deleteData">delete order</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+     var showOrders = 0;
+     $("#showData").click(function(){
+     showOrders++;
+         if(showOrders == 1){
+             $('.orderTable').show();
+                $.getJSON("api/order",function (data) {
+                    var tr = data.report
+                    for (var i = 0; i < data.length; i++) {
+                        tr = $('<tr/>');
+                        tr.append("<td>" + data[i].orderNumber + "</td>");
+                        tr.append("<td>" + data[i].prepared + "</td>");
+                        tr.append("<td>" + data[i].items[0].name + "</td>");
+                        tr.append("<td>" + data[i].items[0].price + "</td>");
+                        tr.append("<td>" + data[i].items[0].number + "</td>");
+                        $('.orderTable').append(tr);
+                 }
+              });
+          }
+      });
+    </script>
+</body>
+</html>

@@ -13,7 +13,7 @@ public class HomeController {
     @RequestMapping("/")
     public ModelAndView index() {
         Map<String, Object> model = new HashMap<>();
-        model.put("hello", "World");
-        return new ModelAndView("index", model);
+        model.put("hello", "World123");
+        return new ModelAndView("order", model);
     }
 }
