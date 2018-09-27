@@ -26,7 +26,6 @@ public class PersonService {
         if (person.isPresent()) {
             return person.get();
         }
-
         return null;
     }
 

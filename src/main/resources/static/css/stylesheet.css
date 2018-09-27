@@ -1,0 +1,52 @@
+body, p {
+font-family: "Open Sans", "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 14px;
+    margin-top: 0;
+}
+
+h1, h2 {
+	font-family: "Noto Serif KR", Georgia, serif;
+	margin-top: 0;
+}
+
+h1 {
+    text-align: center;
+
+}
+
+h2 {
+    font-size: 24px;
+    }
+
+h2 {
+    font-size: 18px;
+    }
+
+.deactivate {
+    text-decoration: line-through;
+}
+
+.maintable tr td {
+       padding-left: 25px;
+       padding-right: 25px;
+       vertical-align: top;
+}
+
+.maintable {
+        vertical-align: top;
+        }
+
+.catstable {
+    width: 100%;
+    border: 1px solid #dddddd;
+}
+
+.catstable td th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+
+.catstable tr:nth-child(even) {
+            background-color: #dddddd;
+        }

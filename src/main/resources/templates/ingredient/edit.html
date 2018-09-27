@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <h1>Edit</h1>
+
+        <form id="ingredient">
+            <input type="hidden" id="id" name="id" value="{{ingredient.id}}">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Name" name="name" value="{{ingredient.name}}">
+            </div>
+            <div>
+                <label for="pricePerUnit">Price (¥):</label>
+                <input type="text" id="pricePerUnit" placeholder="Price" name="pricePerUnit" value="{{ingredient.pricePerUnit}}">
+            </div>
+
+            <div>
+                <label for="unit">Unit: </label>
+                <!--TODO: Currently hard coded-->
+                <select id="unit" name="unit">
+                    {{#units}}
+                        <option value="{{id}}">{{name}}</option>
+                    {{/units}}
+                </select>
+            </div>
+
+            <button type="submit">
+                Save changes
+            </button>
+        </form>
+
+        <script src="../../lib/jquery/jquery.min.js"></script>
+        <script src="../../js/ingredient/edit.js"></script>
+    </body>
+</html>
