@@ -3,7 +3,7 @@ package com.capgemini.molveno.model;
 public class Table {
     private int number;
     private int ID;
-    private int numberPersons;
+    private int numberOfPersons;
     private TableStatus status;
     //dit zou een list moeten worden
     private Reservation reservation;
@@ -15,7 +15,7 @@ public class Table {
 
     public Table(int number, int numberOfPersons, TableShape shape) {
         this.number = number; // Controle dat dit nummer uniek is?
-        this.numberPersons = numberOfPersons;
+        this.numberOfPersons = numberOfPersons;
         this.status = TableStatus.AVAILABLE;
         this.shape = shape;
     }
@@ -28,12 +28,12 @@ public class Table {
         this.number = number;
     }
 
-    public int getNumberPersons() {
-        return numberPersons;
+    public int getNumberOfPersons() {
+        return numberOfPersons;
     }
 
-    public void setNumberPersons(int numberPersons) {
-        this.numberPersons = numberPersons;
+    public void setNumberOfPersons(int numberOfPersons) {
+        this.numberOfPersons = numberOfPersons;
     }
 
     public TableStatus getStatus() {
