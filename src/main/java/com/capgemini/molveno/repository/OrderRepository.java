@@ -22,9 +22,9 @@ public class OrderRepository {
             order.setPrepared(true);
 
             MenuItem menuItem = new MenuItem();
-            menuItem.setName("pizza");
+            menuItem.setName("Fried Wonton");
             menuItem.setNumber(22);
-            menuItem.setPrice(34.99);
+            menuItem.setPrice(4);
             items.add(menuItem);
             //newOrder.setItems(items);
             order.setItems(items);

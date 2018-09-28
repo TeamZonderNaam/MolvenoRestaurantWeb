@@ -185,7 +185,7 @@
                     { "data": "orderNumber" },
                     { "data": "prepared" },
                     { "data": "items[0].name" },
-                    { "data": "items[0].price" },
+                    { "data": "items[0].price" , render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' )},
                     { "data": "items[0].number" },
 
                 ]
