@@ -31,12 +31,12 @@ public class OrderController {
         return order;
     }
 
-    @PutMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Order update(@RequestBody Order order) {
         return this.orderService.update(order);
     }
 
-    @DeleteMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean delete(@PathVariable int id, @RequestBody Order order) {
         if (id >= 0 && id <= this.orderService.all().size()) {
             this.orderService.delete(id);
