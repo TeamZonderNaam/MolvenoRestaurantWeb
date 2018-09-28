@@ -6,7 +6,7 @@ font-family: "Open Sans", "Trebuchet MS", Helvetica, sans-serif;
 
 h1, h2 {
 	font-family: "Noto Serif KR", Georgia, serif;
-	margin-top: 0;
+
 }
 
 h1 {
@@ -16,6 +16,7 @@ h1 {
 
 h2 {
     font-size: 24px;
+    margin-top: 0;
     }
 
 h2 {
