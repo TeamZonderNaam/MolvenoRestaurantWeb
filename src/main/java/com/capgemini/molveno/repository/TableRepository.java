@@ -40,7 +40,7 @@ public class TableRepository {
     public Table updateByNumber(int number, Table newTable) {
         Table oldTable = findByNumber(number);
         oldTable.setNumber(newTable.getNumber());
-        oldTable.setNumberPersons(newTable.getNumberPersons());
+        oldTable.setNumberOfPersons(newTable.getNumberOfPersons());
         oldTable.setShape(newTable.getShape());
         oldTable.setStatus(newTable.getStatus());
         return oldTable; // How to deal with reservations?
