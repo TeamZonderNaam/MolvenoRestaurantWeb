@@ -62,7 +62,7 @@
                     { "data": "id" },
                     { "data": "category" },
                     { "data": "name" },
-                    { "data": "price" },
+                    { "data": "price", render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' ) },
                     { "data": "number" }
                 ]
             });

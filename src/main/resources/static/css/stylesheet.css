@@ -49,5 +49,15 @@ h2 {
     }
 
 .catstable tr:nth-child(even) {
-            background-color: #dddddd;
+    background-color: #dddddd;
         }
+
+a:link, a:visited, a:active {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    }
+
+a:hover {
+    color: #6495ED;
+    }
