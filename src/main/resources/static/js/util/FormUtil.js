@@ -5,7 +5,7 @@ var FormUtil = function() {};
  * The functions expect pairs to be given, which are noted like the following:
  * {id: ".id", name: "#name"}
  *
- * The first part is the identifier the value should be added to, and the second
+ * The first part of the pair is the identifier the value should be added to, and the second
  * part is the selector that will be used to find that value on the form.
  *
  *
@@ -21,6 +21,18 @@ FormUtil.formToValues = function(pairs, form) {
     return vals;
 };
 
+/**
+ * Fills the form with the given data according to the pairs.
+ * The functions expect pairs to be given, which are noted like the following:
+ * {id: ".id", name: "#name"}
+ *
+ * The first part of the pair is the identifier the value should be added to, and the second
+ * part is the selector that will be used to find that value on the form. Which is used to set the value.
+ *
+ * @param pairs
+ * @param data
+ * @param form
+ */
 FormUtil.fillForm = function(pairs, data, form) {
     for (var key in pairs) {
         form.find(pairs[key]).val(data[key]);
@@ -36,13 +48,17 @@ FormUtil.emptyForm = function(form) {
 };
 
 /**
- * Makes a form editable by removing the save class on the button and making the class edit
+ * Makes a form editable by removing the edit class on the button and making the class save
+ * @param form
  */
 FormUtil.makeFormEdit = function(form) {
     var btn = form.find("button.save");
     FormUtil.__swapClass("save", "edit", btn);
 };
-
+/**
+ * Makes a form saveble by removing the save class on the button and making the class edit
+ * @param form
+ */
 FormUtil.makeFormSave = function(form) {
     var btn = form.find("button.edit");
     FormUtil.__swapClass("edit", "save", btn);
