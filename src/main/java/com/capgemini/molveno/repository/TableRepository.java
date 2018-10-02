@@ -11,7 +11,7 @@ import java.util.Map;
 
 @Repository
 public class TableRepository {
-    Map<Integer, Table> tables = new HashMap<>();
+    private Map<Integer, Table> tables = new HashMap<>();
 
     @PostConstruct
     public void addSomeTables() {
