@@ -6,6 +6,7 @@ import javax.persistence.*;
 public class Ingredient {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
     private double pricePerUnit;
