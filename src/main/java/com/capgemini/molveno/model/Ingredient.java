@@ -1,9 +1,16 @@
 package com.capgemini.molveno.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Ingredient {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
     private double pricePerUnit;
+    @ManyToOne
     private Unit unit;
 
     public Ingredient() {
