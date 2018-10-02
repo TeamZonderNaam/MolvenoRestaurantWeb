@@ -20,7 +20,7 @@
             console.log("posting data...");
 
             // Get values from html.
-            var orderNumber = $("#inputId").val();
+            var id = $("#inputId").val();
             var prepared = $("#inputPrepared").val();
             var inputItemName = $("#inputItemsName").val();
             var inputItemPrice = $("#inputItemsPrice").val();
@@ -28,7 +28,7 @@
 
             // Create JS object with data.
             var newOrder = {
-                orderNumber : orderNumber,
+                id : id,
                 prepared : prepared,
                 items : [{name : inputItemName,
                           price : inputItemPrice,
@@ -76,7 +76,7 @@
             console.log("updating data...");
 
             // Get values from html.
-            var orderNumber = $("#editId").val();
+            var id = $("#editId").val();
             var prepared = $("#editPrepared").val();
             var editItemName = $("#editItemsName").val();
             var editItemPrice = $("#editItemsPrice").val();
@@ -84,7 +84,7 @@
 
             // Create JS object with data.
             var newOrder = {
-                orderNumber : orderNumber,
+                id : id,
                 prepared : prepared,
                 items : [{name : editItemName,
                           price : editItemPrice,
@@ -99,7 +99,7 @@
 
             // Post JSON to endpoint.
             $.ajax({
-                url:"api/order/" + orderNumber,
+                url:"api/order/" + id,
                 type:"PUT",
                 data: validJsonOrder,
                 contentType: "application/json",
@@ -114,19 +114,19 @@
         function deleteData() {
             console.log("deleting order");
             //Get values from html
-            var orderNumber = $("#inputDeleteOrderNumber").val();
+            var id = $("#inputDeleteId").val();
             // Create JS object with data.
             var deleteOrder = {
-                orderNumber : orderNumber
+                id : id
             };
             console.log(deleteOrder);
             // Convert JS object to JSON.
             var validJsonOrder = JSON.stringify(deleteOrder);
             console.log(validJsonOrder);
-            console.log("Delete order" + orderNumber);
+            console.log("Delete order" + id);
             // Post JSON to endpoint.
             $.ajax({
-                url: "api/order/" + orderNumber,
+                url: "api/order/" + id,
                 type:"delete",
                 data: validJsonOrder,
                 contentType: "application/json",
@@ -182,7 +182,7 @@
          //load table with data format
          $('#orderTable').DataTable({
                 columns: [
-                    { "data": "orderNumber" },
+                    { "data": "id" },
                     { "data": "prepared" },
                     { "data": "items[0].name" },
                     { "data": "items[0].price" , render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' )},
@@ -203,7 +203,7 @@
 <table id="orderTable">
     <thead>
     <tr>
-        <th><strong>Order nr</strong></th>
+        <th><strong>ID</strong></th>
         <th><strong>Prepared</strong></th>
         <th><strong>Item name</strong></th>
         <th><strong>Price</strong></th>
@@ -350,8 +350,8 @@
                     <form data-toggle="validator" role="form" id="deleteOrderForm" onsubmit="return false;">
 
                         <div class="form-group">
-                            <label for="inputDeleteOrderNumber" class="control-label">Order number</label>
-                            <input type="text" class="form-control" id="inputDeleteOrderNumber" placeholder="Enter the order number" required>
+                            <label for="inputDeleteId" class="control-label">ID</label>
+                            <input type="text" class="form-control" id="inputDeleteId" placeholder="Enter the ID" required>
                         </div>
 
                         <div class="form-group">

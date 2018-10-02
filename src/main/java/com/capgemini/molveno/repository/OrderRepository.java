@@ -36,7 +36,7 @@ public class OrderRepository {
 
             //newOrder.setTable(table);
             order.setTable(table);
-            order.setOrderNumber(index++);
+            order.setId(index++);
             this.save(order);
         }
     }
@@ -47,14 +47,14 @@ public class OrderRepository {
 
     public Order save(Order newOrder){
         //newOrder.setOrderNumber(lastID++);
-        if (orders.containsKey(newOrder.getOrderNumber())) {
-            orders.put(newOrder.getOrderNumber(), newOrder);
+        if (orders.containsKey(newOrder.getId())) {
+            orders.put(newOrder.getId(), newOrder);
         } else {
             orders.put(lastID, newOrder);
-            newOrder.setOrderNumber(lastID);
+            newOrder.setId(lastID);
             lastID++;
         }
-        return this.orders.put(newOrder.getOrderNumber(), newOrder);
+        return this.orders.put(newOrder.getId(), newOrder);
     }
 
     //read all orders
@@ -73,7 +73,7 @@ public class OrderRepository {
         Order updateOrder = this.findById(id);
         updateOrder.setTable(update.getTable());
         updateOrder.setPrepared(update.getPrepared());
-        updateOrder.setOrderNumber(update.getOrderNumber());
+        updateOrder.setId(update.getId());
         updateOrder.setItems(update.getItems());
         return updateOrder;
     }
