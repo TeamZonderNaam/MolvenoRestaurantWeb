@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Map;
+
 @Controller
 @RequestMapping("/menu")
 public class MenuItemController {
@@ -15,7 +17,8 @@ public class MenuItemController {
     private MenuItemService menuItemService;
 
     @RequestMapping("/")
-    public String index() {
+    public String index(Map<String, Object> model) {
+        model.put("title", "Menu Item");
         return "data/menu/index";
     }
 }

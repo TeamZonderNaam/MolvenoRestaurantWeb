@@ -15,12 +15,12 @@ $(function() {
             {data: "id"},
             {data: "category"},
             {data: "name"},
-            {data: "price"},
+            {data: "price", render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' ) },
             {data: "number"},
             {
                 data: null,
                 className: "center",
-                defaultContent: '<a href="edit">Edit</a> / <a href="delete">Delete</a>'
+                defaultContent: '<a href="edit"><i class="fas fa-edit"></i></a> / <a href="delete"><i class="far fa-trash-alt"></i></a>'
             }
         ]
     });
