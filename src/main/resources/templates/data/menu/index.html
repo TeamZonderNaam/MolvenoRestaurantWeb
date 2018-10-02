@@ -28,11 +28,61 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-6">
-                    <a class="btn btn-secondary btn-block" href="/">Back</a>
+                    <a class="btn btn-secondary btn-block" href="/">
+                        Back
+                    </a>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-primary btn-block"><i class="fas fa-plus"></i> Add</button>
+                    <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#item-modal">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="add-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="add-skill">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <input class="form-control category" type="text" name="category" placeholder="Enter a category">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input class="form-control name" type="text" name="name" placeholder="Enter a name">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input class="form-control price" type="text" name="price" placeholder="Enter a price">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Number</label>
+                                <input class="form-control number" type="number" name="number" placeholder="Enter a number">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!--<button type="button" class="btn btn-primary save" data-dismiss="modal">Save changes</button>-->
+                <button type="button" class="btn btn-primary save">Save changes</button>
             </div>
         </div>
     </div>
@@ -40,5 +90,6 @@
 
 <script src="/js/menu/main.js"></script>
 <script src="/js/menu/get.js"></script>
+<script src="/js/menu/create.js"></script>
 
 {{> data/footer}}

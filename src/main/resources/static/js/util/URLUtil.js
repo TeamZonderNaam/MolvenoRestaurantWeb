@@ -23,7 +23,7 @@ URLUtil.get = function(url) {
 
 URLUtil.post = function(url, data) {
     var promise = new Promise(function(resolve, reject) {
-        $.ajax({url: url, data: data, type: "POST"}).done(function(data) {
+        $.ajax({url: url, data: JSON.stringify(data), type: "POST", contentType:"application/json; charset=utf-8", dataType:"json"}).done(function(data) {
             resolve(data);
         }).fail(function(a, b, c) {
             // Jquery returns stupid amount of variables when failing
@@ -36,7 +36,7 @@ URLUtil.post = function(url, data) {
 
 URLUtil.put = function(url, data) {
     var promise = new Promise(function(resolve, reject) {
-        $.ajax({url: url, data: data, type: "PUT"}).done(function(data) {
+        $.ajax({url: url, data: JSON.stringify(data), type: "PUT", contentType:"application/json; charset=utf-8", dataType:"json"}).done(function(data) {
             resolve(data);
         }).fail(function(a, b, c) {
             // Jquery returns stupid amount of variables when failing
