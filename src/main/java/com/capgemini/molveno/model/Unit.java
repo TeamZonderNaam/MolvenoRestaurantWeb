@@ -1,6 +1,11 @@
 package com.capgemini.molveno.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Unit {
+    @Id
     private int id;
     private String name;
 
