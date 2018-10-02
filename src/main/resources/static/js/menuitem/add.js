@@ -22,7 +22,7 @@ function postData() {
 
             // Post JSON to endpoint.
             $.ajax({
-                url:"api/menuItem/",
+                url:"api/menu/",
                 type:"post",
                 data: validJsonItem,
                 contentType: "application/json",

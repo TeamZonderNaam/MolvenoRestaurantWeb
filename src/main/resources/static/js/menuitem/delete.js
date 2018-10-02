@@ -16,7 +16,7 @@ function deleteData() {
             console.log("Delete item" + id);
 
 
-            var src = "api/menuItem/" + id;
+            var src = "api/menu/" + id;
 
             // Post JSON to endpsoint.
             $.ajax({

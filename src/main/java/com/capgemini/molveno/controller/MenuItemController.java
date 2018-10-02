@@ -15,8 +15,7 @@ public class MenuItemController {
     private MenuItemService menuItemService;
 
     @RequestMapping("/")
-    public ResponseEntity<String> index() {
-//        return new ModelAndView("index.html");
-        return new ResponseEntity<String>("?????", HttpStatus.OK);
+    public String index() {
+        return "data/menu/index";
     }
 }

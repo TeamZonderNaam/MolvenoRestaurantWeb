@@ -3,7 +3,7 @@ function getData() {
 
             // Get the data from endpoint.
             $.ajax({
-                url:"/api/menuItem/",
+                url:"/api/menu/",
                 type:"get",
                 success: function(items) {
                     // On successful get, reload the datatable with new data.
