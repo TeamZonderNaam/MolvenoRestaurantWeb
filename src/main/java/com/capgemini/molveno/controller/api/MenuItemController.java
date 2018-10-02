@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping ("/api/menuItem") //camel case?
+@RequestMapping ("/api/menuItem")
 
 public class MenuItemController {
     @Autowired
