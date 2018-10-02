@@ -33,7 +33,7 @@
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#item-modal">
+                    <button class="btn btn-primary btn-block add-item" data-toggle="modal" data-target="#item-modal">
                         <i class="fas fa-plus"></i> Add
                     </button>
                 </div>
@@ -46,13 +46,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">New item</h5>
+                <h5 class="modal-title">Menu Items</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form id="add-skill">
+            <form id="add-skill" onsubmit="return false">
+                <div class="modal-body">
                     <div class="form-group">
                         <label>Category</label>
                         <input class="form-control category" type="text" name="category" placeholder="Enter a category">
@@ -77,13 +77,12 @@
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <!--<button type="button" class="btn btn-primary save" data-dismiss="modal">Save changes</button>-->
-                <button type="button" class="btn btn-primary save">Save changes</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary save">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -91,5 +90,6 @@
 <script src="/js/menu/main.js"></script>
 <script src="/js/menu/get.js"></script>
 <script src="/js/menu/create.js"></script>
+<script src="/js/menu/edit.js"></script>
 
 {{> data/footer}}
