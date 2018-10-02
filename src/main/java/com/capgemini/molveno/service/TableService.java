@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class TableService {
+
     @Autowired
     private TableRepository tableRepository;
 
@@ -18,22 +20,22 @@ public class TableService {
     }
 
     // list
-    public Collection<Table> list() {
+    public Iterable<Table> getAll() {
         return this.tableRepository.findAll();
     }
 
     // findByNumber
-    public Table findByNumber(int number) {
-        return this.tableRepository.findByNumber(number);
-    }
+    //public Optional<Table> findByNumber(long id) {
+        //return this.tableRepository.findById(id);
+    //}
 
     // updateByNumber
-    public Table updateByNumber(int number, Table newTable) {
-        return this.tableRepository.updateByNumber(number, newTable);
-    }
+    //public Table updateByNumber(int number, Table newTable) {
+        //return this.tableRepository.;
+    //}
 
-    // deleteByNumber
-    public Table deleteByNumber(int number) {
-        return this.tableRepository.deleteByNumber(number);
+    // deleteById
+    public void deleteById(long id) {
+        this.tableRepository.deleteById(id);
     }
 }

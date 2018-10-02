@@ -32,7 +32,7 @@ public class OrderRepository {
             Table table = new Table();
             table.setNumber(12);
             table.setNumberOfPersons(8);
-            table.setStatus(TableStatus.AVAILABLE);
+            //table.setStatus(TableStatus.AVAILABLE);
 
             //newOrder.setTable(table);
             order.setTable(table);
