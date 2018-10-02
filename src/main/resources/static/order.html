@@ -21,7 +21,7 @@
 
             // Get values from html.
             var id = $("#inputId").val();
-            var prepared = $("#inputPrepared").val();
+            var status = $("#inputStatus").val();
             var inputItemName = $("#inputItemsName").val();
             var inputItemPrice = $("#inputItemsPrice").val();
             var inputItemNumber = $("#inputItemsNumber").val();
@@ -29,7 +29,7 @@
             // Create JS object with data.
             var newOrder = {
                 id : id,
-                prepared : prepared,
+                status : status,
                 items : [{name : inputItemName,
                           price : inputItemPrice,
                           number : inputItemNumber
@@ -77,7 +77,7 @@
 
             // Get values from html.
             var id = $("#editId").val();
-            var prepared = $("#editPrepared").val();
+            var status = $("#editStatus").val();
             var editItemName = $("#editItemsName").val();
             var editItemPrice = $("#editItemsPrice").val();
             var editItemNumber = $("#editItemsNumber").val();
@@ -85,7 +85,7 @@
             // Create JS object with data.
             var newOrder = {
                 id : id,
-                prepared : prepared,
+                status : status,
                 items : [{name : editItemName,
                           price : editItemPrice,
                           number : editItemNumber
@@ -183,7 +183,7 @@
          $('#orderTable').DataTable({
                 columns: [
                     { "data": "id" },
-                    { "data": "prepared" },
+                    { "data": "status" },
                     { "data": "items[0].name" },
                     { "data": "items[0].price" , render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' )},
                     { "data": "items[0].number" },
@@ -204,7 +204,7 @@
     <thead>
     <tr>
         <th><strong>ID</strong></th>
-        <th><strong>Prepared</strong></th>
+        <th><strong>Status</strong></th>
         <th><strong>Item name</strong></th>
         <th><strong>Price</strong></th>
         <th><strong>Number</strong></th>
@@ -250,8 +250,8 @@
 
                         <form data-toggle="validator" role="form" id="newOrderForm" onsubmit="return false;">
                             <div class="form-group">
-                                <label for="inputPrepared" class="control-label">Prepared?</label>
-                                <input type="text" class="form-control" id="inputPrepared" required>
+                                <label for="inputStatus" class="control-label">Status</label>
+                                <input type="text" class="form-control" id="inputStatus" required>
                             </div>
 
                             <div class="form-group">
@@ -303,8 +303,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="editPrepared" class="control-label">Prepared?</label>
-                                <input type="text" class="form-control" id="editPrepared" required>
+                                <label for="editStatus" class="control-label">Status</label>
+                                <input type="text" class="form-control" id="editStatus" required>
                             </div>
 
                             <div class="form-group">
