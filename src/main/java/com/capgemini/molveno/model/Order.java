@@ -1,22 +1,25 @@
 package com.capgemini.molveno.model;
 
+import com.capgemini.molveno.enums.OrderStatus;
+
 import java.util.List;
+
 
 public class Order {
     private List<MenuItem> items;
     private Table table;
-    private int orderNumber;
+    private int Id;
     //it would be ideal if you could set this property for every individual order of the order
-    private boolean prepared;
+    private OrderStatus status;
     //this variable should be composed of the separate prices of every menu-order
     private int totalPrice;
 
-    public int getOrderNumber() {
-        return orderNumber;
+    public int getId() {
+        return Id;
     }
 
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setId(int id) {
+        Id = id;
     }
 
     public Table getTable() {
@@ -27,12 +30,12 @@ public class Order {
         this.table = table;
     }
 
-    public boolean getPrepared() {
-        return prepared;
+    public OrderStatus getStatus() {
+        return status;
     }
 
-    public void setPrepared(boolean prepared) {
-        this.prepared = prepared;
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 
     public List<MenuItem> getItems() {
