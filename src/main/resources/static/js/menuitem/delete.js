@@ -18,7 +18,7 @@ function deleteData() {
 
             var src = "api/menuItem/" + id;
 
-            // Post JSON to endpoint.
+            // Post JSON to endpsoint.
             $.ajax({
                 url: src,
                 type:"delete",
