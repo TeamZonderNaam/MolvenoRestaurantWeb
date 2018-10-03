@@ -22,21 +22,21 @@ public class TableController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<Table> list() {
-        return this.tableService.getAll();
+    public Iterable<Table> read() {
+        return this.tableService.readAll();
     }
 
-//    @GetMapping(value = "find/{number}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public Table findByNumber(@PathVariable int number) {
-//        return this.tableService.findByNumber(number);
-//    }
-//
-//    @PutMapping(value = "update/{number}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public Table updateByNumber(@PathVariable int number, @RequestBody Table newTable) {
-//        return this.tableService.updateByNumber(number, newTable);
-//    }
+    @GetMapping(value = "read/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Table readById(@PathVariable long id) {
+        return this.tableService.readById(id);
+    }
 
-    @DeleteMapping("delete/{number}")
+    @PutMapping(value = "update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Table updateById(@PathVariable long id, @RequestBody Table newTable) {
+        return this.tableService.updateById(id, newTable);
+    }
+
+    @DeleteMapping(value = "delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteById(@PathVariable long id) {
         this.tableService.deleteById(id);
     }
