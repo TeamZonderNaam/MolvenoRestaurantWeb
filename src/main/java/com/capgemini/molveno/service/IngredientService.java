@@ -1,10 +1,12 @@
 package com.capgemini.molveno.service;
 
 import com.capgemini.molveno.model.Ingredient;
+import com.capgemini.molveno.model.Unit;
 import com.capgemini.molveno.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,8 +17,16 @@ public class IngredientService {
     @Autowired
     private IngredientRepository repository;
 
+    @Autowired
+    private UnitService unitService;
+
     public int create(Ingredient ingredient) {
         Ingredient created = repository.save(ingredient);
+        // The returned value of the repository doesn't contain the unit name
+        // So get it with the unitService
+        created.setUnit(
+            unitService.read(created.getUnit().getId())
+        );
         return created.getId();
     }
 
