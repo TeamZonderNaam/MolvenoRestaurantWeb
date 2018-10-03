@@ -20,6 +20,11 @@ $(function() {
             {
                 data: null,
                 className: "center",
+                defaultContent: "<a href='ingredients'>View ingredients</a>"
+            },
+            {
+                data: null,
+                className: "center",
                 defaultContent: '<a href="edit"><i class="fas fa-edit"></i></a> / <a href="delete"><i class="far fa-trash-alt"></i></a>'
             }
         ]
