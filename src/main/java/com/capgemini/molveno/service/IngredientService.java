@@ -36,8 +36,20 @@ public class IngredientService {
         return null;
     }
 
-    public Ingredient update(Ingredient ingredient) {
-        return repository.save(ingredient);
+    public Ingredient update(int id, Ingredient ingredient) {
+        Optional<Ingredient> oldIngredient = repository.findById(id);
+        if (oldIngredient.isPresent()) {
+            if (ingredient.getName() != null) {
+                oldIngredient.get().setName(ingredient.getName());
+            }
+            if (ingredient.getPricePerUnit() != 0) {
+                oldIngredient.get().setPricePerUnit(ingredient.getPricePerUnit());
+            }
+            if (ingredient.getUnit() != null) {
+                oldIngredient.get().setUnit(ingredient.getUnit());
+            }
+        }
+        return repository.save(oldIngredient.get());
     }
 
     public void delete(final int id) {

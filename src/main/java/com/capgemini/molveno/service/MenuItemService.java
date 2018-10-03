@@ -100,8 +100,25 @@ public class MenuItemService {
     }
 
     public MenuItem update(int id, MenuItem changedItem) {
-        changedItem.setId(id);
-        return menuItemRepository.save(changedItem);
+        Optional<MenuItem> oldItem = menuItemRepository.findById(id);
+        if (oldItem.isPresent()) {
+            if (changedItem.getName() != null) {
+                oldItem.get().setName(changedItem.getName());
+            }
+            if (changedItem.getPrice() != 0) {
+                oldItem.get().setPrice(changedItem.getPrice());
+            }
+            if (changedItem.getNumber() != 0) {
+                oldItem.get().setNumber(changedItem.getNumber());
+            }
+            if (changedItem.getIngredients() != null) {
+                oldItem.get().setIngredients(changedItem.getIngredients());
+            }
+            if (changedItem.getCategory() != null) {
+                oldItem.get().setCategory(changedItem.getCategory());
+            }
+        }
+        return menuItemRepository.save(oldItem.get());
     }
 
     public void delete(int id) {

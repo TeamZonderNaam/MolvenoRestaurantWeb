@@ -10,7 +10,6 @@ public class Ingredient {
     private int id;
     private String name;
     private double pricePerUnit;
-    @ManyToOne
     private Unit unit;
 
     public Ingredient() {
