@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Map;
 
-@Controller("ingredient_controller")
-@RequestMapping("/ingredient")
-public class IngredientController {
+@Controller("unitcontroller")
+@RequestMapping("/unit")
+public class UnitController {
     @RequestMapping("/")
     public String index(Map<String, Object> model) {
-        model.put("title", "Ingredient");
-        return "data/ingredient/index";
+        model.put("title", "Unit");
+        return "data/unit/index";
     }
 }
