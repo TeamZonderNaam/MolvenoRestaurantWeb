@@ -10,9 +10,7 @@ $(function() {
         var model = FormUtil.formToValues(DATA_PAIRS, form);
         // The model now has a unit value set to an id. We want this to be it's own object
         // and than set the id of that object.
-        // var unitId = parseInt(model.unit);
-        var unitId = model.unit;
-        model.unit = {id: unitId};
+        model.unit = {id: model.unit};
 
         URLUtil.post(BASE_URL, model).then(function(obj) {
             DATA_TABLE.row.add(obj).draw(false);
@@ -26,19 +24,6 @@ $(function() {
         // Editing an item sets the edit state, so we need to revert it back if that's the case
         FormUtil.makeFormSave(form);
 
-        // Get all the units from the database and fill the form with it
-        getUnits().then(function(arr) {
-            var out = "";
-            $.each(arr, function(i, item) {
-                out += "<option value='"+item.id+"'>"+item.name+"</option>";
-            });
-            form.find("select.unit").html(out);
-        });
+        fillFormWithUnits(form);
     });
-
-    function getUnits() {
-        return new Promise(function(resolve, reject) {
-            URLUtil.get(UNIT_URL).then(resolve, reject);
-        });
-    }
 });

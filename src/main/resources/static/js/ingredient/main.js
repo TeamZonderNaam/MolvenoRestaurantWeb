@@ -23,3 +23,24 @@ $(function() {
         ]
     });
 });
+
+
+function fillFormWithUnits(form) {
+    return new Promise(function(resolve) {
+        // Get all the units from the database and fill the form with it
+        getUnits().then(function(arr) {
+            var out = "";
+            $.each(arr, function(i, item) {
+                out += "<option value='"+item.id+"'>"+item.name+"</option>";
+            });
+            form.find("select.unit").html(out);
+            resolve();
+        });
+    });
+}
+
+function getUnits() {
+    return new Promise(function(resolve, reject) {
+        URLUtil.get(UNIT_URL).then(resolve, reject);
+    });
+}

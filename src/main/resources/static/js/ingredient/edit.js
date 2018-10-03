@@ -15,13 +15,18 @@ $(function() {
         // Set the form into a editable state, this allows us to wait for a click on button.edit.
         FormUtil.makeFormEdit(form);
         FormUtil.fillForm(DATA_PAIRS, data, form);
+        // An unit could've been added while staying on this page, so request all the units again
+        fillFormWithUnits(form).then(function() {
+            // Because the function does IO calls, we wait until it's completely done.
+            form.find("select.unit").val(data.unit.id);
+        });
 
 
         form.find("button.edit").click(function() {
             var model = FormUtil.formToValues(DATA_PAIRS, form);
             // We don't keep a reference of the id on the form, so use the original data to set the correct id.
             model.id = data.id;
-
+            model.unit = {id: model.unit};
             URLUtil.put(BASE_URL+model.id, model).then(function(obj) {
                 DATA_TABLE.row(tr).data(obj).invalidate();
                 modal.modal("toggle");
