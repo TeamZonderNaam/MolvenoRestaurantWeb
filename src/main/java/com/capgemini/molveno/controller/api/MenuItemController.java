@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping ("/api/menuItem")
-
 public class MenuItemController {
     @Autowired
     private MenuItemService service;
