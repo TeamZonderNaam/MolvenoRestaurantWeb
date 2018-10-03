@@ -17,6 +17,11 @@ public class Serving {
 
     }
 
+    public Serving(Ingredient ingredient, double numberOfUnits){
+        this.ingredient = ingredient;
+        this.numberOfUnits = numberOfUnits;
+    }
+
     public int getId() {
         return id;
     }
