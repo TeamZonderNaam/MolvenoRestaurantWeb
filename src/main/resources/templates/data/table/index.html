@@ -1,0 +1,114 @@
+{{> data/header}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Table</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Capacity</th>
+                        <th>Shape</th>
+                        <th>Status</th>
+                        <th>Tools</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="btn btn-secondary btn-block" href="/">
+                        Back
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary btn-block add-item" data-toggle="modal" data-target="#item-modal">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="item-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Table</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="add-skill" onsubmit="return false">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Table number</label>
+                        <input class="form-control number" type="number" name="category" placeholder="Enter a table number">
+                    </div>
+                    <div class="form-group">
+                        <label>Capacity</label>
+                        <input class="form-control capacity" type="number" name="category" placeholder="Enter the table capacity">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Shape</label>
+
+                        <select class="form-control shape">
+                            <option value="0">Rectangle</option>
+                            <option value="1">Round</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control status">
+                            <option value="0">Available</option>
+                            <option value="1">Booked</option>
+                            <option value="2">Blocked</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary save">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Are you sure you want to remove item <span id="name"></span>?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="submit" class="btn btn-danger delete">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/table/main.js"></script>
+<script src="/js/table/get.js"></script>
+<script src="/js/table/create.js"></script>
+<script src="/js/table/edit.js"></script>
+<script src="/js/table/delete.js"></script>
+
+{{> data/footer}}

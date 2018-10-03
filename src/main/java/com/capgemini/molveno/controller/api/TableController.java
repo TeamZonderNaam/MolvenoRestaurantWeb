@@ -17,6 +17,7 @@ public class TableController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Table create(@RequestBody Table newTable) {
         this.tableService.create(newTable);
+
         return newTable;
     }
 
@@ -25,17 +26,17 @@ public class TableController {
         return this.tableService.list();
     }
 
-    @GetMapping(value = "find/{number}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{number}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Table findByNumber(@PathVariable int number) {
         return this.tableService.findByNumber(number);
     }
 
-    @PutMapping(value = "update/{number}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{number}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Table updateByNumber(@PathVariable int number, @RequestBody Table newTable) {
         return this.tableService.updateByNumber(number, newTable);
     }
 
-    @DeleteMapping("delete/{number}")
+    @DeleteMapping("/{number}")
     public Table deleteByNumber(@PathVariable int number) {
         return this.tableService.deleteByNumber(number);
     }
