@@ -23,6 +23,7 @@ public class MenuItemService {
         MenuItem created = this.menuItemRepository.save(menuItem);
         return created.getId();
     }
+
     public List<MenuItem> all(){
         Iterable<MenuItem> source = this.menuItemRepository.findAll();
         List<MenuItem> target = new ArrayList<MenuItem>();
@@ -39,8 +40,25 @@ public class MenuItemService {
     }
 
     public MenuItem update(int id, MenuItem changedItem) {
-        changedItem.setId(id);
-        return menuItemRepository.save(changedItem);
+        Optional<MenuItem> oldItem = menuItemRepository.findById(id);
+        if (oldItem.isPresent()) {
+            if (changedItem.getName() != null) {
+                oldItem.get().setName(changedItem.getName());
+            }
+            if (changedItem.getPrice() != 0) {
+                oldItem.get().setPrice(changedItem.getPrice());
+            }
+            if (changedItem.getNumber() != 0) {
+                oldItem.get().setNumber(changedItem.getNumber());
+            }
+            if (changedItem.getServings() != null) {
+                oldItem.get().setServings(changedItem.getServings());
+            }
+            if (changedItem.getCategory() != null) {
+                oldItem.get().setCategory(changedItem.getCategory());
+            }
+        }
+        return menuItemRepository.save(oldItem.get());
     }
 
     public void delete(int id) {

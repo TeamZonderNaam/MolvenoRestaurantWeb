@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-@RestController
+@RestController("table_api_controller")
 @RequestMapping("api/table")
 public class TableController {
+
     @Autowired
     private TableService tableService;
 
@@ -22,22 +23,21 @@ public class TableController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<Table> list() {
-        return this.tableService.list();
+    public Iterable<Table> read() {
+        return this.tableService.readAll();
+    }
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Table readById(@PathVariable long id) {
+        return this.tableService.readById(id);
     }
 
-    @GetMapping(value = "/{number}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Table findByNumber(@PathVariable int number) {
-        return this.tableService.findByNumber(number);
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Table updateById(@PathVariable long id, @RequestBody Table newTable) {
+        return this.tableService.updateById(id, newTable);
     }
 
-    @PutMapping(value = "/{number}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Table updateByNumber(@PathVariable int number, @RequestBody Table newTable) {
-        return this.tableService.updateByNumber(number, newTable);
-    }
-
-    @DeleteMapping("/{number}")
-    public Table deleteByNumber(@PathVariable int number) {
-        return this.tableService.deleteByNumber(number);
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteById(@PathVariable long id) {
+        this.tableService.deleteById(id);
     }
 }

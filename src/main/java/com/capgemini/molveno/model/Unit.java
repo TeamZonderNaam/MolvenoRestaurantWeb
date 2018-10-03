@@ -15,6 +15,10 @@ public class Unit {
     public Unit() {
     }
 
+    public Unit(int id) {
+        this.id = id;
+    }
+
     public Unit(String name) {
         this.name = name;
     }

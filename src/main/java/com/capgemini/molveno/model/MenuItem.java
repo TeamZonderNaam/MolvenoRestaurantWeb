@@ -1,6 +1,10 @@
 package com.capgemini.molveno.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
+import javax.persistence.Table;
 import java.util.List;
 
 @Entity
@@ -9,12 +13,13 @@ public class MenuItem {
     private String name;
     private double price;
     private int number;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String category;
     @ManyToMany
-    private List<Ingredient> ingredients;
+    private List<Serving> servings;
 
     public MenuItem(String name, double price, int number) {
         this.name = name;
@@ -26,6 +31,7 @@ public class MenuItem {
     public MenuItem() {
 
     }
+
 
     public int getId() {
         return id;
@@ -67,11 +73,21 @@ public class MenuItem {
         this.category = category;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
+    public List<Serving> getServings() {
+        return servings;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setServings(List<Serving> servings) {
+        this.servings = servings;
     }
+
+    @Transient
+    public double getCostPrice() {
+        double cost = 0;
+        for (Serving serving : this.servings) {
+            cost += serving.getNumberOfUnits() * serving.getIngredient().getPricePerUnit();
+        }
+        return cost;
+    }
+
 }

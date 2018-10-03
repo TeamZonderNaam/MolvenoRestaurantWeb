@@ -34,9 +34,8 @@ public class IngredientController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Ingredient update(@RequestBody Ingredient ingredient) {
-        System.out.println("Updating ingredient:"+ingredient);
-        return service.update(ingredient);
+    public Ingredient update(@PathVariable int id, @RequestBody Ingredient ingredient) {
+        return service.update(id, ingredient);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)

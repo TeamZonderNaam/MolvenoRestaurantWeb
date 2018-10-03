@@ -5,7 +5,7 @@ var DATA_PAIRS = {
     number: ".number",
     numberOfPersons: ".capacity",
     shape: ".shape",
-    status: ".status"
+    // status: ".status"
 };
 
 $(function() {
@@ -13,8 +13,11 @@ $(function() {
         columns: [
             {data: "number"},
             {data: "numberOfPersons"},
-            {data: "shape"},
-            {data: "status"},
+            {data: "shape", render: function(data) {
+                // We can use == here because it needs to be an integer
+                // TODO: This is not the nicest way to do this, but works for now (only two table types were defined)
+                return (data === 0) ? "Rectangle" : "Round";
+            }},
             {
                 data: null,
                 className: "center",
