@@ -1,5 +1,6 @@
 package com.capgemini.molveno.repository;
 
+import com.capgemini.molveno.enums.OrderStatus;
 import com.capgemini.molveno.model.*;
 import org.springframework.stereotype.Repository;
 
@@ -18,8 +19,8 @@ public class OrderRepository {
         for(int i =0; i < 5; i++){
             Order order = new Order();
             ArrayList<MenuItem> items = new ArrayList<>();
-            //newOrder.setPrepared(true);
-            order.setPrepared(true);
+
+            order.setStatus(OrderStatus.OPEN);
 
             MenuItem menuItem = new MenuItem();
             menuItem.setName("Fried Wonton");
@@ -36,7 +37,7 @@ public class OrderRepository {
 
             //newOrder.setTable(table);
             order.setTable(table);
-            order.setOrderNumber(index++);
+            order.setId(index++);
             this.save(order);
         }
     }
@@ -47,14 +48,14 @@ public class OrderRepository {
 
     public Order save(Order newOrder){
         //newOrder.setOrderNumber(lastID++);
-        if (orders.containsKey(newOrder.getOrderNumber())) {
-            orders.put(newOrder.getOrderNumber(), newOrder);
+        if (orders.containsKey(newOrder.getId())) {
+            orders.put(newOrder.getId(), newOrder);
         } else {
             orders.put(lastID, newOrder);
-            newOrder.setOrderNumber(lastID);
+            newOrder.setId(lastID);
             lastID++;
         }
-        return this.orders.put(newOrder.getOrderNumber(), newOrder);
+        return this.orders.put(newOrder.getId(), newOrder);
     }
 
     //read all orders
@@ -72,8 +73,8 @@ public class OrderRepository {
     public Order update(int id, Order update){
         Order updateOrder = this.findById(id);
         updateOrder.setTable(update.getTable());
-        updateOrder.setPrepared(update.getPrepared());
-        updateOrder.setOrderNumber(update.getOrderNumber());
+        updateOrder.setStatus(update.getStatus());
+        updateOrder.setId(update.getId());
         updateOrder.setItems(update.getItems());
         return updateOrder;
     }

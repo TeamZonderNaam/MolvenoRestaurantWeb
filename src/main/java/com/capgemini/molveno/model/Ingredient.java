@@ -8,10 +8,12 @@ import java.util.List;
 public class Ingredient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private double pricePerUnit;
+
+    @ManyToOne
     private Unit unit;
 
 

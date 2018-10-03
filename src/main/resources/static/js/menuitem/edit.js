@@ -21,7 +21,7 @@
             var validJsonItem = JSON.stringify(changeItem);
             console.log(validJsonItem);
 
-            var src = "api/menuItem/" + id;
+            var src = "api/menu/" + id;
 
             // Post JSON to endpoint.
             $.ajax({
