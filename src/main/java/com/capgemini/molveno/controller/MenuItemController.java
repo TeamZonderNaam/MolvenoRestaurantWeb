@@ -10,12 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
-@Controller
+@Controller("menucontroller")
 @RequestMapping("/menu")
 public class MenuItemController {
-    @Autowired
-    private MenuItemService menuItemService;
-
     @RequestMapping("/")
     public String index(Map<String, Object> model) {
         model.put("title", "Menu Item");

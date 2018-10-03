@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Table {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private int number;
     private int numberOfPersons;

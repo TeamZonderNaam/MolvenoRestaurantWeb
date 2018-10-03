@@ -18,6 +18,7 @@ public class TableController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Table create(@RequestBody Table newTable) {
         this.tableService.create(newTable);
+
         return newTable;
     }
 
@@ -25,18 +26,17 @@ public class TableController {
     public Iterable<Table> read() {
         return this.tableService.readAll();
     }
-
-    @GetMapping(value = "read/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Table readById(@PathVariable long id) {
         return this.tableService.readById(id);
     }
 
-    @PutMapping(value = "update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Table updateById(@PathVariable long id, @RequestBody Table newTable) {
         return this.tableService.updateById(id, newTable);
     }
 
-    @DeleteMapping(value = "delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteById(@PathVariable long id) {
         this.tableService.deleteById(id);
     }

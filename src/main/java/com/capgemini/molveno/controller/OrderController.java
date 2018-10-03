@@ -12,15 +12,9 @@ import java.util.Map;
 @Controller
 @RequestMapping("/order")
 public class OrderController {
-    @Autowired
-    private OrderService service;
-
     @RequestMapping("/")
-    public ModelAndView index() {
-        Map<String, Object> model = new HashMap<>();
-        Iterable<Order> orders = service.all();
-        model.put("hello", "World!");
-
-        return new ModelAndView("order.html", model);
+    public String index(Map<String, Object> model) {
+        model.put("title", "Order");
+        return "data/order/index";
     }
 }
