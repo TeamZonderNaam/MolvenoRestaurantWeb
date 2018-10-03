@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-@RestController
+@RestController("table_api_controller")
 @RequestMapping("api/table")
 public class TableController {
     @Autowired
