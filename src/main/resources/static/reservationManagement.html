@@ -12,23 +12,23 @@
 
         $(document).ready(function(){
 
-                $("#newItemForm").on('submit', function(e) {
-                console.log("Submitted new menu item form");
+            $("#newReservationForm").on('submit', function(e) {
+                console.log("Submitted new reservation form");
 
                 // Post the data from the modal.
                 postData();
 
                 // Reset modal to no values.
 
-                $('#newItemModal').modal('hide');
-                $("#inputName").val("");
-                $("#inputPrice").val("");
-                $("#inputNumber").val("");
-                $("#inputCategory").val("");
+                $('#reservation').modal('hide');
+                $("#inputCustomerName").val("");
+                $("#inputNumberOfCustomers").val("");
+                $("#inputNumberOfChildSeats").val("");
+                $("#inputTableNumber").val("");
             });
 
             $("#changeItemForm").on('submit', function(e) {
-                console.log("Submitted changed menu item form");
+                console.log("Submitted changed reservation form");
 
                 // Put the data from the modal.
                 putData();
@@ -44,8 +44,8 @@
                 $("#inputChangeCategory").val("");
             });
 
-                $("#deleteItemForm").on('submit', function(e) {
-                console.log("Submitted delete menu item form");
+            $("#deleteItemForm").on('submit', function(e) {
+                console.log("Submitted delete reservation form");
 
                 // Delete the data.
                 deleteData();
@@ -57,7 +57,7 @@
                 $("#inputDeleteId").val("");
             });
 
-                $('#table').DataTable({
+            $('#table').DataTable({
                 columns: [
                     { "data": "id" },
                     { "data": "category" },
@@ -72,16 +72,16 @@
             $("#btn5").click(function(){
                 $('#table tbody').empty();
                 console.log("hiding data..");
-                });
+            });
 
             $("#btn6").click(function(){
-            getData();
+                getData();
             });
 
             $("#btnback").click(function(){
-            window.location.href = "index.html";
+                window.location.href = "index.html";
             });
-            });
+        });
     </script>
 
     <meta charset="UTF-8">
@@ -94,26 +94,26 @@
     <div class="row">
         <div class="col-sm-12">
 
-    <h1>Menu items</h1>
+            <h1>Reservations</h1>
 
-                <p>Here you can find and edit the menu items</p>
+            <p>Reserve a table</p>
 
 
-                <br>
-                <table id="table">
-                    <thead>
-                    <tr>
-                        <td><strong>Id</strong></td>
-                        <td><strong>Category</strong></td>
-                        <td><strong>Name</strong></td>
-                        <td><strong>Price</strong></td>
-                        <td><strong>Number</strong></td>
+            <br>
+            <table id="table">
+                <thead>
+                <tr>
+                    <td><strong>Id</strong></td>
+                    <td><strong>Category</strong></td>
+                    <td><strong>Name</strong></td>
+                    <td><strong>Price</strong></td>
+                    <td><strong>Number</strong></td>
 
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
             <button id="btn5">Hide data</button>
             <button id="btn6">Show data</button>
 
@@ -124,7 +124,7 @@
 
     <div class="row">
         <div class="col-sm">
-            <button type="button" data-toggle="modal" data-target="#newItemModal">Add Item</button>
+            <button type="button" data-toggle="modal" data-target="#reservation">Add Item</button>
         </div>
         <div class="col-sm">
             <button type="button" data-toggle="modal" data-target="#changeItemModal">Edit Item</button>
@@ -135,57 +135,57 @@
         <div class="col-sm">
             <button id="btnback">Back</button>
         </div>
-     </div>
+    </div>
 
 
 
 
 
-            <!-- New Item Modal -->
-                <div id="newItemModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
+    <!-- New Item Modal -->
+    <div id="reservation" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-                        <!-- Content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">New Item</h4>
-                            </div>
+            <!-- Content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">New Item</h4>
+                </div>
 
-                            <div class="modal-body">
-                <h2>Make a new item</h2>
-                <form data-toggle="validator" role="form" id="newItemForm" onsubmit="return false;">
-                    <div class="form-group">
-                        <label for="inputCategory" class="control-label">Category</label>
-                        <input type="text" class="form-control" id="inputCategory" placeholder="Enter the category" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="inputName" class="control-label">Name</label>
-                        <input type="text" class="form-control" id="inputName" placeholder="Enter a name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="inputPrice" class="control-label">Price</label>
-                        <input type="text" class="form-control" id="inputPrice" placeholder="Enter the price" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="inputNumber" class="control-label">Number</label>
-                        <input type="text" class="form-control" id="inputNumber" placeholder="Enter the number" required>
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button id="closeButtonAdd" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-
-                </form>
-                            </div>
+                <div class="modal-body">
+                    <h2>Make a new item</h2>
+                    <form data-toggle="validator" role="form" id="newReservationForm" onsubmit="return false;">
+                        <div class="form-group">
+                            <label for="inputTableNumber" class="control-label">Category</label>
+                            <input type="text" class="form-control" id="inputTableNumber" placeholder="Enter the category" required>
                         </div>
 
-                    </div>
+                        <div class="form-group">
+                            <label for="inputCustomerName" class="control-label">Name</label>
+                            <input type="text" class="form-control" id="inputCustomerName" placeholder="Enter a name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputNumberOfCustomers" class="control-label">Price</label>
+                            <input type="text" class="form-control" id="inputNumberOfCustomers" placeholder="Enter the price" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputNumberOfChildSeats" class="control-label">Number</label>
+                            <input type="text" class="form-control" id="inputNumberOfChildSeats" placeholder="Enter the number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button id="closeButtonAdd" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </form>
                 </div>
+            </div>
+
+        </div>
+    </div>
     <!-- End of new Item Modal -->
 
     <!-- Change Item Modal -->
@@ -275,9 +275,9 @@
     </div>
     <!-- End of Delete Item Modal -->
 </div>
-<script src="/js/menuitem/get.js" type="text/javascript"></script>
-<script src="/js/menuitem/add.js" type="text/javascript"></script>
-<script src="/js/menuitem/delete.js" type="text/javascript"></script>
-<script src="/js/menuitem/edit.js" type="text/javascript"></script>
+<script src="/js/reservation/get.js" type="text/javascript"></script>
+<script src="/js/reservation/add.js" type="text/javascript"></script>
+<script src="/js/reservation/delete.js" type="text/javascript"></script>
+<script src="/js/reservation/edit.js" type="text/javascript"></script>
 </body>
 </html>
