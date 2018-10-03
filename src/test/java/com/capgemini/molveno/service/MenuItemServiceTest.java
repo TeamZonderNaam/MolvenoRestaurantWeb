@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @RunWith(JUnit4.class)
 
 public class MenuItemServiceTest {
+    /*
     private MenuItem menuItem1 = new MenuItem("pizza", 10,1);
     private MenuItem menuItem2 = new MenuItem("pasts", 20,2);
     private MenuItem menuItem3 = new MenuItem("fish", 30,3);
@@ -35,4 +36,5 @@ public class MenuItemServiceTest {
         List<MenuItem> menuItems = menuItemService.all();
         assertEquals(4, menuItems.size());
     }
+    */
 }
