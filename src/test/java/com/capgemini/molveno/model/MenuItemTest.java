@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MenuItemTest {
     private MenuItem menuItem1;
 
-    private Ingredient cheese = new Ingredient("cheese", 2.5, Unit.KILOGRAM);
-    private Ingredient basil = new Ingredient("basil", 0.05, Unit.GRAM);
-    private Ingredient tomatoSauce = new Ingredient("tomato sauce", 0.5, Unit.LITER);
+    private Ingredient cheese = new Ingredient("cheese", 2.5, new Unit(1));
+    private Ingredient basil = new Ingredient("basil", 0.05, new Unit(2));
+    private Ingredient tomatoSauce = new Ingredient("tomato sauce", 0.5, new Unit(1));
 
     private Serving cheeseServing = new Serving(cheese, 0.5);
     private Serving basilServing = new Serving(basil, 150);
