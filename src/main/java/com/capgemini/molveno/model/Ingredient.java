@@ -1,6 +1,8 @@
 package com.capgemini.molveno.model;
 
 import javax.persistence.*;
+import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 public class Ingredient {
@@ -12,6 +14,7 @@ public class Ingredient {
     private double pricePerUnit;
     private Unit unit;
 
+
     public Ingredient() {
     }
 
@@ -20,6 +23,7 @@ public class Ingredient {
         this.pricePerUnit = pricePerUnit;
         this.unit = unit;
     }
+
 
     public int getId() {
         return id;

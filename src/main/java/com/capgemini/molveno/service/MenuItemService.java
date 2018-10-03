@@ -24,43 +24,43 @@ public class MenuItemService {
         return created.getId();
     }
 
-    @PostConstruct
-    public void addSomeItemsToGetStarted() {
-
+//    @PostConstruct
+//    public void addSomeItemsToGetStarted() {
+//
 //        for(int i = 1; i < 6; i++) {
 //            MenuItem item = new MenuItem();
 //            item.setCategory("Food");
 //            menuItemRepository.save(item);
 //        }
-        MenuItem item1 = this.read(41);
-        item1.setName("Fresh Meat Dumpling");
-        item1.setPrice(3.5);
-        item1.setNumber(1);
-        menuItemRepository.save(item1);
-
-        MenuItem item2 = this.read(42);
-        item2.setName("Fried Wonton");
-        item2.setPrice(4);
-        item2.setNumber(2);
-        menuItemRepository.save(item2);
-
-        MenuItem item3 = this.read(43);
-        item3.setName("Beancurd Soup");
-        item3.setPrice(4);
-        item3.setNumber(2);
-        menuItemRepository.save(item3);
-
-        MenuItem item4 = this.read(44);
-        item4.setName("Peking Duck");
-        item4.setPrice(4);
-        item4.setNumber(2);
-        menuItemRepository.save(item4);
-
-        MenuItem item5 = this.read(45);
-        item5.setName("Hot Plate");
-        item5.setPrice(4);
-        item5.setNumber(2);
-        menuItemRepository.save(item5);
+//        MenuItem item1 = this.read(1);
+//        item1.setName("Fresh Meat Dumpling");
+//        item1.setPrice(3.5);
+//        item1.setNumber(1);
+//        menuItemRepository.save(item1);
+//
+//        MenuItem item2 = this.read(2);
+//        item2.setName("Fried Wonton");
+//        item2.setPrice(4);
+//        item2.setNumber(2);
+//        menuItemRepository.save(item2);
+//
+//        MenuItem item3 = this.read(3);
+//        item3.setName("Beancurd Soup");
+//        item3.setPrice(4);
+//        item3.setNumber(2);
+//        menuItemRepository.save(item3);
+//
+//        MenuItem item4 = this.read(4);
+//        item4.setName("Peking Duck");
+//        item4.setPrice(4);
+//        item4.setNumber(2);
+//        menuItemRepository.save(item4);
+//
+//        MenuItem item5 = this.read(5);
+//        item5.setName("Hot Plate");
+//        item5.setPrice(4);
+//        item5.setNumber(2);
+//        menuItemRepository.save(item5);
 
 //        this.read(1).setName("Fresh Meat Dumpling");
 //        this.read(2).setName("Fried Wonton");
@@ -82,7 +82,7 @@ public class MenuItemService {
 //            MenuItem item = this.read(i);
 //            menuItemRepository.save(item);
 //        }
-    }
+//    }
 
     public List<MenuItem> all(){
         Iterable<MenuItem> source = this.menuItemRepository.findAll();
@@ -111,8 +111,8 @@ public class MenuItemService {
             if (changedItem.getNumber() != 0) {
                 oldItem.get().setNumber(changedItem.getNumber());
             }
-            if (changedItem.getIngredients() != null) {
-                oldItem.get().setIngredients(changedItem.getIngredients());
+            if (changedItem.getServings() != null) {
+                oldItem.get().setServings(changedItem.getServings());
             }
             if (changedItem.getCategory() != null) {
                 oldItem.get().setCategory(changedItem.getCategory());
