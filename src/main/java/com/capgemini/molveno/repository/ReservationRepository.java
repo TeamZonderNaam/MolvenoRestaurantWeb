@@ -2,6 +2,7 @@ package com.capgemini.molveno.repository;
 
 import com.capgemini.molveno.model.Customer;
 import com.capgemini.molveno.model.Reservation;
+import com.capgemini.molveno.service.TableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,13 +12,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
+
 @Repository
 public class ReservationRepository {
     private static int reservationId;
     private Map<Integer, Reservation> reservations = new HashMap<>();
 
     @Autowired
-    private TableRepository tableRepository;
+    private TableService tableService;
 
     @PostConstruct
     public void addSomeReservationsToGetStarted(){
@@ -31,15 +34,14 @@ public class ReservationRepository {
         Customer customer = new Customer();
         customer.setName(customerName);
 
-        tableRepository.addSomeTables();
-
         for (int i = 1; i < 5; i++){
+            customerName += " " + i ;
             this.reservations.get(i).setCustomer(customer);
             this.reservations.get(i).setNumberOfPersons(3);
             this.reservations.get(i).setNumberOfChildSeats(1);
-            this.reservations.get(i).setReservedTable(tableRepository.findByNumber(i));
+            //this.reservations.get(i).setReservedTable(tableService.findByNumber(i));
+            //TODO: IEK: Table api werkend krijgen
         }
-
      }
     public Reservation save(Reservation reservation){
         if(this.reservations.containsKey(reservation.getId())){

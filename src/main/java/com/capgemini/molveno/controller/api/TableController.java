@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("api/table")
+@RequestMapping("/api/table")
 public class TableController {
     @Autowired
     private TableService tableService;

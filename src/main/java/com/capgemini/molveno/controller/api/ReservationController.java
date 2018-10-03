@@ -33,7 +33,7 @@ public class ReservationController {
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Reservation update(@PathVariable int id, @RequestBody Reservation reservation) {
-        return service.update(id, reservation);
+        return service.update(reservation);
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

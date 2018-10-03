@@ -28,7 +28,7 @@ public class ReservationService {
         return null;
     }
 
-    public Reservation update(int id, Reservation reservation) { return repository.save(reservation); }
+    public Reservation update(Reservation reservation) { return repository.save(reservation); }
 
     public void delete(final int id) { repository.deleteById(id); }
 
