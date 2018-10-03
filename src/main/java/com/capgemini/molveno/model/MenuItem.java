@@ -1,10 +1,6 @@
 package com.capgemini.molveno.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import javax.persistence.*;
-import javax.persistence.Table;
 import java.util.List;
 
 @Entity
@@ -29,9 +25,7 @@ public class MenuItem {
 
     //empty constructor for easy constructing of menu items
     public MenuItem() {
-
     }
-
 
     public int getId() {
         return id;

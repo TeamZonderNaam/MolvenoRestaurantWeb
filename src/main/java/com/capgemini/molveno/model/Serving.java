@@ -14,7 +14,6 @@ public class Serving {
     private double numberOfUnits;
 
     public Serving() {
-
     }
 
     public Serving(Ingredient ingredient, double numberOfUnits){
