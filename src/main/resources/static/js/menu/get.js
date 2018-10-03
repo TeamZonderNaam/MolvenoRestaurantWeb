@@ -14,6 +14,8 @@ $(function() {
 
         console.log("ID:", data.id);
 
+        $("#ingredient-modal").modal("toggle");
+
         e.preventDefault();
     });
 
