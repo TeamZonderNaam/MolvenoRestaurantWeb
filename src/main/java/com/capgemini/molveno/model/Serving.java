@@ -1,6 +1,10 @@
 package com.capgemini.molveno.model;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.*;
+
 
 @Entity
 public class Serving {
@@ -9,6 +13,7 @@ public class Serving {
     private int id;
 
     @ManyToOne
+    @Cascade(CascadeType.SAVE_UPDATE)
     private Ingredient ingredient;
 
     private double numberOfUnits;

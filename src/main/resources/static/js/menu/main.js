@@ -2,6 +2,7 @@
 var DATA_TABLE;
 var BASE_URL = "/api/menuItem/";
 var SERVING_URL = "/api/serving/";
+var INGREDIENT_URL = "/api/ingredient/";
 
 var DATA_PAIRS = {
     category: ".category",
@@ -10,6 +11,11 @@ var DATA_PAIRS = {
     number: ".number"
 };
 
+var SERVING_DATA_PAIRS = {
+    item: ".itemId",
+    amount: ".amount",
+    ingredient: ".ingredient"
+};
 
 $(function() {
     DATA_TABLE = $("table").DataTable({

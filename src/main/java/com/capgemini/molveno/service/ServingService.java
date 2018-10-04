@@ -30,15 +30,6 @@ public class ServingService {
         return servings;
     }
 
-    public List<Serving> allForMenuItem(final int id) {
-        MenuItem item = menuItemService.read(id);
-        if (item != null) {
-            return item.getServings();
-        } else {
-            return new ArrayList<>();
-        }
-    }
-
     public Serving read(final int id) {
         Optional<Serving> serving = servingRepository.findById(id);
         if (serving.isPresent()) {
@@ -63,5 +54,28 @@ public class ServingService {
 
     public void delete(final int id) {
         servingRepository.deleteById(id);
+    }
+
+
+    public List<Serving> allForMenuItem(final int id) {
+        MenuItem item = menuItemService.read(id);
+        if (item != null) {
+            return item.getServings();
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public Serving createForMenuItem(int id, Serving serving) {
+        this.create(serving);
+
+        MenuItem item = menuItemService.read(id);
+        if (item != null) {
+            item.getServings().add(serving);
+            menuItemService.update(id, item);
+            return serving;
+        } else {
+            return null;
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.capgemini.molveno.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,7 +19,8 @@ public class MenuItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String category;
-    @ManyToMany
+
+    @OneToMany
     private List<Serving> servings;
 
     public MenuItem(String name, double price, int number) {
