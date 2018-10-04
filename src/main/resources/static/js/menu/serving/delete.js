@@ -1,20 +1,19 @@
 $(function() {
-    var modal = $("#delete-modal");
+    var modal = $("#delete-serving-modal");
 
     // We can't use the default click function, because the data is loaded in dynamically.
     // The following line lets jQuery listen on all clicks on the body and only filter out those whose
     // selector matches the one that was clicked on. This allows us to get click events on dynamic content.
-    modal.on("click", "a[href*='delete']", function(e) {
+    $("#ingredient-modal").on("click", "a[href*='delete']", function(e) {
         // Call parent() two times to get the original table row and get the data via DataTable.
         var tr = $(this).parent().parent();
-        var data = DATA_TABLE.row(tr).data();
-        modal.find("#name").html(data.name);
+        var id = tr.find(".id").val();
+        modal.find(".name").html(tr.find(".name").html());
         modal.modal("toggle");
 
         modal.find(".delete").click(function() {
-
-            URLUtil.delete(BASE_URL+data.id).then(function() {
-                DATA_TABLE.row(tr).remove().draw();
+            URLUtil.delete(SERVING_URL+id).then(function() {
+                tr.remove();
                 modal.modal("toggle");
             });
 
