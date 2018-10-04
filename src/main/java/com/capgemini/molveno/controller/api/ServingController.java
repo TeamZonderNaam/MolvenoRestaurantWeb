@@ -1,11 +1,14 @@
 package com.capgemini.molveno.controller.api;
 
+import com.capgemini.molveno.model.MenuItem;
 import com.capgemini.molveno.model.Serving;
+import com.capgemini.molveno.service.MenuItemService;
 import com.capgemini.molveno.service.ServingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -14,9 +17,14 @@ public class ServingController {
     @Autowired
     private ServingService service;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Serving> get() {
         return service.all();
+    }
+
+    @RequestMapping(value = "/for/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Serving> getFor(@PathVariable("id") final int id) {
+        return service.allForMenuItem(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)

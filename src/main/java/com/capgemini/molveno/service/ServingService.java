@@ -1,5 +1,6 @@
 package com.capgemini.molveno.service;
 
+import com.capgemini.molveno.model.MenuItem;
 import com.capgemini.molveno.model.Serving;
 import com.capgemini.molveno.repository.ServingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class ServingService {
     @Autowired
     private ServingRepository servingRepository;
 
+    @Autowired
+    private MenuItemService menuItemService;
+
     public int create(Serving serving) {
         Serving created = servingRepository.save(serving);
         return created.getId();
@@ -24,6 +28,15 @@ public class ServingService {
         List<Serving> servings = new ArrayList<>();
         iterable.forEach(servings::add);
         return servings;
+    }
+
+    public List<Serving> allForMenuItem(final int id) {
+        MenuItem item = menuItemService.read(id);
+        if (item != null) {
+            return item.getServings();
+        } else {
+            return new ArrayList<>();
+        }
     }
 
     public Serving read(final int id) {

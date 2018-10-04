@@ -1,15 +1,15 @@
 package com.capgemini.molveno.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import javax.persistence.Table;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MenuItem {
-
     private String name;
     private double price;
     private int number;
@@ -90,4 +90,9 @@ public class MenuItem {
         return cost;
     }
 
+
+    public void setCostPrice(double price) {
+        // I couldn't get @JsonProperty(access = JsonProperty.Access.READ_ONLY) to work,
+        // so this should hopefully fix that issue :\
+    }
 }
