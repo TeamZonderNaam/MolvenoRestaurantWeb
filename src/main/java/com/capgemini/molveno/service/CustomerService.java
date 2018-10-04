@@ -22,9 +22,9 @@ public class CustomerService {
     }
 
     public Customer read(final int id) {
-        Optional<Customer> person = repository.findById(id);
-        if (person.isPresent()) {
-            return person.get();
+        Optional<Customer> customer = repository.findById(id);
+        if (customer.isPresent()) {
+            return customer.get();
         }
         return null;
     }

@@ -1,7 +1,7 @@
 package com.capgemini.molveno.controller.api;
 
-import com.capgemini.molveno.model.Person;
-import com.capgemini.molveno.service.PersonService;
+import com.capgemini.molveno.model.Customer;
+import com.capgemini.molveno.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -10,32 +10,32 @@ import java.util.List;
 
 @RestController("person_api_controller")
 @RequestMapping("/api/person")
-public class PersonController {
+public class CustomerController {
     @Autowired
-    private PersonService service;
+    private CustomerService service;
 
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
-    public List<Person> get() {
+    public List<Customer> get() {
         return null;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
-    public Person getSingle(@PathVariable(name="id") int id) {
+    public Customer getSingle(@PathVariable(name="id") int id) {
         return null;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-    public Person add(@RequestBody Person person) {
+    public Customer add(@RequestBody Customer customer) {
         return null;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person update(@RequestBody Person person) {
+    public Customer update(@RequestBody Customer customer) {
         return null;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean delete(@RequestBody Person person) {
+    public boolean delete(@RequestBody Customer customer) {
         return false;
     }
 }

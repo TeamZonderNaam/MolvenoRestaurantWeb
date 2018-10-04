@@ -1,9 +1,27 @@
 package com.capgemini.molveno.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
+@Entity
 public class Reservation {
     //een reservering heeft klantgegevens, aantal personen, een tafelnummer, kinderzitjes nodig, parkeerplaats nodig en een tijd (begintijd en tijdsduur)
+    private boolean parkingSpaceNeeded;
+    private int numberOfChildSeats;
+    private int numberOfPersons;
+    //dit zou eigenlijk een list moeten worden
+    //private Table reservedTable;
+    private LocalDateTime startReservation;
+    private int totalTimeInMinutes;
+
+    @Id
+    @GeneratedValue
+    private int id;
+    @ManyToMany
+    private List<Table> tables;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Customer customer;
 
     public Customer getCustomer() {
         return customer;
@@ -12,16 +30,6 @@ public class Reservation {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
-    private Customer customer;
-    private boolean parkingSpaceNeeded;
-    private int numberOfChildSeats;
-    private int numberOfPersons;
-    //dit zou eigenlijk een list moeten worden
-    private Table reservedTable;
-    private LocalDateTime startReservation;
-    private int totalTimeInMinutes;
-    private int Id;
 
     public boolean isParkingSpaceNeeded() {
         return parkingSpaceNeeded;
@@ -47,13 +55,12 @@ public class Reservation {
         this.numberOfPersons = numberOfPersons;
     }
 
-    public Table getReservedTable() {
-        return reservedTable;
+    public List<Table> getTables() {
+        return tables;
     }
 
-    public void setReservedTable(Table reservedTable) {
-        this.reservedTable = reservedTable;
-        //reservedTable.setReservation(this);
+    public void setTables(List<Table> tables) {
+        this.tables = tables;
     }
 
     public LocalDateTime getStartReservation() {
@@ -73,10 +80,10 @@ public class Reservation {
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int ID) {
-        this.Id = ID;
+        this.id = ID;
     }
 }

@@ -8,7 +8,6 @@ var DATA_PAIRS = {
     number: ".number"
 };
 
-
 $(function() {
     DATA_TABLE = $("table").DataTable({
         columns: [
