@@ -11,6 +11,7 @@ public class Table {
     private int number;
     private int numberOfPersons;
     private TableShape shape;
+    private TableStatus status;
 
     public Table() {}
 
@@ -38,6 +39,14 @@ public class Table {
         this.numberOfPersons = numberOfPersons;
     }
 
+    public TableStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TableStatus status) {
+        this.status = status;
+    }
+
     public TableShape getShape() {
         return shape;
     }
@@ -45,4 +54,6 @@ public class Table {
     public void setShape(TableShape shape) {
         this.shape = shape;
     }
+
+
 }
