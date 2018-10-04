@@ -13,6 +13,7 @@ var DATA_PAIRS = {
 
 var SERVING_DATA_PAIRS = {
     item: ".itemId",
+    id: ".id",
     numberOfUnits: ".amount",
     ingredient: ".ingredient"
 };

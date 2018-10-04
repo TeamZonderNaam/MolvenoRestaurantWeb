@@ -1,5 +1,6 @@
 package com.capgemini.molveno.service;
 
+import com.capgemini.molveno.model.Ingredient;
 import com.capgemini.molveno.model.MenuItem;
 import com.capgemini.molveno.model.Serving;
 import com.capgemini.molveno.repository.ServingRepository;
@@ -52,7 +53,13 @@ public class ServingService {
                 oldServing.get().setNumberOfUnits(serving.getNumberOfUnits());
             }
         }
-        return servingRepository.save(oldServing.get());
+
+        Serving saved = servingRepository.save(oldServing.get());
+        Ingredient ingredient = ingredientService.read(saved.getIngredient().getId());
+        System.out.println("New ingredient:"+ingredient);
+        saved.setIngredient(ingredient);
+
+        return saved;
     }
 
     public void delete(final int id) {

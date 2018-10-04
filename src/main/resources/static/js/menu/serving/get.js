@@ -14,9 +14,10 @@ $(function() {
         var data = DATA_TABLE.row(tr).data();
 
         $("#ingredient-modal").modal("toggle");
+        $("#add-serving .itemId").val(data.id);
+
         // Set the MenuItem id for the serving at this stage, because you can only reach this modal
         // when you press the "View ingredients" link.
-        $("#add-serving .itemId").val(data.id);
 
         URLUtil.get(SERVING_URL+"for/"+data.id).then(function(arr) {
             $("#add-ingredient .list-group").empty();

@@ -5,7 +5,7 @@ $(function() {
     // We can't use the default click function, because the data is loaded in dynamically.
     // The following line lets jQuery listen on all clicks on the body and only filter out those whose
     // selector matches the one that was clicked on. This allows us to get click events on dynamic content.
-    $("body").on("click", "a[href*='edit']", function(e) {
+    modal.on("click", "a[href*='edit']", function(e) {
         // Call parent() two times to get the original table row and get the data via DataTable.
         var tr = $(this).parent().parent();
         var data = DATA_TABLE.row(tr).data();
