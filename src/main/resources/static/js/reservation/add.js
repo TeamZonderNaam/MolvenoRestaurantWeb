@@ -37,7 +37,7 @@ function postData() {
         success: function(result) {
             // On successful post, reload data to get the added one as well.
             console.log("success post data!");
-            //getData();
+            getData();
         }
     });
 }
