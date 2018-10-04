@@ -15,7 +15,7 @@ public class OrderService {
 
     public int create(Order order) {
         Order created = repository.save(order);
-        return created.getOrderNumber();
+        return created.getId();
     }
 
     public Collection<Order> all() {
