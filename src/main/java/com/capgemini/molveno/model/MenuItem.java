@@ -1,12 +1,21 @@
 package com.capgemini.molveno.model;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class MenuItem {
 
     private String name;
     private double price;
     private int number;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String category;
+    @ManyToMany
+    private List<Serving> servings;
 
     public MenuItem(String name, double price, int number) {
         this.name = name;
@@ -16,7 +25,6 @@ public class MenuItem {
 
     //empty constructor for easy constructing of menu items
     public MenuItem() {
-
     }
 
     public int getId() {
@@ -58,4 +66,22 @@ public class MenuItem {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public List<Serving> getServings() {
+        return servings;
+    }
+
+    public void setServings(List<Serving> servings) {
+        this.servings = servings;
+    }
+
+    @Transient
+    public double getCostPrice() {
+        double cost = 0;
+        for (Serving serving : this.servings) {
+            cost += serving.getNumberOfUnits() * serving.getIngredient().getPricePerUnit();
+        }
+        return cost;
+    }
+
 }

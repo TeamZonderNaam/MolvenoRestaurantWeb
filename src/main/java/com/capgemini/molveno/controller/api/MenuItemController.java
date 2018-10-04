@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
-@RequestMapping ("/api/menuItem") //camel case?
-
+@RestController("menu_api_controller")
+@RequestMapping ("/api/menuItem")
 public class MenuItemController {
     @Autowired
     private MenuItemService service;
