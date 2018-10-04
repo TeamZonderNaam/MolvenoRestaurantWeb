@@ -18,6 +18,9 @@ public class ServingService {
     @Autowired
     private MenuItemService menuItemService;
 
+    @Autowired
+    private IngredientService ingredientService;
+
     public int create(Serving serving) {
         Serving created = servingRepository.save(serving);
         return created.getId();
@@ -73,6 +76,12 @@ public class ServingService {
         if (item != null) {
             item.getServings().add(serving);
             menuItemService.update(id, item);
+
+            int ingredientId = serving.getIngredient().getId();
+            serving.setIngredient(
+                ingredientService.read(ingredientId)
+            );
+
             return serving;
         } else {
             return null;

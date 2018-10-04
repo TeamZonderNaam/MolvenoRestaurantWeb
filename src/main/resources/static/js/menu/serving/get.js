@@ -1,6 +1,4 @@
 $(function() {
-    var template = '<li class="list-group-item ingredient"><span class="amount"></span> <span class="name"></span> <span class="tool"><a href="edit"><i class="fas fa-edit"></i></a> / <a href="delete"><i class="far fa-trash-alt"></i></a></span></li>';
-
     // We can't use the default click function, because the data is loaded in dynamically.
     // The following line lets jQuery listen on all clicks on the body and only filter out those whose
     // selector matches the one that was clicked on. This allows us to get click events on dynamic content.
@@ -23,11 +21,7 @@ $(function() {
         URLUtil.get(SERVING_URL+"for/"+data.id).then(function(arr) {
             $("#add-ingredient .list-group").empty();
             $.each(arr, function(i, obj) {
-
-                var ingredient = $(template);
-                $("#add-ingredient .list-group").append(ingredient);
-                ingredient.find(".amount").html(obj.numberOfUnits);
-                ingredient.find(".name").html(obj.ingredient.name);
+                addIngredientToList(obj);
             });
         });
 

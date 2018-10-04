@@ -1,11 +1,14 @@
 package com.capgemini.molveno.controller.api;
 
+import com.capgemini.molveno.model.Ingredient;
 import com.capgemini.molveno.model.Serving;
+import com.capgemini.molveno.service.IngredientService;
 import com.capgemini.molveno.service.ServingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController

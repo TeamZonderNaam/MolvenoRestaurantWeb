@@ -13,9 +13,11 @@ var DATA_PAIRS = {
 
 var SERVING_DATA_PAIRS = {
     item: ".itemId",
-    amount: ".amount",
+    numberOfUnits: ".amount",
     ingredient: ".ingredient"
 };
+
+var INGREDIENT_TEMPLATE = '<li class="list-group-item ingredient"><span class="amount"></span> <span class="name"></span> <span class="tool"><a href="edit"><i class="fas fa-edit"></i></a> / <a href="delete"><i class="far fa-trash-alt"></i></a></span></li>';
 
 $(function() {
     DATA_TABLE = $("table").DataTable({
@@ -38,3 +40,12 @@ $(function() {
         ]
     });
 });
+
+// Over here because this function should be available to serving/add.js and serving/get.js
+function addIngredientToList(ingredient) {
+    var ele = $(INGREDIENT_TEMPLATE);
+    $("#add-ingredient .list-group").append(ele);
+    ele.find(".amount").html(ingredient.numberOfUnits);
+    ele.find(".name").html(ingredient.ingredient.name);
+
+}
