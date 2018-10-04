@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import java.util.Optional;
 
 @RestController("order_api")
 @RequestMapping("/api/order")
@@ -16,12 +16,12 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<Order> get() {
+    public Iterable<Order> get() {
         return this.orderService.all();
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Order getSingle(@PathVariable int id) {
+    public Optional<Order> getSingle(@PathVariable int id) {
         return this.orderService.read(id);
     }
 
@@ -38,7 +38,7 @@ public class OrderController {
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean delete(@PathVariable int id, @RequestBody Order order) {
-        if (id >= 0 && id <= this.orderService.all().size()) {
+        if (id >= 0) {
             this.orderService.delete(id);
             return true;
         } else {

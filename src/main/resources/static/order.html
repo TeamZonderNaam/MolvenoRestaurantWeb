@@ -24,15 +24,15 @@
             var status = $("#inputStatus").val();
             var inputItemName = $("#inputItemsName").val();
             var inputItemPrice = $("#inputItemsPrice").val();
-            var inputItemNumber = $("#inputItemsNumber").val();
+            var inputTable = $("#inputTable").val();
 
             // Create JS object with data.
             var newOrder = {
                 id : id,
                 status : status,
+                table : {number : inputTable},
                 items : [{name : inputItemName,
                           price : inputItemPrice,
-                          number : inputItemNumber
                 }]
             };
             console.log(newOrder);
@@ -80,7 +80,7 @@
             var status = $("#editStatus").val();
             var editItemName = $("#editItemsName").val();
             var editItemPrice = $("#editItemsPrice").val();
-            var editItemNumber = $("#editItemsNumber").val();
+            var table = $("#editInputTable").val();
 
             // Create JS object with data.
             var newOrder = {
@@ -88,13 +88,15 @@
                 status : status,
                 items : [{name : editItemName,
                           price : editItemPrice,
-                          number : editItemNumber
-                }]
+                }],
+                table : {number : table}
             };
-            console.log(newOrder);
+            console.log("NIEUW ORDER: " + newOrder);
 
             // Convert JS object to JSON.
             var validJsonOrder = JSON.stringify(newOrder);
+            console.log("DIT IS DE STATUS: " + $("#editStatus").val());
+
             console.log(validJsonOrder);
 
             // Post JSON to endpoint.
@@ -109,12 +111,12 @@
                     getData();
                 }
             });
+
         }
 
-        function deleteData() {
+        function deleteData(id) {
             console.log("deleting order");
-            //Get values from html
-            var id = $("#inputDeleteId").val();
+
             // Create JS object with data.
             var deleteOrder = {
                 id : id
@@ -162,6 +164,11 @@
 
                 // Post the data from the modal.
                 updateData();
+                if($("#editStatus").val() == "DONE"){
+                    //Get values from html
+                    var id = $("#editId").val();
+                    deleteData(id);
+                }
 
                 // Reset modal to hide and no values.
                 $('#editOrderModal').modal('hide');
@@ -172,7 +179,9 @@
              $("#deleteOrderForm").on('submit', function(e) {
                 console.log("Submitted delete order form");
                 // Delete the data.
-                deleteData();
+                //Get values from html
+                var id = $("#inputDeleteId").val();
+                deleteData(id);
                 // Reset modal to no values.
                 $('#deleteOrderModal').modal('hide');
                 $("#inputDeleteId").val("");
@@ -183,11 +192,10 @@
          $('#orderTable').DataTable({
                 columns: [
                     { "data": "id" },
-                    { "data": "status" },
                     { "data": "items[0].name" },
+                    { "data": "table.number" },
                     { "data": "items[0].price" , render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' )},
-                    { "data": "items[0].number" },
-
+                    { "data": "status" },
                 ]
             });
             getData();
@@ -204,10 +212,11 @@
     <thead>
     <tr>
         <th><strong>ID</strong></th>
+        <th><strong>Items</strong></th>
+        <th><strong>Table</strong></th>
+        <th><strong>Total Price</strong></th>
         <th><strong>Status</strong></th>
-        <th><strong>Item name</strong></th>
-        <th><strong>Price</strong></th>
-        <th><strong>Number</strong></th>
+
     </tr>
     </thead>
     <tbody>
@@ -232,10 +241,7 @@
     </div>
 </div>
 
-
-
-
-        <!-- New Book Modal -->
+        <!-- New Order Modal -->
         <div id="newOrderModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
@@ -265,8 +271,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="inputItemsNumber" class="control-label">Item number</label>
-                                <input type="text" class="form-control" id="inputItemsNumber" required>
+                                <label for="inputTable" class="control-label">Item number</label>
+                                <input type="text" class="form-control" id="inputTable" required>
                             </div>
 
                             <div class="form-group">
@@ -313,13 +319,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="editItemsPrice" class="control-label">Item price</label>
+                                <label for="editItemsPrice" class="control-label">Total price</label>
                                 <input type="text" class="form-control" id="editItemsPrice" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="editItemsNumber" class="control-label">Item number</label>
-                                <input type="text" class="form-control" id="editItemsNumber" required>
+                                <label for="editInputTable" class="control-label">Table number</label>
+                                <input type="text" class="form-control" id="editInputTable" required>
                             </div>
 
                             <div class="form-group">

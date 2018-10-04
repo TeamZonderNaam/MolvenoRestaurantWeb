@@ -1,18 +1,24 @@
 package com.capgemini.molveno.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
-
+@Entity
 public class Reservation {
     //een reservering heeft klantgegevens, aantal personen, een tafelnummer, kinderzitjes nodig, parkeerplaats nodig en een tijd (begintijd en tijdsduur)
 
+    @ManyToOne
     private Customer customer;
     private boolean parkingSpaceNeeded;
     private int numberOfChildSeats;
     private int numberOfPersons;
     //dit zou eigenlijk een list moeten worden
+
+    @ManyToOne
     private Table reservedTable;
     private LocalDateTime startReservation;
     private int totalTimeInMinutes;
+    @Id
+    @GeneratedValue
     private int ID;
 
     public Customer getCustomer() {
@@ -53,7 +59,7 @@ public class Reservation {
 
     public void setReservedTable(Table reservedTable) {
         this.reservedTable = reservedTable;
-        reservedTable.setReservation(this);
+//        reservedTable.setReservation(this);
     }
 
     public LocalDateTime getStartReservation() {

@@ -1,10 +1,17 @@
 package com.capgemini.molveno.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Customer {
 
     private String name;
     private String phoneNumber;
     private String emailAddress;
+    @Id
+    @GeneratedValue
     private int ID;
 
     public String getName() {

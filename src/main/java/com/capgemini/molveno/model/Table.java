@@ -1,11 +1,17 @@
 package com.capgemini.molveno.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Table {
     private int number;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int ID;
     private int numberOfPersons;
     private TableStatus status;
     //dit zou een list moeten worden
+    @ManyToOne
     private Reservation reservation;
     private TableShape shape;
 
