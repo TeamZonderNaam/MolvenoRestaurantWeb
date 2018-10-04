@@ -59,7 +59,6 @@ public class Reservation {
 
     public void setReservedTable(Table reservedTable) {
         this.reservedTable = reservedTable;
-//        reservedTable.setReservation(this);
     }
 
     public LocalDateTime getStartReservation() {
