@@ -2,7 +2,6 @@
 var DATA_TABLE;
 var BASE_URL = "/api/reservation/";
 var DATA_PAIRS = {
-    //customer: { name: customerName},
     customer           : ".customer.name",
     numberOfPersons    : ".amount",
     numberOfChildSeats : ".childseats",
@@ -10,7 +9,7 @@ var DATA_PAIRS = {
     reservedtable      : ".reservedtable",
     time               : ".time",
     totalTimeInMinutes : ".timeamount",
-    parkingSpaceNeeded : ".parkingspot"
+    parkingSpaceNeeded : "#parkingspot"
 };
 
 $(function() {
@@ -18,13 +17,13 @@ $(function() {
         columns: [
             {data: "id"},
             {data: "customer.name"},
-            {data: "amount"},
-            {data: "childseats"},
-            {data: "tablenumber"},
-            {data: "reservedtable"},
-            {data: "time"},
-            {data: "timeamount"},
-            {data: "parkingspot"},
+            {data: "numberOfPersons"},
+            {data: "numberOfChildSeats"},
+            // {data: "tablenumber"}, //TODO IEK
+            // {data: "reservedtable"}, //TODO IEK
+            // {data: "time"}, //TODO IEK
+            {data: "totalTimeInMinutes"},
+            {data: "parkingSpaceNeeded"},
             {
                 data: null,
                 className: "center",

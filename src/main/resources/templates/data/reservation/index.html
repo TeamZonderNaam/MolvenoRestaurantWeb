@@ -5,7 +5,7 @@
         <h1>Reservation</h1>
         <div class="row">
             <div class="col-sm">
-                <button class="btn btn-primary btn-block add-item" data-toggle="modal" data-target="#reservation-modal">
+                <button class="btn btn-primary btn-block add-item" data-toggle="modal" data-target="#item-modal">
                     <i class="fas fa-plus"></i> Reserve
                 </button>
             </div>
@@ -17,7 +17,7 @@
         </div>
     </div>
 
-<div class="modal fade" id="reservation-modal"  tabindex="-1" role="dialog" aria-labelledby="reservation-modal" aria-hidden="true">
+<div class="modal fade" id="item-modal"  tabindex="-1" role="dialog" aria-labelledby="item-modal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -57,29 +57,29 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label>Table</label>
-                        <select class="form-control tablenumber" name ="tablenumber" id="tablenumber">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<label>Table</label>-->
+                        <!--<select class="form-control tablenumber" name ="tablenumber" id="tablenumber">-->
+                            <!--<option>0</option>-->
+                            <!--<option>1</option>-->
+                            <!--<option>2</option>-->
+                            <!--<option>3</option>-->
+                            <!--<option>4</option>-->
+                            <!--<option>5</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
 
-                    <div class="form-group">
-                        <label>reserved</label>
-                        <select class="form-control reservedtable" name ="reservedtable" id="reservedtable">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<label>reserved</label>-->
+                        <!--<select class="form-control reservedtable" name ="reservedtable" id="reservedtable">-->
+                            <!--<option>0</option>-->
+                            <!--<option>1</option>-->
+                            <!--<option>2</option>-->
+                            <!--<option>3</option>-->
+                            <!--<option>4</option>-->
+                            <!--<option>5</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
 
                     <div class="form-group">
                         <label>Time</label>
@@ -97,10 +97,8 @@
                         <label>Time Amount</label>
                         <input class="form-control timeamount" type="text" name="timeamount" placeholder="Enter amount of time">
                     </div>
-
-                    <div class="form-checkbox">
-                        <label class="checkbox-inline">Need a parking spot?</label>
-                        <input class="form-check-input parkingspot" type="checkbox" value="true" id="parkingspot">
+                    <div>
+                        <label class="checkbox-inline"><input type="checkbox" value="true" id="parkingspot">Need a parking spot?</label>
                     </div>
 
                 </div>
