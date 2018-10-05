@@ -2,34 +2,17 @@ package com.capgemini.molveno.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-<<<<<<< HEAD
-@Entity
-public class Reservation {
-    //een reservering heeft klantgegevens, aantal personen, een tafelnummer, kinderzitjes nodig, parkeerplaats nodig en een tijd (begintijd en tijdsduur)
 
-    @ManyToOne
-    private Customer customer;
-=======
 import java.util.List;
 
 @Entity
 public class Reservation {
     //een reservering heeft klantgegevens, aantal personen, een tafelnummer, kinderzitjes nodig, parkeerplaats nodig en een tijd (begintijd en tijdsduur)
->>>>>>> Reservation
     private boolean parkingSpaceNeeded;
     private int numberOfChildSeats;
     private int numberOfPersons;
     //dit zou eigenlijk een list moeten worden
-<<<<<<< HEAD
 
-    @ManyToOne
-    private Table reservedTable;
-    private LocalDateTime startReservation;
-    private int totalTimeInMinutes;
-    @Id
-    @GeneratedValue
-    private int ID;
-=======
     private LocalDateTime startReservation;
     private int totalTimeInMinutes;
 
@@ -40,7 +23,6 @@ public class Reservation {
     private List<Table> tables;
     @ManyToOne(cascade = CascadeType.ALL)
     private Customer customer;
->>>>>>> Reservation
 
     public Customer getCustomer() {
         return customer;
@@ -78,13 +60,8 @@ public class Reservation {
         return tables;
     }
 
-<<<<<<< HEAD
-    public void setReservedTable(Table reservedTable) {
-        this.reservedTable = reservedTable;
-=======
     public void setTables(List<Table> tables) {
         this.tables = tables;
->>>>>>> Reservation
     }
 
     public LocalDateTime getStartReservation() {
@@ -99,7 +76,7 @@ public class Reservation {
         return totalTimeInMinutes;
     }
 
-    public void setTotalTimeInMinutes(int totalTimeInMinutes) {
+    public void setTotaslTimeInMinutes(int totalTimeInMinutes) {
         this.totalTimeInMinutes = totalTimeInMinutes;
     }
 

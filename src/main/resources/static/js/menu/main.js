@@ -11,7 +11,6 @@ var DATA_PAIRS = {
     number: ".number"
 };
 
-<<<<<<< HEAD
 var SERVING_DATA_PAIRS = {
     item: ".itemId",
     id: ".id",
@@ -21,8 +20,6 @@ var SERVING_DATA_PAIRS = {
 
 var INGREDIENT_TEMPLATE = '<li class="list-group-item ingredient"><input type="hidden" class="id"><span class="amount"></span> <span class="name"></span> <span class="tool"><a href="edit"><i class="fas fa-edit"></i></a> / <a href="delete"><i class="far fa-trash-alt"></i></a></span></li>';
 
-=======
->>>>>>> Reservation
 $(function() {
     DATA_TABLE = $("table").DataTable({
         columns: [
