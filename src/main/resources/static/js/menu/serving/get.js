@@ -6,7 +6,10 @@ $(function() {
         URLUtil.get(INGREDIENT_URL).then(function(arr) {
             console.log(arr);
             $.each(arr, function(i, obj) {
-                $("#serving-modal select.ingredient").append("<option value='"+obj.id+"'>"+obj.name+"</option>");
+                var unit = obj.unit.name;
+                var name = obj.name + " ("+unit+")";
+
+                $("#serving-modal select.ingredient").append("<option value='"+obj.id+"'>"+name+"</option>");
             });
         });
 
