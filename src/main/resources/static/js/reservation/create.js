@@ -14,6 +14,8 @@ $(function() {
             DATA_TABLE.row.add(obj).draw(false);
             modal.modal('toggle');
             FormUtil.emptyForm(form);
+
+            $("#status").html("Thanks you for your reservation.");
         });
     }).on("click", ".add-item", function() {
         // It's possible that a new value will be added after editing.
