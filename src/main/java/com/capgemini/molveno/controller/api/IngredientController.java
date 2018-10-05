@@ -21,9 +21,9 @@ public class IngredientController {
         return service.all();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
-    public Ingredient getSingle(@PathVariable(name="id") int id) {
-        return service.read(id);
+    @RequestMapping(value = "/for/{id}", method = RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
+    public List<Ingredient> getIngredientsOnMenuItem(@PathVariable(name="id") int id) {
+        return service.all();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)

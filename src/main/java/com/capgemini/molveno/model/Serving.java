@@ -1,14 +1,19 @@
 package com.capgemini.molveno.model;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.*;
+
 
 @Entity
 public class Serving {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
+    @Cascade(CascadeType.SAVE_UPDATE)
     private Ingredient ingredient;
 
     private double numberOfUnits;

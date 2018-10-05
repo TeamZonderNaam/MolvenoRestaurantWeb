@@ -1,19 +1,21 @@
 package com.capgemini.molveno.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MenuItem {
-
     private String name;
     private double price;
     private int number;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String category;
-    @ManyToMany
+
+    @OneToMany
     private List<Serving> servings;
 
     public MenuItem(String name, double price, int number) {

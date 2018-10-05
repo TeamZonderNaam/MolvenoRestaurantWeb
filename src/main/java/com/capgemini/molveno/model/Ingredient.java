@@ -1,5 +1,8 @@
 package com.capgemini.molveno.model;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.util.List;
@@ -14,6 +17,7 @@ public class Ingredient {
     private double pricePerUnit;
 
     @ManyToOne
+    @Cascade(CascadeType.SAVE_UPDATE)
     private Unit unit;
 
 

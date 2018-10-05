@@ -24,35 +24,6 @@ public class OrderService {
         return created.getId();
     }
 
-    @PostConstruct
-    public void add() {
-        int index = 1;
-        for(int i =0; i < 5; i++){
-            Order order = new Order();
-            ArrayList<MenuItem> items = new ArrayList<>();
-
-            order.setStatus(OrderStatus.OPEN);
-
-            MenuItem menuItem = new MenuItem();
-            menuItem.setName("Fried Wonton");
-            menuItem.setNumber(22);
-            menuItem.setPrice(4);
-            items.add(menuItem);
-            //newOrder.setItems(items);
-            order.setItems(items);
-
-            Table table = new Table();
-            table.setNumber(12);
-            table.setNumberOfPersons(8);
-            table.setStatus(TableStatus.AVAILABLE);
-
-            //newOrder.setTable(table);
-            order.setTable(table);
-            order.setId(index++);
-            this.repository.save(order);
-        }
-    }
-
     public List<Order> all() {
         Iterable<Order> source = this.repository.findAll();
         List<Order> target = new ArrayList<>();
