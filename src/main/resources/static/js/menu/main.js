@@ -27,6 +27,7 @@ $(function() {
             {data: "category"},
             {data: "name"},
             {data: "price", render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' ) },
+            {data: "costPrice", render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' ) },
             {data: "number"},
             {
                 data: null,
@@ -41,6 +42,10 @@ $(function() {
         ]
     });
 });
+
+function emptyIngredientList() {
+    $("#add-ingredient .list-group").empty();
+}
 
 // Over here because this function should be available to serving/add.js and serving/get.js
 function addIngredientToList(ingredient) {

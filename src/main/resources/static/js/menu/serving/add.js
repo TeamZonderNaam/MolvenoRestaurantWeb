@@ -17,6 +17,7 @@ $(function() {
             delete model.item;
             delete model.id;
 
+            emptyIngredientList();
             URLUtil.post(SERVING_URL+"for/"+itemId, model).then(function(obj) {
                 addIngredientToList(obj);
                 modal.modal("toggle");
