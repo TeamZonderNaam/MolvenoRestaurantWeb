@@ -15,7 +15,6 @@ var DATA_PAIRS = {
 $(function() {
     DATA_TABLE = $("table").DataTable({
         columns: [
-            {data: "id"},
             {data: "customer.name"},
             {data: "numberOfPersons"},
             {data: "numberOfChildSeats"},

@@ -11,7 +11,6 @@ var DATA_PAIRS = {
 $(function() {
     DATA_TABLE = $("table").DataTable({
         columns: [
-            {data: "id"},
             {data: "name"},
             {data: "pricePerUnit", render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' ) },
             {data: "unit.name"},
