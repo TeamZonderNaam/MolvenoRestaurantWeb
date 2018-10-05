@@ -35,13 +35,14 @@ public class MenuItemController {
     public MenuItem create(@RequestBody MenuItem item) {
         int id = service.create(item);
         item.setId(id);
-        List<Serving> servingList = new ArrayList<>();
-        for(Serving serving : item.getServings()) {
-            Serving newServing = servingService.read(serving.getId());
-            servingList.add(newServing);
+        if (item != null && item.getServings() != null) {
+            List<Serving> servingList = new ArrayList<>();
+            for (Serving serving : item.getServings()) {
+                Serving newServing = servingService.read(serving.getId());
+                servingList.add(newServing);
+            }
+            item.setServings(servingList);
         }
-
-        item.setServings(servingList);
 
         // Can't use the following line, will give a JsonMappingException on the getCostPrice()
 //        MenuItem read = service.read(id);

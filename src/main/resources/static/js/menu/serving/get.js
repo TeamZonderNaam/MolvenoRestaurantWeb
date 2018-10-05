@@ -4,6 +4,7 @@ $(function() {
     // selector matches the one that was clicked on. This allows us to get click events on dynamic content.
     $("body").on("click", "a[href*='ingredients']", function(e) {
         URLUtil.get(INGREDIENT_URL).then(function(arr) {
+            console.log(arr);
             $.each(arr, function(i, obj) {
                 $("#serving-modal select.ingredient").append("<option value='"+obj.id+"'>"+obj.name+"</option>");
             });
@@ -20,7 +21,7 @@ $(function() {
         // when you press the "View ingredients" link.
 
         URLUtil.get(SERVING_URL+"for/"+data.id).then(function(arr) {
-            $("#add-ingredient .list-group").empty();
+            emptyIngredientList();
             $.each(arr, function(i, obj) {
                 addIngredientToList(obj);
             });

@@ -79,8 +79,10 @@ public class MenuItem {
     @Transient
     public double getCostPrice() {
         double cost = 0;
-        for (Serving serving : this.servings) {
-            cost += serving.getNumberOfUnits() * serving.getIngredient().getPricePerUnit();
+        if (this.servings != null) {
+            for (Serving serving : this.servings) {
+                cost += serving.getNumberOfUnits() * serving.getIngredient().getPricePerUnit();
+            }
         }
         return cost;
     }
