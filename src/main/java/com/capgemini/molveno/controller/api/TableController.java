@@ -18,7 +18,6 @@ public class TableController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Table create(@RequestBody Table newTable) {
         this.tableService.create(newTable);
-
         return newTable;
     }
 
