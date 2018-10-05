@@ -22,7 +22,9 @@ $(function() {
             // {data: "reservedtable"}, //TODO IEK
             // {data: "time"}, //TODO IEK
             {data: "totalTimeInMinutes"},
-            {data: "parkingSpaceNeeded"},
+            {data: "parkingSpaceNeeded", render: function(data) {
+                return (data == true) ? "Yes" : "No";
+                }},
             {
                 data: null,
                 className: "center",
