@@ -40,6 +40,10 @@
                     // On successful post, reload data to get the added one as well.
                     console.log("success post data!");
                     getData();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                     alert("Error!!!");
+                     }
                 }
             });
         }
