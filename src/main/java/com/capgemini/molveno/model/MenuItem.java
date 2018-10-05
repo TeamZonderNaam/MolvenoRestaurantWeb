@@ -1,12 +1,22 @@
 package com.capgemini.molveno.model;
 
-public class MenuItem {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class MenuItem {
     private String name;
     private double price;
     private int number;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String category;
+
+    @OneToMany
+    private List<Serving> servings;
 
     public MenuItem(String name, double price, int number) {
         this.name = name;
@@ -16,7 +26,6 @@ public class MenuItem {
 
     //empty constructor for easy constructing of menu items
     public MenuItem() {
-
     }
 
     public int getId() {
@@ -57,5 +66,24 @@ public class MenuItem {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public List<Serving> getServings() {
+        return servings;
+    }
+
+    public void setServings(List<Serving> servings) {
+        this.servings = servings;
+    }
+
+    @Transient
+    public double getCostPrice() {
+        double cost = 0;
+        if (this.servings != null) {
+            for (Serving serving : this.servings) {
+                cost += serving.getNumberOfUnits() * serving.getIngredient().getPricePerUnit();
+            }
+        }
+        return cost;
     }
 }

@@ -1,27 +1,30 @@
+ul {
+    padding-left: 25px;
+    padding-top:0;
+}
+
 body, p {
 font-family: "Open Sans", "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
+}
+
+p {
     margin-top: 0;
 }
 
 h1, h2 {
 	font-family: "Noto Serif KR", Georgia, serif;
-
 }
 
 h1 {
     text-align: center;
-
 }
 
 h2 {
     font-size: 24px;
     margin-top: 0;
-    }
+}
 
-h2 {
-    font-size: 18px;
-    }
 
 .deactivate {
     text-decoration: line-through;
@@ -35,7 +38,7 @@ h2 {
 
 .maintable {
         vertical-align: top;
-        }
+}
 
 .catstable {
     width: 100%;
@@ -46,8 +49,18 @@ h2 {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
-    }
+}
 
 .catstable tr:nth-child(even) {
-            background-color: #dddddd;
-        }
+    background-color: #dddddd;
+}
+
+a:link, a:visited, a:active {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #309bcf;
+}

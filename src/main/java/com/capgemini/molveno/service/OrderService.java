@@ -1,11 +1,17 @@
 package com.capgemini.molveno.service;
 
+import com.capgemini.molveno.enums.OrderStatus;
+import com.capgemini.molveno.model.MenuItem;
 import com.capgemini.molveno.model.Order;
+import com.capgemini.molveno.model.Table;
+import com.capgemini.molveno.model.TableStatus;
 import com.capgemini.molveno.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,15 +21,18 @@ public class OrderService {
 
     public int create(Order order) {
         Order created = repository.save(order);
-        return created.getOrderNumber();
+        return created.getId();
     }
 
-    public Collection<Order> all() {
-        return this.repository.findAll();
+    public List<Order> all() {
+        Iterable<Order> source = this.repository.findAll();
+        List<Order> target = new ArrayList<>();
+        source.forEach(target::add);
+        return target;
     }
 
-    public Order read(final int id) {
-        Order order = repository.findById(id);
+    public Optional<Order> read(final int id) {
+        Optional<Order> order = repository.findById(id);
         return order;
     }
 

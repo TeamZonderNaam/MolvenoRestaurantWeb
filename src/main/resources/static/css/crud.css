@@ -1,0 +1,9 @@
+
+
+/*#add-ingredient .ingredient .amount:after{*/
+    /*content: 'x';*/
+/*}*/
+
+#add-ingredient .ingredient .tool {
+    float: right;
+}

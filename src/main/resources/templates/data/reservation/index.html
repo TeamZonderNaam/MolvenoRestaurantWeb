@@ -1,0 +1,95 @@
+{{> data/header}}
+
+<div class="container">
+    <div>
+        <h1>Reservation</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <a class="btn btn-secondary btn-block" href="/">
+                    Back
+                </a>
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-primary btn-block add-item" data-toggle="modal" data-target="#item-modal">
+                    <i class="fas fa-plus"></i> Reserve
+                </button>
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="item-modal"  tabindex="-1" role="dialog" aria-labelledby="item-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Reservation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="add-reservation" onsubmit="return false">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>Customer</label>
+                        <input class="form-control customer name" type="text" name="customername" placeholder="Enter a customer name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Amount</label>
+                        <select class="form-control amount" name ="amount" id="amount">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                    <label>Child seats</label>
+                    <select class="form-control childseats" name ="childseats" id="childseats">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Time</label>
+                        <select class="form-control time" name ="time" id="time">
+                            <option>12:00 PM</option>
+                            <option>13:00 PM</option>
+                            <option>14:00 PM</option>
+                            <option>15:00 PM</option>
+                            <option>16:00 PM</option>
+                            <option>17:00 PM</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Time Amount (in minutes)</label>
+                        <input class="form-control timeamount" type="text" name="timeamount" placeholder="Enter amount of time" value="30" disabled>
+                    </div>
+                    <div>
+                        <label class="checkbox-inline"><input type="checkbox" value="true" id="parkingspot">Need a parking spot?</label>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Stop</button>
+                    <button type="submit" class="btn btn-primary save">Book now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script src="/js/reservation/main.js"></script>
+<script src="/js/reservation/create.js"></script>
+
+{{> data/footer}}

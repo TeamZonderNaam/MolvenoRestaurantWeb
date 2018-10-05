@@ -21,9 +21,9 @@ public class IngredientController {
         return service.all();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
-    public Ingredient getSingle(@PathVariable(name="id") int id) {
-        return service.read(id);
+    @RequestMapping(value = "/for/{id}", method = RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
+    public List<Ingredient> getIngredientsOnMenuItem(@PathVariable(name="id") int id) {
+        return service.all();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
@@ -34,9 +34,8 @@ public class IngredientController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Ingredient update(@RequestBody Ingredient ingredient) {
-        System.out.println("Updating ingredient:"+ingredient);
-        return service.update(ingredient);
+    public Ingredient update(@PathVariable int id, @RequestBody Ingredient ingredient) {
+        return service.update(id, ingredient);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
