@@ -2,16 +2,25 @@ package com.capgemini.molveno.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+<<<<<<< HEAD
 @Entity
 public class Reservation {
     //een reservering heeft klantgegevens, aantal personen, een tafelnummer, kinderzitjes nodig, parkeerplaats nodig en een tijd (begintijd en tijdsduur)
 
     @ManyToOne
     private Customer customer;
+=======
+import java.util.List;
+
+@Entity
+public class Reservation {
+    //een reservering heeft klantgegevens, aantal personen, een tafelnummer, kinderzitjes nodig, parkeerplaats nodig en een tijd (begintijd en tijdsduur)
+>>>>>>> Reservation
     private boolean parkingSpaceNeeded;
     private int numberOfChildSeats;
     private int numberOfPersons;
     //dit zou eigenlijk een list moeten worden
+<<<<<<< HEAD
 
     @ManyToOne
     private Table reservedTable;
@@ -20,6 +29,18 @@ public class Reservation {
     @Id
     @GeneratedValue
     private int ID;
+=======
+    private LocalDateTime startReservation;
+    private int totalTimeInMinutes;
+
+    @Id
+    @GeneratedValue
+    private int id;
+    @ManyToMany
+    private List<Table> tables;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Customer customer;
+>>>>>>> Reservation
 
     public Customer getCustomer() {
         return customer;
@@ -53,12 +74,17 @@ public class Reservation {
         this.numberOfPersons = numberOfPersons;
     }
 
-    public Table getReservedTable() {
-        return reservedTable;
+    public List<Table> getTables() {
+        return tables;
     }
 
+<<<<<<< HEAD
     public void setReservedTable(Table reservedTable) {
         this.reservedTable = reservedTable;
+=======
+    public void setTables(List<Table> tables) {
+        this.tables = tables;
+>>>>>>> Reservation
     }
 
     public LocalDateTime getStartReservation() {
@@ -77,11 +103,11 @@ public class Reservation {
         this.totalTimeInMinutes = totalTimeInMinutes;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int ID) {
+        this.id = ID;
     }
 }

@@ -2,12 +2,20 @@ package com.capgemini.molveno.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+<<<<<<< HEAD
+=======
+import javax.persistence.GenerationType;
+>>>>>>> Reservation
 import javax.persistence.Id;
 
 @Entity
 public class Customer {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String name;
+<<<<<<< HEAD
     private String phoneNumber;
     private String emailAddress;
     @Id
@@ -21,28 +29,22 @@ public class Customer {
     public void setName(String name) {
         this.name = name;
     }
+=======
+>>>>>>> Reservation
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public int getId() {
+        return id;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
+    public String getName() {
+        return name;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setName(String name) {
+        this.name = name;
     }
 }
