@@ -1,0 +1,199 @@
+{{> data/header}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Menu Items</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Category</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="btn btn-secondary btn-block" href="/">
+                        Back
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <!--<button class="btn btn-primary btn-block add-item" data-toggle="modal" data-target="#item-modal">-->
+                        <!--<i class="fas fa-plus"></i> Add-->
+                    <!--</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="modal fade" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="item-modal" aria-hidden="true">-->
+    <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+        <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+                <!--<h5 class="modal-title">Menu Items</h5>-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                    <!--<span aria-hidden="true">&times;</span>-->
+                <!--</button>-->
+            <!--</div>-->
+            <!--<form id="add-skill" onsubmit="return false">-->
+                <!--<div class="modal-body">-->
+                    <!--<div class="form-group">-->
+                        <!--<label>Category</label>-->
+                        <!--<input class="form-control category" type="text" name="category" placeholder="Enter a category">-->
+                    <!--</div>-->
+
+                    <!--<div class="form-group">-->
+                        <!--<label>Name</label>-->
+                        <!--<input class="form-control name" type="text" name="name" placeholder="Enter a name">-->
+                    <!--</div>-->
+
+                    <!--<div class="row">-->
+                        <!--<div class="col-md-6">-->
+                            <!--<div class="form-group">-->
+                                <!--<label>Price</label>-->
+                                <!--<input class="form-control price" type="text" name="price" placeholder="Enter a price">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<div class="form-group">-->
+                                <!--<label>Number</label>-->
+                                <!--<input class="form-control number" type="number" name="number" placeholder="Enter a number">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="modal-footer">-->
+                    <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                    <!--<button type="submit" class="btn btn-primary save">Save changes</button>-->
+                <!--</div>-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal" aria-hidden="true">-->
+    <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+        <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+                <!--<h5 class="modal-title">Are you sure you want to remove item <span id="name"></span>?</h5>-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                    <!--<span aria-hidden="true">&times;</span>-->
+                <!--</button>-->
+            <!--</div>-->
+            <!--<div class="modal-footer">-->
+                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>-->
+                <!--<button type="submit" class="btn btn-danger delete">Yes</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<div class="modal fade" id="ingredient-modal" tabindex="-1" role="dialog" aria-labelledby="ingredient-modal" aria-hidden="true">-->
+    <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+        <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+                <!--<h5 class="modal-title">Ingredients</h5>-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                    <!--<span aria-hidden="true">&times;</span>-->
+                <!--</button>-->
+            <!--</div>-->
+            <!--<form id="add-ingredient" onsubmit="return false">-->
+                <!--<div class="modal-body">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-md-12">-->
+                            <!--<ul class="list-group">-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="modal-footer">-->
+                    <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>-->
+
+                    <!--<button class="btn btn-primary add" data-toggle="modal" data-target="#serving-modal">-->
+                        <!--<i class="fas fa-plus"></i> Add ingredient-->
+                    <!--</button>-->
+                <!--</div>-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<div class="modal fade" id="serving-modal" tabindex="-1" role="dialog" aria-labelledby="serving-modal" aria-hidden="true">-->
+    <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+        <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+                <!--<h5 class="modal-title">Serving</h5>-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                    <!--<span aria-hidden="true">&times;</span>-->
+                <!--</button>-->
+            <!--</div>-->
+            <!--<form id="add-serving" onsubmit="return false">-->
+                <!--<input type="hidden" name="itemId" class="itemId">-->
+                <!--<input type="hidden" name="id" class="id">-->
+
+                <!--<div class="modal-body">-->
+                    <!--<div class="form-group">-->
+                        <!--<label>Amount needed</label>-->
+                        <!--<input class="form-control amount" type="number" name="amount" placeholder="Enter an amount">-->
+                    <!--</div>-->
+
+                    <!--<div class="form-group">-->
+                        <!--<label>Ingredient</label>-->
+
+                        <!--<select class="form-control ingredient">-->
+                        <!--</select>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+                <!--<div class="modal-footer">-->
+                    <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                    <!--<button type="submit" class="btn btn-primary save">Save changes</button>-->
+                <!--</div>-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<div class="modal fade" id="delete-serving-modal" tabindex="-1" role="dialog" aria-labelledby="delete-serving-modal" aria-hidden="true">-->
+    <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+        <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+                <!--<h5 class="modal-title">Are you sure you want to remove serving <span class="name"></span>?</h5>-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                    <!--<span aria-hidden="true">&times;</span>-->
+                <!--</button>-->
+            <!--</div>-->
+            <!--<div class="modal-footer">-->
+                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>-->
+                <!--<button type="submit" class="btn btn-danger delete">Yes</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<script src="/js/menu/guest/main.js"></script>
+<script src="/js/menu/get.js"></script>
+<script src="/js/menu/create.js"></script>
+<script src="/js/menu/edit.js"></script>
+<script src="/js/menu/delete.js"></script>
+
+<script src="/js/menu/serving/get.js"></script>
+<script src="/js/menu/serving/add.js"></script>
+<script src="/js/menu/serving/delete.js"></script>
+<script src="/js/menu/serving/edit.js"></script>
+
+{{> data/footer}}
