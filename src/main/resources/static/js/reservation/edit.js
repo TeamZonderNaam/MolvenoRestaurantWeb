@@ -15,6 +15,7 @@ $(function() {
         // Set the form into a editable state, this allows us to wait for a click on button.edit.
         FormUtil.makeFormEdit(form);
         FormUtil.fillForm(DATA_PAIRS, data, form);
+        form.find(".name").val(data.customer.name);
 
 
         form.find("button.edit").click(function() {
