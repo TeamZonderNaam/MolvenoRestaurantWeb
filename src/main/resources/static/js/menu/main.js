@@ -23,11 +23,11 @@ var INGREDIENT_TEMPLATE = '<li class="list-group-item ingredient"><input type="h
 $(function() {
     DATA_TABLE = $("table").DataTable({
         columns: [
+            {data: "number"},
             {data: "category"},
             {data: "name"},
             {data: "price", render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' ) },
             {data: "costPrice", render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' ) },
-            {data: "number"},
             {
                 data: null,
                 className: "center",
