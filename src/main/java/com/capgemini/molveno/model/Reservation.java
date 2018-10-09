@@ -17,7 +17,7 @@ public class Reservation {
     private int totalTimeInMinutes;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToMany
     private List<Table> tables;
