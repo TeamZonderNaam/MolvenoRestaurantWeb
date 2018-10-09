@@ -1,70 +1,75 @@
 package com.capgemini.molveno.service;
 
-import com.capgemini.molveno.MolvenoApplication;
 import com.capgemini.molveno.model.Unit;
-import org.junit.After;
+import com.capgemini.molveno.repository.UnitRepositoryStub;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.mockito.InjectMocks;
+import org.mockito.junit.MockitoJUnitRunner;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.util.ArrayList;
-import java.util.List;
-import static org.assertj.core.api.Assertions.assertThat;
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest
-@ContextConfiguration(classes = MolvenoApplication.class)
+@RunWith(MockitoJUnitRunner.class)
 public class UnitServiceTest {
-    @Autowired
+    @InjectMocks
     private UnitService unitService;
 
-    // We need to keep a reference of the IDs because we currently add this data to a real database.
-    // We will later mock this database and this will not be needed
-    private List<Integer> ids = new ArrayList<>();
-
     @Before
-    public void init() {
-        int unit1 = unitService.create(new Unit("Kilogram"));
-        int unit2 = unitService.create(new Unit("Liter"));
-        ids.add(unit1);
-        ids.add(unit2);
-    }
-
-    @After
-    public void after() {
-        ids.forEach(unitService::delete);
+    public void index() {
+        UnitRepositoryStub unitRepository = new UnitRepositoryStub();
+        unitService.setRepository(unitRepository);
     }
 
     @Test
-    public void testCreate() {
+    public void allTest() {
+        assertEquals(0, unitService.all().size());
+
+        unitService.create(new Unit("Kilogram"));
+        unitService.create(new Unit("Gram"));
+        unitService.create(new Unit("Liter"));
+
+        assertEquals(3, unitService.all().size());
+    }
+
+    @Test
+    public void getTest() {
+        unitService.create(new Unit("Kilogram"));
+        unitService.create(new Unit("Gram"));
+        unitService.create(new Unit("Liter"));
+
+        Unit unit = unitService.read(1);
+        assertEquals(1, unit.getId());
+        assertEquals("Kilogram", unit.getName());
+
+        unit = unitService.read(2);
+        assertEquals(2, unit.getId());
+        assertEquals("Gram", unit.getName());
+
+        unit = unitService.read(3);
+        assertEquals(3, unit.getId());
+        assertEquals("Liter", unit.getName());
 
     }
 
     @Test
-    public void testAll() {
-//        List<Unit> units = unitService.all();
-//        assertThat(units).hasSize(2);
+    public void createTest() {
+        Unit unit = new Unit("Meter");
+        int a = unitService.create(unit);
+        assertEquals(1, 1);
+        assertEquals(1, unit.getId());
     }
 
     @Test
-    public void testRead() {
+    public void updateTest() {
+        Unit unit = new Unit("Meter");
+        Unit update = new Unit("Liter");
+        int newId = unitService.create(unit);
+        update.setId(newId);
 
-    }
+        update = unitService.update(update);
 
-    @Test
-    public void testUpdate() {
-
-    }
-
-    @Test
-    public void testDelete() {
-
+        assertEquals(unit.getId(), update.getId());
+        assertNotEquals(unit.getName(), update.getName());
     }
 }
