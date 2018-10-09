@@ -72,4 +72,14 @@ public class UnitServiceTest {
         assertEquals(unit.getId(), update.getId());
         assertNotEquals(unit.getName(), update.getName());
     }
+
+    @Test
+    public void deleteTest() {
+        Unit unit = new Unit("Meter");
+        int newId = unitService.create(unit);
+
+        assertEquals(1, unitService.all().size());
+        unitService.delete(newId);
+        assertEquals(0, unitService.all().size());
+    }
 }
