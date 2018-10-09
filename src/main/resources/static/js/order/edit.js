@@ -11,7 +11,7 @@ $(function() {
         var data = DATA_TABLE.row(tr).data();
 
         modal.modal("toggle");
-
+        console.log(DATA_PAIRS);
         // Set the form into a editable state, this allows us to wait for a click on button.edit.
         FormUtil.makeFormEdit(form);
         FormUtil.fillForm(DATA_PAIRS, data, form);

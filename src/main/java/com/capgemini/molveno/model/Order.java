@@ -9,11 +9,14 @@ import java.util.List;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
     @ManyToMany(cascade = CascadeType.ALL)
     private List<MenuItem> items;
+
+    @OneToMany
+    private List<ServingOrder> servingOrders;
 
     @ManyToOne(cascade=CascadeType.ALL)
     private Table table;
@@ -53,5 +56,21 @@ public class Order {
 
     public void setItems(List<MenuItem> items) {
         this.items = items;
+    }
+
+    public List<ServingOrder> getServingOrders() {
+        return servingOrders;
+    }
+
+    public void setServingOrders(List<ServingOrder> servingOrders) {
+        this.servingOrders = servingOrders;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

@@ -31,13 +31,34 @@ public class OrderService {
         return target;
     }
 
-    public Optional<Order> read(final int id) {
+    public Order read(final int id) {
         Optional<Order> order = repository.findById(id);
-        return order;
+        if (order.isPresent()) {
+            return order.get();
+        }
+        return null;
     }
 
-    public Order update(Order order) {
-        return this.repository.save(order);
+    public Order update(int id, Order changedOrder) {
+        Optional<Order> oldOrder = repository.findById(id);
+        if (oldOrder.isPresent()) {
+            if (changedOrder.getTable() != null) {
+                oldOrder.get().setTable(changedOrder.getTable());
+            }
+            if (changedOrder.getStatus() != null) {
+                oldOrder.get().setStatus(changedOrder.getStatus());
+            }
+            if (changedOrder.getTotalPrice() != 0) {
+                oldOrder.get().setTotalPrice(changedOrder.getTotalPrice());
+            }
+            if (changedOrder.getServingOrders() != null) {
+                oldOrder.get().setServingOrders(changedOrder.getServingOrders());
+            }
+            if (changedOrder.getItems()!= null) {
+                oldOrder.get().setItems(changedOrder.getItems());
+            }
+        }
+        return this.repository.save(oldOrder.get());
     }
 
     public void delete(final int id) {
