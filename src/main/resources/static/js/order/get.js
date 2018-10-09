@@ -4,3 +4,10 @@ $(function() {
        console.log(arr);
    });
 });
+
+$(function() {
+   URLUtil.get(MENUITEM_URL).then(function(arr) {
+
+       console.log(arr);
+   });
+});

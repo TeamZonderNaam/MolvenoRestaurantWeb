@@ -52,5 +52,30 @@ function addMenuItemToList(menuItem) {
     ele.find(".name").html(menuItem.menuItem.name);
     ele.find(".number").html(menuItem.menuItem.number);
     ele.find(".id").val(menuItem.id);
-
 }
+
+function dropdown(){
+    $.ajax({
+            url: "api/menuItem/",
+            datatype: "JSON",
+            type: "Get",
+            success: function (data) {
+                for(var i=0;i<data.length;i++)
+                {
+                    var opt = new Option(data[i].name);
+                    $("#op1").append(opt);
+                }
+            }
+        });
+}
+
+window.onload = function() {
+var e = document.getElementById("op1");
+var strUser = e.options[e.selectedIndex].text;
+
+document.getElementById("myLink").innerHTML=strUser;
+}
+
+$( document ).ready(function() {
+   dropdown();
+});

@@ -60,12 +60,6 @@
                             <option value="2">Done</option>
                         </select>
                     </div>
-
-                    <!--<div class="form-group">-->
-                        <!--<label>Item Name</label>-->
-                        <!--<input class="form-control name" type="text" name="name" placeholder="Enter a name">-->
-                    <!--</div>-->
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -79,13 +73,6 @@
                                 <input class="form-control number" type="number" name="number" placeholder="Enter a table number">
                             </div>
                         </div>
-
-                        <!--<div class="col-md-6">-->
-                            <!--<div class="form-group">-->
-                                <!--<label>Number</label>-->
-                                <!--<input class="form-control number" type="number" name="number" placeholder="Enter a number">-->
-                            <!--</div>-->
-                        <!--</div>-->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -144,36 +131,6 @@
     </div>
 </div>
 
-<!--<div class="modal fade" id="menuItems-modal" tabindex="-1" role="dialog" aria-labelledby="menuItems-modal" aria-hidden="true">-->
-    <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
-        <!--<div class="modal-content">-->
-            <!--<div class="modal-header">-->
-                <!--<h5 class="modal-title">Menu items</h5>-->
-                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                    <!--<span aria-hidden="true">&times;</span>-->
-                <!--</button>-->
-            <!--</div>-->
-            <!--<form id="add-menuItems" onsubmit="return false">-->
-                <!--<div class="modal-body">-->
-                    <!--<div class="row">-->
-                        <!--<div class="col-md-12">-->
-                            <!--<ul class="list-group">-->
-                            <!--</ul>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="modal-footer">-->
-                    <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>-->
-
-                    <!--<button class="btn btn-primary add" data-toggle="modal" data-target="#servingOrder-modal">-->
-                        <!--<i class="fas fa-plus"></i> Add menu item-->
-                    <!--</button>-->
-                <!--</div>-->
-            <!--</form>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
-
 <div class="modal fade" id="servingOrder-modal" tabindex="-1" role="dialog" aria-labelledby="servingOrder-modal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -194,9 +151,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Menu item</label>
-                        <select class="form-control menuItem">
-                        </select>
+                        <div>
+                            <label>Select Menu item(s) :</label>
+                            <select class="form-control" id="op1">
+                                <option selected="selected">Select</option>
+                            </select>
+                        </div><br>
                     </div>
 
                 </div>
