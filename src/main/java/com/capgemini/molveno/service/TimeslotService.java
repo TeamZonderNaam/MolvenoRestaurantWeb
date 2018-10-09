@@ -39,10 +39,11 @@ public class TimeslotService {
         if(oldTimeslot.isPresent()) {
             if(changedTimeslot.getStartDateTime() != null){
                 oldTimeslot.get().setStartDateTime(changedTimeslot.getStartDateTime());
-            }if(changedTimeslot.getEndDateTime() != null){
+            }
+            if(changedTimeslot.getEndDateTime() != null){
                 oldTimeslot.get().setEndDateTime(changedTimeslot.getEndDateTime());
             }
-                   }
+         }
         return repository.save(oldTimeslot.get());
     }
 
