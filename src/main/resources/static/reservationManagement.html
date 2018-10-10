@@ -34,8 +34,8 @@
 
             // Reset modal to hide and no values.
             $('#newReservationModal').modal('hide');
-            $("#inputCustomerName").val("");
-            $("#inputNumberOfCustomers").val("");
+            $("#inputGuestName").val("");
+            $("#inputNumberOfGuests").val("");
             $("#inputChildSeats").val("");
             $("#inputParkingSpot").val("");
         });
@@ -45,7 +45,7 @@
         $('#reservationTable').DataTable({
             columns: [
                 { "data": "id"},
-                { "data": "customer.name"},
+                { "data": "guest.name"},
                 { "data": "parkingSpaceNeeded"},
                 { "data": "numberOfChildSeats"},
                 { "data": "numberOfPersons"},
@@ -69,7 +69,7 @@
                 <thead>
                 <tr>
                     <th><strong>Reservation nr</strong></th>
-                    <th><strong>Customer name</strong></th>
+                    <th><strong>Guest name</strong></th>
                     <th><strong>Parking Spot</strong></th>
                     <th><strong>Child seats</strong></th>
                     <th><strong>Number of Persons</strong></th>
@@ -106,13 +106,13 @@
                 <div class="modal-body">
                     <form data-toggle="validator" role="form" id="newReservationForm" onsubmit="return false;">
                         <div class="form-group">
-                            <label for="inputCustomerName" class="control-label">Customer Name</label>
-                            <input type="text" class="form-control" id="inputCustomerName" required>
+                            <label for="inputGuestName" class="control-label">Guest Name</label>
+                            <input type="text" class="form-control" id="inputGuestName" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="inputNumberOfCustomers">How many people?</label>
-                            <select class="form-control" id="inputNumberOfCustomers">
+                            <label for="inputNumberOfGuests">How many people?</label>
+                            <select class="form-control" id="inputNumberOfGuests">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>

@@ -2,7 +2,7 @@
 var DATA_TABLE;
 var BASE_URL = "/api/reservation/";
 var DATA_PAIRS = {
-    customer           : ".customer.name",
+    guest           : ".guest.name",
     numberOfPersons    : ".amount",
     numberOfChildSeats : ".childseats",
     tablenumber        : ".tablenumber",
@@ -15,7 +15,7 @@ var DATA_PAIRS = {
 $(function() {
     DATA_TABLE = $("table").DataTable({
         columns: [
-            {data: "customer.name"},
+            {data: "guest.name"},
             {data: "numberOfPersons"},
             {data: "numberOfChildSeats"},
             // {data: "tablenumber"}, //TODO IEK

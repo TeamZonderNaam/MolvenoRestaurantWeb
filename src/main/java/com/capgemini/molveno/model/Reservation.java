@@ -22,14 +22,14 @@ public class Reservation {
     @ManyToMany
     private List<Table> tables;
     @ManyToOne(cascade = CascadeType.ALL)
-    private Customer customer;
+    private Guest guest;
 
-    public Customer getCustomer() {
-        return customer;
+    public Guest getGuest() {
+        return guest;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setGuest(Guest guest) {
+        this.guest = guest;
     }
 
     public boolean isParkingSpaceNeeded() {
