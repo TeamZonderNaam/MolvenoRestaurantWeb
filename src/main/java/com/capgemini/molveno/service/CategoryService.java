@@ -20,6 +20,7 @@ public class CategoryService {
 
     public int create(Category category) {
         Category created = repository.save(category);
+
         return created.getId();
     }
 
