@@ -60,6 +60,9 @@ public class MenuItemService {
             if (changedItem.getServings() != null) {
                 oldItem.get().setServings(changedItem.getServings());
             }
+            if (changedItem.getMenuItemMargin() != 0) {
+                oldItem.get().setMenuItemMargin(changedItem.getMenuItemMargin());
+            }
             if (changedItem.getCategory() != null) {
                 // If we don't get the whole object here, the program will return just the ID of the category
                 int categoryId = changedItem.getCategory().getId();

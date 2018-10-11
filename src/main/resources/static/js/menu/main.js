@@ -9,7 +9,8 @@ var DATA_PAIRS = {
     category: ".category",
     name: ".name",
     price: ".price",
-    number: ".number"
+    number: ".number",
+    menuItemMargin: ".menuItemMargin"
 };
 
 var SERVING_DATA_PAIRS = {
@@ -29,6 +30,8 @@ $(function() {
             {data: "name"},
             {data: "price", render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' ) },
             {data: "costPrice", render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' ) },
+            {data: "menuItemMargin"},
+            {data: "sellingPrice", render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' ) },
             {
                 data: null,
                 className: "center",

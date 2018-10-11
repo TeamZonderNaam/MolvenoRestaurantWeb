@@ -102,7 +102,8 @@ public class MenuItem {
         return cost;
     }
 
-    @Transient double getSellingPrice() {
+    @Transient
+    public double getSellingPrice() {
         return (this.getCostPrice() + (this.getCostPrice() * this.menuItemMargin)/100);
     }
 }
