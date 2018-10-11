@@ -116,6 +116,17 @@ public class Guest {
     }
 
     public String getName() {
+        if (this.name == null) {
+            if (this.firstName != null && this.lastName != null) {
+                name = this.firstName + " " + this.lastName;
+            }
+            else if (this.lastName != null) {
+                name = this.lastName;
+            }
+            else if (this.firstName != null) {
+                name = this.firstName;
+            }
+        }
         return name;
     }
 
