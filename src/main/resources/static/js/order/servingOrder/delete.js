@@ -11,6 +11,7 @@ $(function() {
         modal.find(".name").html(tr.find(".name").html());
         modal.modal("toggle");
 
+
         modal.find(".delete").click(function() {
             URLUtil.delete(SERVING_URL+id).then(function() {
                 tr.remove();
