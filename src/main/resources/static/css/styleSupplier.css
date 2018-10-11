@@ -1,0 +1,23 @@
+td.details-control {
+    cursor: pointer;
+}
+
+#supplierTable {
+    margin-top: 50px;
+}
+
+.edit-btn {
+    margin-left: 10px;
+}
+
+.modal-delete-cance-btn {
+    margin-top: 20px;
+}
+
+#deleteSupplierForm {
+    padding-left: 0px;
+}
+
+#supplierTable_wrapper {
+    margin-top: 100px;
+}
