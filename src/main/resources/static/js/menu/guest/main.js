@@ -22,14 +22,32 @@ $(function() {
         }
     });
 
+    function orderItem() {
+        var item = $(this).closest(".item");
+        var id = item.find(".id").val();
+        console.log("Item ID:", id);
+
+        // TODO: Add the call to order an item!
+        var name = item.find(".title").html();
+        var modal = $("#added-order-modal");
+        modal.find(".name").html(name);
+        modal.modal("toggle");
+    }
+
     function constructItemsOnCategory(items, category) {
         $.each(items, function(i, item) {
             var template = $(ITEM_TEMPLATE);
+            template.find(".id").val(item.id);
+
+            var name = item.name;
+            // Make the first letter of the name uppercase, just to be sure
+            name = name.charAt(0).toUpperCase() + name.slice(1);
+
             template.find(".title").html(item.name);
             template.find(".description").html("Lorem ipsum sit amet");
-
-            console.log(template);
             category.find(".items").append(template);
+
+            template.find(".order").click(orderItem);
         });
     }
 
