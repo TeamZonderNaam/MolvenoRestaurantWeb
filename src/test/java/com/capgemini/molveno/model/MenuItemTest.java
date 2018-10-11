@@ -22,6 +22,7 @@ public class MenuItemTest {
     @Before
     public void init() {
         this.menuItem1 = new MenuItem("pizza", 10,1);
+        this.menuItem1.setMenuItemMargin(15);
     }
 
     @Test
@@ -48,6 +49,30 @@ public class MenuItemTest {
         cheeseServing.setNumberOfUnits(1);
 
         assertEquals(20.1, menuItem1.getCostPrice());
+
+    }
+
+    @Test
+    public void testGetSellingPrice() {
+        List<Serving> servingList = new ArrayList<>();
+        menuItem1.setServings(servingList);
+        //check if price is zero
+
+        assertEquals(0, menuItem1.getCostPrice());
+        assertEquals(0, menuItem1.getSellingPrice());
+
+        servingList.add(cheeseServing);
+        servingList.add(basilServing);
+        servingList.add(tomatoSauceServing);
+
+        assertEquals(8.85, menuItem1.getCostPrice());
+
+        assertEquals(10.1775, menuItem1.getSellingPrice());
+
+        //change margin
+        menuItem1.setMenuItemMargin(10);
+
+        assertEquals(9.735, menuItem1.getSellingPrice());
 
     }
 }

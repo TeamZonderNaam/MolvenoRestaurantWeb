@@ -1,4 +1,6 @@
-{{> data/header}}
+{{> data/dashboardresto/header}}
+{{> data/dashboardresto/navbar}}
+{{> data/dashboardresto/sidebar}}
 
 <div class="container">
     <div class="row">
@@ -12,7 +14,7 @@
                 <thead>
                 <tr>
 
-                    <th>Customer</th>
+                    <th>Guest</th>
                     <th>Amount</th>
                     <th>Child Seats</th>
                     <th>Reserved Time</th>
@@ -56,8 +58,8 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label>Customer</label>
-                        <input class="form-control customer name" type="text" name="customername" placeholder="Enter a customer name">
+                        <label>Guest</label>
+                        <input class="form-control guest name" type="text" name="guestname" placeholder="Enter a guest name">
                     </div>
 
                     <div class="form-group">
@@ -161,4 +163,4 @@
 <script src="/js/reservation/edit.js"></script>
 <script src="/js/reservation/delete.js"></script>
 
-{{> data/footer}}
+{{> data/dashboardresto/footer}}
