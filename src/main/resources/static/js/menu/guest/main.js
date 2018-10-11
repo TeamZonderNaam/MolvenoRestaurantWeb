@@ -4,18 +4,21 @@ $(function() {
     var ITEM_TEMPLATE = $("#item-template").html();
 
     URLUtil.get(BASE_URL).then(function(arr) {
-        console.log("Arr: ", arr);
         // Create buckets of arrays based on the categories.
         var bucket = sortToBuckets(arr);
-
 
         for(var key in bucket) {
             var obj = bucket[key];
 
-            var template = constructCategory(key);
-            $(".categories").append(template);
+            var category = constructCategory(key);
+            $(".categories").append(category);
 
-            constructItemsOnCategory(obj, template);
+            category.find("h2").click(function() {
+                var self = $(this);
+                self.parent().find(".items").collapse('toggle');
+            });
+
+            constructItemsOnCategory(obj, category);
         }
     });
 
@@ -25,6 +28,7 @@ $(function() {
             template.find(".title").html(item.name);
             template.find(".description").html("Lorem ipsum sit amet");
 
+            console.log(template);
             category.find(".items").append(template);
         });
     }
