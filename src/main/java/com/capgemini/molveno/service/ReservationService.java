@@ -59,32 +59,40 @@ public class ReservationService {
             allTables.add(table);
         }
 
-        // Loop over all time slots and determine the availability per time slot.
+        // Loop over all time slots and determine the availability per time slot
         for (TimeSlot timeSlot : timeSlots) {
             startTime = LocalTime.of(timeSlot.getStartTime().getHours(), timeSlot.getEndTime().getMinutes());
             endTime = LocalTime.of(timeSlot.getEndTime().getHours(), timeSlot.getEndTime().getMinutes());
-            List<Table> reservedTables = new ArrayList<>();
-            List<Table> availableTables = new ArrayList<>();
-            for (Reservation reservation : reservations) {
-                if ((reservation.getStartTime().isAfter(startTime) && reservation.getStartTime().isBefore(endTime)) ||
-                        (reservation.getStartTime().equals(startTime) && reservation.getEndTime().equals(endTime)) ||
-                        (reservation.getEndTime().isAfter(startTime) && reservation.getEndTime().isBefore(endTime))) {
-                        for (Table table : reservation.getTables()) {
-                            reservedTables.add(table);
-                        }
-                }
-            }
-            for (Table table : allTables) {
-                if (!reservedTables.contains(table)) {
-                    availableTables.add(table);
-                }
-            }
+            List<Table> availableTables = availableTablesAtTimeSlot(startTime, endTime, reservations, allTables);
             System.out.println("Start: " + startTime + " End: " + endTime + " Capacity: " + countCapacity(availableTables));
             if (countCapacity(availableTables) < numberOfPersons) {
                 timeSlot.setAvailable(false);
             }
+            else {
+                timeSlot.setTables(determineTables(availableTables, numberOfPersons));
+            }
         }
         return timeSlots;
+    }
+
+    private List<Table> availableTablesAtTimeSlot(LocalTime startTimeSlot, LocalTime endTimeSlot, List<Reservation> reservationsAtDate, List<Table> tables) {
+        List<Table> reservedTables = new ArrayList<>();
+        List<Table> availableTables = new ArrayList<>();
+        for (Reservation reservation : reservationsAtDate) {
+            if ((reservation.getStartTime().isAfter(startTimeSlot) && reservation.getStartTime().isBefore(endTimeSlot)) ||
+                    (reservation.getStartTime().equals(startTimeSlot) && reservation.getEndTime().equals(endTimeSlot)) ||
+                    (reservation.getEndTime().isAfter(startTimeSlot) && reservation.getEndTime().isBefore(endTimeSlot))) {
+                for (Table table : reservation.getTables()) {
+                    reservedTables.add(table);
+                }
+            }
+        }
+        for (Table table : tables) {
+            if (!reservedTables.contains(table)) {
+                availableTables.add(table);
+            }
+        }
+        return availableTables;
     }
 
     private int countCapacity(List<Table> tableList) {
@@ -93,6 +101,19 @@ public class ReservationService {
             capacity += table.getNumberOfPersons();
         }
         return capacity;
+    }
+
+    private List<Table> determineTables(List<Table> tables, int numberOfPersons) {
+        int peopleToBeSeated = numberOfPersons;
+        List<Table> returnList = new ArrayList<>();
+        for (Table table : tables) {
+            returnList.add(table);
+            peopleToBeSeated -= table.getNumberOfPersons();
+            if (peopleToBeSeated <= 0) {
+                break;
+            }
+        }
+        return returnList;
     }
 
     public Reservation update(Reservation reservation) { return repository.save(reservation); }
