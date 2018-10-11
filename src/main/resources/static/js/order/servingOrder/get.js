@@ -10,8 +10,7 @@ $(function() {
 //              var unit = obj.unit.name;
                 var name = obj.name /*+ " ("+unit+")"*/;
 
-                $("#item-modal select.menuItem").append('<option>' + obj.name  + '</option');
-                $("#servingOrder-modal select.menuItem").append('<option>' + obj.name  + '</option');
+                $("#servingOrder-modal select.menuItem").append('<option value='+obj.id+'>' + obj.name  + '</option');
             });
         });
 

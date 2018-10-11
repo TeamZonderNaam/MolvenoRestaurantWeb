@@ -14,9 +14,9 @@ var SERVING_DATA_PAIRS = {
     order: ".orderId",
     id: ".id",
     numberOfMenuItems: ".amount",
-    name: ".menuItem"
+    menuItem: ".menuItem"
 };
-var MenuItems_TEMPLATE = '<li class="list-group-item orderItem"><input type="hidden" class="id"><span class="amount"></span><span class="menuItemId"></span> <span class="tool"><a href="edit"><i class="fas fa-edit"></i></a> / <a href="delete"><i class="far fa-trash-alt"></i></a></span></li>';
+var MenuItems_TEMPLATE = '<li class="list-group-item orderItem"><input type="hidden" class="id"><span class="amount"></span> <span class="menuItem"></span> <span class="tool"><a href="edit"><i class="fas fa-edit"></i></a> / <a href="delete"><i class="far fa-trash-alt"></i></a></span></li>';
 
 $(function() {
     DATA_TABLE = $("table").DataTable({
@@ -42,12 +42,13 @@ function emptyMenuItemList() {
     $("#add-menuItem .list-group").empty();
 }
 
-function addMenuItemToList(menuItem) {
+function addMenuItemToList(serving) {
     var ele = $(MenuItems_TEMPLATE);
     $("#add-menuItem .list-group").append(ele);
-    ele.find(".amount").html(menuItem.numberOfMenuItems);
-    ele.find(".category").html(menuItem.menuItem.category);
-    ele.find(".menuItem").html(menuItem.name);
-    ele.find(".number").html(menuItem.menuItem.number);
-    ele.find(".id").val(menuItem.id);
+    ele.find(".amount").html(serving.numberOfMenuItems);
+    ele.find(".category").html(serving.menuItem.category);
+    ele.find(".menuItem").html(serving.menuItem.name);
+    ele.find(".number").html(serving.menuItem.number);
+    ele.find(".id").val(serving.id);
+    console.lo
 }

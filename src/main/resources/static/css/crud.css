@@ -1,9 +1,9 @@
 
 
-/*#add-ingredient .ingredient .amount:after{*/
-    /*content: 'x';*/
-/*}*/
+#add-menuItem .orderItem .amount:after{
+    content: 'x';
+}
 
-#add-ingredient .ingredient .tool {
+.tool {
     float: right;
 }

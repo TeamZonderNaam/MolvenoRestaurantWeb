@@ -21,10 +21,7 @@ $(function() {
             console.log("dit is orderid: ", orderId);
             console.log(1111);
 
-            emptyMenuItemList();
-             URLUtil.post(SERVING_URL+"for/"+orderId, model).then(function(obj){
-            console.log(2222222222);
-            console.log("this is obj: ",obj);
+            URLUtil.post(SERVING_URL+"for/"+orderId, model).then(function(obj){
                 addMenuItemToList(obj);
                 modal.modal("toggle");
             });
