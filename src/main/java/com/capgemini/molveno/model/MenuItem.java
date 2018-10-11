@@ -23,6 +23,8 @@ public class MenuItem {
     @OneToMany
     private List<Serving> servings;
 
+    private double menuItemMargin;
+
     public MenuItem(String name, double price, int number) {
         this.name = name;
         this.price = price;
@@ -81,6 +83,14 @@ public class MenuItem {
         this.servings = servings;
     }
 
+    public double getMenuItemMargin() {
+        return menuItemMargin;
+    }
+
+    public void setMenuItemMargin(double menuItemMargin) {
+        this.menuItemMargin = menuItemMargin;
+    }
+
     @Transient
     public double getCostPrice() {
         double cost = 0;
@@ -90,5 +100,10 @@ public class MenuItem {
             }
         }
         return cost;
+    }
+
+    @Transient
+    public double getSellingPrice() {
+        return (this.getCostPrice() + (this.getCostPrice() * this.menuItemMargin)/100);
     }
 }
