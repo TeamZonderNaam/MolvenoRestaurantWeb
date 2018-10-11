@@ -49,14 +49,16 @@ $(function() {
      */
     function constructItemsOnCategory(items, category) {
         $.each(items, function(i, item) {
+            console.log("Item:", item);
             var template = $(ITEM_TEMPLATE);
             template.find(".id").val(item.id);
 
             var name = item.name;
             // Make the first letter of the name uppercase, just to be sure
             name = name.charAt(0).toUpperCase() + name.slice(1);
+            name += " (¥ " + item.price + ")";
 
-            template.find(".title").html(item.name);
+            template.find(".title").html(name);
             template.find(".description").html("Lorem ipsum sit amet");
             category.find(".items").append(template);
 
@@ -67,7 +69,7 @@ $(function() {
     /**
      * Constructs a HTML category from the CATEGORY_TEMPLATE constant, with the
      * values provided by a category.
-     * 
+     *
      * @param category
      * @return {jQuery|HTMLElement}
      */

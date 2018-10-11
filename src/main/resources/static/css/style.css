@@ -1,0 +1,72 @@
+@import url("components/banner.css");
+@import url("components/card.css");
+
+/* Responsive layout behavior */
+
+@media only screen and (max-width: 768px) {
+  #content{
+    margin-left: 0px;
+  }
+  .card, .card-top, .card-container {
+    width: 80vw;
+  }
+  #books, #contact, #about{
+    text-align: center;
+  }
+}
+
+/* Colors and Fonts */
+
+body{
+  background: #f0f0f0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  color:  #ffffff;
+  font-size: 15px;
+  line-height: 1.6em;
+}
+
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 25px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+p{
+  text-align: justify;
+}
+
+/* General behaviour */
+
+.text-center{
+  text-align: center;
+}
+
+.list-inline {
+  padding-left: 0;
+}
+
+.list-inline li {
+  display: inline-block;
+  padding: 20px;
+}
+
+.list-inline li i{
+  font-size: 25px;
+}

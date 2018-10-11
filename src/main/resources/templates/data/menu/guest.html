@@ -1,7 +1,15 @@
-{{> data/header}}
+{{> data/homepage/header}}
+{{> data/homepage/navbar}}
+{{> data/homepage/banner}}
 
 <link rel="stylesheet" href="/css/item.css">
+
 <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Menu</h1>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="categories"></div>
@@ -23,7 +31,6 @@
         <input type="hidden" name="id" class="id">
         <div class="row">
             <div class="col-md-10">
-                <!--Kipburger speciaal (¥ 3.50)-->
                 <span class="title"></span>
                 <span class="description"></span>
             </div>
@@ -53,4 +60,4 @@
 </div>
 
 <script src="/js/menu/guest/main.js"></script>
-{{> data/footer}}
+{{> data/homepage/footer}}
