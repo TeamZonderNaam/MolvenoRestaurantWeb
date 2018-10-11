@@ -15,6 +15,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationService {
@@ -72,7 +73,7 @@ public class ReservationService {
                 timeSlot.setTables(determineTables(availableTables, numberOfPersons));
             }
         }
-        return timeSlots;
+        return timeSlots.stream().filter(t -> t.isAvailable()).collect(Collectors.toList());
     }
 
     private List<Table> availableTablesAtTimeSlot(LocalTime startTimeSlot, LocalTime endTimeSlot, List<Reservation> reservationsAtDate, List<Table> tables) {
@@ -119,5 +120,4 @@ public class ReservationService {
     public Reservation update(Reservation reservation) { return repository.save(reservation); }
 
     public void delete(final int id) { repository.deleteById(id); }
-
 }
