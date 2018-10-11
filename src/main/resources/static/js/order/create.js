@@ -8,10 +8,8 @@ $(function() {
     $("body").on("click", ".save", function() {
         var model = FormUtil.formToValues(DATA_PAIRS, form);
         model.table = {number: model.table};
-        model.items = [{name: model.items,
-                        price: model.items,
-                        number: model.items}],
-        console.log("dit is model:" , model);
+
+        console.log("Attempting to add order:", model);
 
         URLUtil.post(BASE_URL, model).then(function(obj) {
             DATA_TABLE.row.add(obj).draw(false);

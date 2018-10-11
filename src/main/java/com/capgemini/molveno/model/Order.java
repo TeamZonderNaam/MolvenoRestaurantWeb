@@ -12,9 +12,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<MenuItem> items;
-
     @OneToMany
     private List<ServingOrder> servingOrders;
 
@@ -48,14 +45,6 @@ public class Order {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
-    }
-
-    public List<MenuItem> getItems() {
-        return items;
-    }
-
-    public void setItems(List<MenuItem> items) {
-        this.items = items;
     }
 
     public List<ServingOrder> getServingOrders() {

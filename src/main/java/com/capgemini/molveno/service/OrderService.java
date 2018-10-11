@@ -54,9 +54,6 @@ public class OrderService {
             if (changedOrder.getServingOrders() != null) {
                 oldOrder.get().setServingOrders(changedOrder.getServingOrders());
             }
-            if (changedOrder.getItems()!= null) {
-                oldOrder.get().setItems(changedOrder.getItems());
-            }
         }
         return this.repository.save(oldOrder.get());
     }

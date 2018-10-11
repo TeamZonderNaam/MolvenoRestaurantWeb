@@ -13,7 +13,6 @@ public class ServingOrder {
     private int id;
 
     @ManyToOne
-    @Cascade(CascadeType.ALL)
     private MenuItem menuItem;
 
     private double numberOfMenuItems;
