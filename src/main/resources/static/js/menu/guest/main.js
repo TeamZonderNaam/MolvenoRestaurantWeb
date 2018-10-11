@@ -22,6 +22,11 @@ $(function() {
         }
     });
 
+    /**
+     * Fired when the order button has been pressed.The method finds out the
+     * original form, get the id and name from it.Use the ID when adding an
+     * order, and use the name in the popup dialog.
+     */
     function orderItem() {
         var item = $(this).closest(".item");
         var id = item.find(".id").val();
@@ -34,6 +39,14 @@ $(function() {
         modal.modal("toggle");
     }
 
+    /**
+     * Constructs HTML items from the ITEM_TEMPLATE constant, with the values
+     * provided by an item. Make the first letter of the name uppercase, just
+     * in case this was not done in the backend yet.
+     *
+     * @param items
+     * @param category
+     */
     function constructItemsOnCategory(items, category) {
         $.each(items, function(i, item) {
             var template = $(ITEM_TEMPLATE);
@@ -51,6 +64,13 @@ $(function() {
         });
     }
 
+    /**
+     * Constructs a HTML category from the CATEGORY_TEMPLATE constant, with the
+     * values provided by a category.
+     * 
+     * @param category
+     * @return {jQuery|HTMLElement}
+     */
     function constructCategory(category) {
         var template = $(CATEGORY_TEMPLATE);
         template.find(".name").html(category);
