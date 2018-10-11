@@ -19,6 +19,9 @@ public class OrderService {
     @Autowired
     private OrderRepository repository;
 
+    @Autowired
+    private TableService tableService;
+
     public int create(Order order) {
         Order created = repository.save(order);
         return created.getId();
@@ -42,8 +45,12 @@ public class OrderService {
     public Order update(int id, Order changedOrder) {
         Optional<Order> oldOrder = repository.findById(id);
         if (oldOrder.isPresent()) {
-            if (changedOrder.getTable() != null) {
-                oldOrder.get().setTable(changedOrder.getTable());
+            if (changedOrder.getTable() != null && !oldOrder.get().getTable().equals(changedOrder.getTable())) {
+                int number = changedOrder.getTable().getNumber();
+                oldOrder.get().setTable(
+                        tableService.readByNumber(number)
+                );
+//                oldOrder.get().setTable(changedOrder.getTable());
             }
             if (changedOrder.getStatus() != null) {
                 oldOrder.get().setStatus(changedOrder.getStatus());

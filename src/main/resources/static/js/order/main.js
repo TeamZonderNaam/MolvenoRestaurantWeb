@@ -38,6 +38,7 @@ $(function() {
     });
 });
 
+
 function emptyMenuItemList() {
     $("#add-menuItem .list-group").empty();
 }

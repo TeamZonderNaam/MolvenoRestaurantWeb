@@ -14,7 +14,6 @@ $(function() {
 
 
         modal.find(".menuItem option").filter(function() {
-            console.log("Data:", data);
             return $(this).text() === data.name;
         }).prop('selected', true);
 

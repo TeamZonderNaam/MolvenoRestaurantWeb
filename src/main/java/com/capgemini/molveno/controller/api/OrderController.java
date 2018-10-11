@@ -38,12 +38,8 @@ public class OrderController {
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean delete(@PathVariable int id, @RequestBody Order order) {
-        if (id >= 0) {
-            this.orderService.delete(id);
-            return true;
-        } else {
-            return false;
-        }
+    public String delete(@PathVariable int id) {
+        this.orderService.delete(id);
+        return "{}";
     }
 }
