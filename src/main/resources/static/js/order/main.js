@@ -23,7 +23,7 @@ $(function() {
         columns: [
             {data: "table.number"},
             {data: "status"},
-            {data: "totalPrice", render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' ) },
+            {data: "menuCostPrice", render: $.fn.dataTable.render.number( ',', '.', 2, '¥ ' ) },
             {
                 data: null,
                 className: "center",

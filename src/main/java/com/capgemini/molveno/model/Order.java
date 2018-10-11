@@ -62,4 +62,15 @@ public class Order {
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+    @Transient
+    public double getMenuCostPrice() {
+        double cost = 0;
+        if (this.servingOrders != null) {
+            for (ServingOrder servingOrder : this.servingOrders) {
+                cost += servingOrder.getNumberOfMenuItems() * servingOrder.getMenuItem().getPrice();
+            }
+        }
+        return cost;
+    }
 }
