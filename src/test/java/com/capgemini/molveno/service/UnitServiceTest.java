@@ -2,7 +2,6 @@ package com.capgemini.molveno.service;
 
 import com.capgemini.molveno.model.Unit;
 import com.capgemini.molveno.repository.UnitRepository;
-import com.capgemini.molveno.repository.UnitRepositoryStub;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -15,9 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotEquals;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
