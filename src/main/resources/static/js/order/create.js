@@ -9,8 +9,6 @@ $(function() {
         var model = FormUtil.formToValues(DATA_PAIRS, form);
         model.table = {number: model.table};
 
-        console.log("Attempting to add order:", model);
-
         URLUtil.post(BASE_URL, model).then(function(obj) {
             DATA_TABLE.row.add(obj).draw(false);
             modal.modal('toggle');

@@ -51,5 +51,4 @@ function addMenuItemToList(serving) {
     ele.find(".menuItem").html(serving.menuItem.name);
     ele.find(".number").html(serving.menuItem.number);
     ele.find(".id").val(serving.id);
-    console.lo
 }

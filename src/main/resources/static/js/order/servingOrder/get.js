@@ -5,7 +5,6 @@ $(function() {
     $("body").on("click", "a[href*='menuItems']", function(e) {
     e.preventDefault();
         URLUtil.get(MENUITEM_URL).then(function(arr) {
-            console.log(arr);
             $.each(arr, function(i, obj) {
 //              var unit = obj.unit.name;
                 var name = obj.name /*+ " ("+unit+")"*/;
@@ -17,10 +16,8 @@ $(function() {
         // Call parent() two times to get the original table row and get the data via DataTable.
         var tr = $(this).parent().parent();
         var data = DATA_TABLE.row(tr).data();
-        console.log("getting modal");
         $("#menuItems-modal").modal("toggle");
         $("#add-servingOrder .orderId").val(data.id);
-        console.log("dit is servingorder data: ", data);
 
         // Set the MenuItem id for the serving at this stage, because you can only reach this modal
         // when you press the "View ingredients" link.

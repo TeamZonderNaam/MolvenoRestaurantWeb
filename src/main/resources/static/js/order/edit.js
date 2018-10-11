@@ -11,7 +11,6 @@ $(function() {
         var data = DATA_TABLE.row(tr).data();
 
         modal.modal("toggle");
-        console.log(DATA_PAIRS);
         // Set the form into a editable state, this allows us to wait for a click on button.edit.
         FormUtil.makeFormEdit(form);
 
@@ -28,11 +27,9 @@ $(function() {
 
         form.find("button.edit").click(function() {
             var model = FormUtil.formToValues(DATA_PAIRS, form);
-            console.log("Model #1:", model);
             // We don't keep a reference of the id on the form, so use the original data to set the correct id.
             model.id = data.id;
             model.table = {number: model.table};
-            console.log("Model #2:", model);
 
 
             URLUtil.put(BASE_URL+model.id, model).then(function(obj) {
