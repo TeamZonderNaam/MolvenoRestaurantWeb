@@ -1,5 +1,6 @@
 package com.capgemini.molveno.service;
 
+import com.capgemini.molveno.model.Category;
 import com.capgemini.molveno.model.MenuItem;
 import com.capgemini.molveno.repository.MenuItemRepository;
 import org.junit.Before;
@@ -39,15 +40,23 @@ public class MenuItemServiceTest {
     @Mock
     private MenuItemRepository repository;
 
+    @Mock
+    private CategoryService categoryService;
+
+    private Category category = new Category("Food");
+
     @Before
     public void configure() {
         MockitoAnnotations.initMocks(this);
+
+        category.setId(1);
+        when(categoryService.read(Mockito.anyInt())).thenReturn(category);
     }
 
     @Test
     public void createMenuItemTest() throws Exception {
         MenuItem newItem = new MenuItem();
-
+        newItem.setCategory(category);
         newItem.setId(1);
         newItem.setName("dumplings");
 
@@ -70,9 +79,11 @@ public class MenuItemServiceTest {
         MenuItem newItem = new MenuItem();
         newItem.setId(1);
         newItem.setName("dumplings");
+        newItem.setCategory(category);
         MenuItem newItem2 = new MenuItem();
         newItem.setId(2);
         newItem.setName("pizza");
+        newItem.setCategory(category);
 
         List<MenuItem> newItems = new ArrayList<>();
 
@@ -96,9 +107,11 @@ public class MenuItemServiceTest {
         MenuItem newItem = new MenuItem();
         newItem.setId(1);
         newItem.setName("dumplings");
+        newItem.setCategory(category);
         MenuItem newItem2 = new MenuItem();
         newItem.setId(2);
         newItem.setName("pizza");
+        newItem.setCategory(category);
 
         List<MenuItem> newItems = new ArrayList<>();
 
@@ -121,10 +134,13 @@ public class MenuItemServiceTest {
 
     @Test
     public void updateMenuItemTest() {
+        Category category = new Category("Food");
+        category.setId(1);
+
         MenuItem newItem = new MenuItem();
         newItem.setId(1);
         newItem.setName("dumplings");
-        newItem.setCategory("Food");
+        newItem.setCategory(category);
         newItem.setNumber(22);
         newItem.setPrice(14.0);
         MenuItem newItem2 = new MenuItem();
@@ -143,7 +159,7 @@ public class MenuItemServiceTest {
         assertEquals("pizza", service.read(1).getName());
 
         //check whether category hsa stayed the same
-        assertEquals("Food", service.read(1).getCategory());
+        assertEquals(category, service.read(1).getCategory());
     }
 
     @Test

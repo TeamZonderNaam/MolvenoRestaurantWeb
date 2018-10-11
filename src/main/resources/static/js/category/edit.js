@@ -5,7 +5,7 @@ $(function() {
     // We can't use the default click function, because the data is loaded in dynamically.
     // The following line lets jQuery listen on all clicks on the body and only filter out those whose
     // selector matches the one that was clicked on. This allows us to get click events on dynamic content.
-    $("body").on("click", ".dataTable a[href*='edit']", function(e) {
+    $("body").on("click", "a[href*='edit']", function(e) {
         // Call parent() two times to get the original table row and get the data via DataTable.
         var tr = $(this).parent().parent();
         var data = DATA_TABLE.row(tr).data();
@@ -16,17 +16,11 @@ $(function() {
         FormUtil.makeFormEdit(form);
         FormUtil.fillForm(DATA_PAIRS, data, form);
 
-        // A category could've been added while staying on this page, so request all the units again
-        fillFormWithCategories(form).then(function() {
-            // Because the function does IO calls, we wait until it's completely done.
-            form.find("select.category").val(data.category.id);
-        });
 
         form.find("button.edit").click(function() {
             var model = FormUtil.formToValues(DATA_PAIRS, form);
             // We don't keep a reference of the id on the form, so use the original data to set the correct id.
             model.id = data.id;
-            model.category = {id: model.category};
 
             URLUtil.put(BASE_URL+model.id, model).then(function(obj) {
                 DATA_TABLE.row(tr).data(obj).invalidate();
