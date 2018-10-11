@@ -1,13 +1,49 @@
 var BASE_URL = "/api/menuItem/";
 $(function() {
+    var CATEGORY_TEMPLATE = $("#category-template").html();
+    var ITEM_TEMPLATE = $("#item-template").html();
+
     URLUtil.get(BASE_URL).then(function(arr) {
         console.log("Arr: ", arr);
         // Create buckets of arrays based on the categories.
         var bucket = sortToBuckets(arr);
-        console.log(bucket);
+
+
+        for(var key in bucket) {
+            var obj = bucket[key];
+
+            var template = constructCategory(key);
+            $(".categories").append(template);
+
+            constructItemsOnCategory(obj, template);
+        }
     });
 
+    function constructItemsOnCategory(items, category) {
+        $.each(items, function(i, item) {
+            var template = $(ITEM_TEMPLATE);
+            template.find(".title").html(item.name);
+            template.find(".description").html("Lorem ipsum sit amet");
 
+            category.find(".items").append(template);
+        });
+    }
+
+    function constructCategory(category) {
+        var template = $(CATEGORY_TEMPLATE);
+        template.find(".name").html(category);
+        return template;
+    }
+
+
+    /**
+     * Sorts an array of items based on the category
+     * The resulting object will have properties which are the same as a
+     * category, the property will have an array of items with the same category.
+     *
+     * @param arr Items
+     * @return Bucket
+     */
     function sortToBuckets(arr) {
         var buckets = {};
         $.each(arr, function(i, obj) {

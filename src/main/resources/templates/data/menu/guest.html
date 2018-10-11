@@ -4,117 +4,36 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
-            <div class="categories">
-
-                <div class="category">
-                    <h2><i class="fas fa-caret-right"></i> Food</h2>
-
-                    <div class="items col-md-12">
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <span class="title">Kipburger speciaal (¥ 3.50)</span>
-                                    <span class="description">Met kaas en friet</span>
-                                </div>
-                                <div class="col-md-2 tool">
-                                    <button class="btn btn-primary btn-block">
-                                        Order <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <span class="title">Kipburger speciaal (¥ 3.50)</span>
-                                    <span class="description">Met kaas en friet</span>
-                                </div>
-                                <div class="col-md-2 tool">
-                                    <button class="btn btn-primary btn-block">
-                                        Order <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <span class="title">Kipburger speciaal (¥ 3.50)</span>
-                                    <span class="description">Met kaas en friet</span>
-                                </div>
-                                <div class="col-md-2 tool">
-                                    <button class="btn btn-primary btn-block">
-                                        Order <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="category">
-                    <h2><i class="fas fa-caret-right"></i> Food 2</h2>
-
-                    <div class="items  col-md-12">
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <span class="title">Kipburger speciaal (¥ 3.50)</span>
-                                    <span class="description">Met kaas en friet</span>
-                                </div>
-                                <div class="col-md-2 tool">
-                                    <button class="btn btn-primary btn-block">
-                                        Order <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <span class="title">Kipburger speciaal (¥ 3.50)</span>
-                                    <span class="description">Met kaas en friet</span>
-                                </div>
-                                <div class="col-md-2 tool">
-                                    <button class="btn btn-primary btn-block">
-                                        Order <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <span class="title">Kipburger speciaal (¥ 3.50)</span>
-                                    <span class="description">Met kaas en friet</span>
-                                </div>
-                                <div class="col-md-2 tool">
-                                    <button class="btn btn-primary btn-block">
-                                        Order <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!--Delete after this yo-->
-
-
+            <div class="categories"></div>
         </div>
     </div>
 </div>
+
+<noscript id="category-template" type="text/x-custom-template">
+    <div class="category">
+        <h2><i class="fas fa-caret-right"></i> <span class="name"></span></h2>
+
+        <div class="items col-md-12">
+        </div>
+    </div>
+</noscript>
+
+<noscript id="item-template" type="text/x-custom-template">
+    <div class="item">
+        <div class="row">
+            <div class="col-md-10">
+                <!--Kipburger speciaal (¥ 3.50)-->
+                <span class="title"></span>
+                <span class="description"></span>
+            </div>
+            <div class="col-md-2 tool">
+                <button class="btn btn-primary btn-block">
+                    Order <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</noscript>
 
 <script src="/js/menu/guest/main.js"></script>
 {{> data/footer}}

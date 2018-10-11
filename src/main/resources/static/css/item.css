@@ -7,9 +7,11 @@
     position: relative;
     min-height: 75px;
     padding: 10px;
-
-    border-bottom: 1px solid grey;
     height: inherit;
+}
+
+.item:not(:only-child):not(:last-child) {
+    border-bottom: 1px solid grey;
 }
 
 .item .title, .item .description {
