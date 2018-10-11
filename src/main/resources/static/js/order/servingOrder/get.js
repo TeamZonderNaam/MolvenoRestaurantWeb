@@ -7,10 +7,11 @@ $(function() {
         URLUtil.get(MENUITEM_URL).then(function(arr) {
             console.log(arr);
             $.each(arr, function(i, obj) {
-//                var unit = obj.unit.name;
+//              var unit = obj.unit.name;
                 var name = obj.name /*+ " ("+unit+")"*/;
 
-                $("#servingOrder-modal select.menuItems").append("<option value='"+obj.id+"'>"+name+"</option>");
+                $("#item-modal select.menuItem").append('<option>' + obj.name  + '</option');
+                $("#servingOrder-modal select.menuItem").append('<option>' + obj.name  + '</option');
             });
         });
 
@@ -20,6 +21,7 @@ $(function() {
         console.log("getting modal");
         $("#menuItems-modal").modal("toggle");
         $("#add-servingOrder .orderId").val(data.id);
+        console.log("dit is servingorder data: ", data);
 
         // Set the MenuItem id for the serving at this stage, because you can only reach this modal
         // when you press the "View ingredients" link.

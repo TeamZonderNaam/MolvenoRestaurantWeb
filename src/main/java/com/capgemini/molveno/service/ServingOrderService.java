@@ -24,6 +24,11 @@ public class ServingOrderService {
 
     public int create(ServingOrder servingOrder) {
         ServingOrder created = servingOrderRepository.save(servingOrder);
+        // The returned value of the repository doesn't contain the unit name
+        // So get it with the unitService
+        created.setMenuItem(
+                menuItemService.read(created.getMenuItem().getId())
+        );
         return created.getId();
     }
 

@@ -7,6 +7,7 @@ $(function() {
     // selector matches the one that was clicked on. This allows us to get click events on dynamic content.
     form.on("click", ".save", function() {
         var model = FormUtil.formToValues(DATA_PAIRS, form);
+         model.menuItem = {id: model.menuItem};
 
         URLUtil.post(BASE_URL, model).then(function(obj) {
             DATA_TABLE.row.add(obj).draw(false);

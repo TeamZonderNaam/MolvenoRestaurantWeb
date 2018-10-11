@@ -9,11 +9,11 @@ import javax.persistence.*;
 public class ServingOrder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @ManyToOne
-    @Cascade(CascadeType.SAVE_UPDATE)
+    @Cascade(CascadeType.ALL)
     private MenuItem menuItem;
 
     private double numberOfMenuItems;

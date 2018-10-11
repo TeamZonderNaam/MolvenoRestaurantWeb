@@ -62,11 +62,17 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Total Price</label>
-                                <input class="form-control price" type="text" name="price" placeholder="Enter a price">
-                            </div>
-                        </div>
+                            <label>Select Menu item(s) :</label>
+                            <select class="form-control menuItem">
+                                <option selected="selected">Select</option>
+                            </select>
+                        </div><br>
+                        <!--<div class="col-md-6">-->
+                            <!--<div class="form-group">-->
+                                <!--<label>Total Price</label>-->
+                                <!--<input class="form-control price" type="text" name="price" placeholder="Enter a price">-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Table number</label>
@@ -140,7 +146,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="add-serving" onsubmit="return false">
+            <form id="add-servingOrder" onsubmit="return false">
                 <input type="hidden" name="orderId" class="orderId">
                 <input type="hidden" name="id" class="id">
 
@@ -149,21 +155,23 @@
                         <label>Amount needed</label>
                         <input class="form-control amount" type="number" name="amount" placeholder="Enter an amount">
                     </div>
-
                     <div class="form-group">
-                        <div>
-                            <label>Select Menu item(s) :</label>
-                            <select class="form-control" id="op1">
-                                <option selected="selected">Select</option>
-                            </select>
-                        </div><br>
+                        <label>MenuItem</label>
+                        <select class="form-control menuItem" name="menuItem"></select>
                     </div>
+                    <!--<div class="form-group">-->
+                        <!--<div>-->
+                            <!--<label>Select Menu item(s) :</label>-->
+                            <!--<select class="form-control" id="op1">-->
+                                <!--<option selected="selected">Select</option>-->
+                            <!--</select>-->
+                        <!--</div><br>-->
+                    <!--</div>-->
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary save">Save changes</button>
-                </div>
+                    <button type="submit" class="btn btn-primary save">Save changes</button></div>
             </form>
         </div>
     </div>
