@@ -4,11 +4,12 @@ import com.capgemini.molveno.enums.OrderStatus;
 
 import javax.persistence.*;
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Order {
+public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,8 +23,6 @@ public class Order {
 
     //it would be ideal if you could set this property for every individual order of the order
     private OrderStatus status;
-    //this variable should be composed of the separate prices of every menu-order
-    private int totalPrice;
 
     public int getId() {
         return Id;
@@ -57,14 +56,6 @@ public class Order {
         this.servingOrders = servingOrders;
     }
 
-    public int getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
     @Transient
     public double getMenuCostPrice() {
         double cost = 0;
@@ -79,13 +70,17 @@ public class Order {
     private List<MenuItem> getItemsOnCategory(String category) {
         List<MenuItem> items = new ArrayList<>();
 
-        for (ServingOrder order : this.servingOrders) {
-            MenuItem item = order.getMenuItem();
-            if (item.getCategory().getName().equals(category)) {
-                items.add(item);
+        if (this.servingOrders != null) {
+            for (ServingOrder order : this.servingOrders) {
+                MenuItem item = order.getMenuItem();
+                if (item.getCategory().getName().equals(category)) {
+                    items.add(item);
+                }
             }
+            return items;
         }
-        return items;
+
+        return null;
     }
 
     @Transient
@@ -97,4 +92,4 @@ public class Order {
     public List<MenuItem> getDrinkItems() {
         return getItemsOnCategory("Drinks");
     }
- }
+}

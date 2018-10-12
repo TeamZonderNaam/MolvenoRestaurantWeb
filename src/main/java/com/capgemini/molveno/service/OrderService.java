@@ -23,8 +23,15 @@ public class OrderService {
     private TableService tableService;
 
     public int create(Order order) {
-        Order created = repository.save(order);
-        return created.getId();
+        if (order.getTable() != null) {
+            int number = order.getTable().getNumber();
+            order.setTable(
+                    tableService.readByNumber(number)
+            );
+            Order created = repository.save(order);
+            return created.getId();
+        }
+        return -1;
     }
 
     public List<Order> all() {
@@ -54,9 +61,6 @@ public class OrderService {
             }
             if (changedOrder.getStatus() != null) {
                 oldOrder.get().setStatus(changedOrder.getStatus());
-            }
-            if (changedOrder.getTotalPrice() != 0) {
-                oldOrder.get().setTotalPrice(changedOrder.getTotalPrice());
             }
             if (changedOrder.getServingOrders() != null) {
                 oldOrder.get().setServingOrders(changedOrder.getServingOrders());

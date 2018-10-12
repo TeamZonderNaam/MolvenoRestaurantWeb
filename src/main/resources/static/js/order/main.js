@@ -6,8 +6,7 @@ var MENUITEM_URL = "/api/menuItem/";
 
 var DATA_PAIRS = {
     table: ".number",
-    status: ".status",
-    price: ".price"
+    status: ".status"
 };
 
 var SERVING_DATA_PAIRS = {

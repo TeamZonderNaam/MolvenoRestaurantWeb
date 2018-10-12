@@ -8,6 +8,7 @@ $(function() {
     form.on("click", ".save", function() {
         var model = FormUtil.formToValues(DATA_PAIRS, form);
         model.table = {number: model.table};
+        console.log("Adding:", model);
 
         URLUtil.post(BASE_URL, model).then(function(obj) {
             DATA_TABLE.row.add(obj).draw(false);
