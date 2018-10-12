@@ -19,6 +19,16 @@ public class ServingOrderController {
         return service.all();
     }
 
+    @RequestMapping(value = "/food", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ServingOrder> getFood() {
+        return service.allFoodItems();
+    }
+
+    @RequestMapping(value = "/drinks", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ServingOrder> getDrinks() {
+        return service.allDrinkItems();
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
     public ServingOrder getSingle(@PathVariable(name="id") int id) {
         return service.read(id);
@@ -46,6 +56,16 @@ public class ServingOrderController {
     @RequestMapping(value = "/for/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ServingOrder> getFor(@PathVariable("id") final int id) {
         return service.allForOrder(id);
+    }
+
+    @RequestMapping(value = "/food/for/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ServingOrder> getFoodFor(@PathVariable("id") final int id) {
+        return service.allFoodForOrder(id);
+    }
+
+    @RequestMapping(value = "/drinks/for/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ServingOrder> getDrinksFor(@PathVariable("id") final int id) {
+        return service.allDrinksForOrder(id);
     }
 
     @RequestMapping(value = "/for/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

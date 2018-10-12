@@ -2,6 +2,8 @@
 var DATA_TABLE;
 var BASE_URL = "/api/order/";
 var SERVING_URL = "/api/servingOrder/";
+var FOOD_URL = "/api/servingOrder/food/";
+var DRINKS_URL = "/api/servingOrder/drinks/";
 var MENUITEM_URL = "/api/menuItem/";
 
 var DATA_PAIRS = {
@@ -26,7 +28,7 @@ $(function() {
             {
                 data: null,
                 className: "center",
-                defaultContent: "<a href='menuItems'>View MenuItems</a>"
+                defaultContent: "<a href='menuItems'>View MenuItems</a><br><a href='foodItems'>View FoodItems</a><br><a href='drinkItems'>View Drinks</a>"
             },
             {
                 data: null,
