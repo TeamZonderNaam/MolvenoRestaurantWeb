@@ -75,6 +75,7 @@ public class Order {
         }
         return cost;
     }
+
     private List<MenuItem> getItemsOnCategory(String category) {
         List<MenuItem> items = new ArrayList<>();
 
