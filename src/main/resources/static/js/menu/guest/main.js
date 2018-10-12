@@ -55,7 +55,6 @@ $(function() {
      */
     function constructItemsOnCategory(items, category) {
         $.each(items, function(i, item) {
-            console.log("Item:", item);
             var template = $(ITEM_TEMPLATE);
             template.find(".id").val(item.id);
 
@@ -65,7 +64,20 @@ $(function() {
             name += " (¥ " + item.price + ")";
 
             template.find(".title").html(name);
-            template.find(".description").html("Lorem ipsum sit amet");
+            var description = "Contains the following ingredients: ";
+
+            var len = item.servings.length;
+            $.each(item.servings, function(i, serving) {
+                var name = serving.ingredient.name;
+                description += name;
+                if (i < len - 1) {
+                    description += ", ";
+                } else {
+                    description += ".";
+                }
+            });
+
+            template.find(".description").html(description);
             category.find(".items").append(template);
 
             template.find(".order").click(orderItem);
