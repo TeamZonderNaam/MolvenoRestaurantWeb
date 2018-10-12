@@ -7,7 +7,7 @@ var DATA_PAIRS = {
     numberOfChildSeats  : ".child-seats",
     date                : "#datepicker",
     startTime           : "#time",
-    parkingSpaceNeeded  : "#parking"
+    parkingSpaceNeeded  : "#parking",
 };
 
 $(function() {

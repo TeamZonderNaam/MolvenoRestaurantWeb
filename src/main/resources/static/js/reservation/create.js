@@ -8,7 +8,6 @@ $(function() {
     $("body").on("click", ".save", function() {
         var model = FormUtil.formToValues(DATA_PAIRS, form);
         //model.guest = {name: model.guest};
-        console.log(model);
 
         URLUtil.post(BASE_URL, model).then(function(obj) {
             //model.time = {table: model.time}
