@@ -39,6 +39,30 @@ public class ServingOrderService {
         return servingsOrders;
     }
 
+    public List<ServingOrder> allFoodItems() {
+        Iterable<ServingOrder> iterable = servingOrderRepository.findAll();
+        List<ServingOrder> foodOrders = new ArrayList<>();
+        for (ServingOrder order : this.all()) {
+            MenuItem item = order.getMenuItem();
+            if (item.getCategory().getName().equals("Food")) {
+                foodOrders.add(order);
+            }
+        }
+        return foodOrders;
+    }
+
+    public List<ServingOrder> allDrinkItems() {
+        Iterable<ServingOrder> iterable = servingOrderRepository.findAll();
+        List<ServingOrder> drinkOrders = new ArrayList<>();
+        for (ServingOrder order : this.all()) {
+            MenuItem item = order.getMenuItem();
+            if (item.getCategory().getName().equals("Drinks")) {
+                drinkOrders.add(order);
+            }
+        }
+        return drinkOrders;
+    }
+
     public ServingOrder read(final int id) {
         Optional<ServingOrder> serving = servingOrderRepository.findById(id);
         if (serving.isPresent()) {
@@ -74,6 +98,38 @@ public class ServingOrderService {
         Order order = orderService.read(id);
         if (order != null) {
             return order.getServingOrders();
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public List<ServingOrder> allFoodForOrder(final int id) {
+        Order order = orderService.read(id);
+        if (order != null) {
+            List<ServingOrder> foodOrders = new ArrayList<>();
+            for (ServingOrder o : order.getServingOrders()) {
+                MenuItem item = o.getMenuItem();
+                if (item.getCategory().getName().equals("Food")) {
+                    foodOrders.add(o);
+                }
+            }
+            return foodOrders;
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public List<ServingOrder> allDrinksForOrder(final int id) {
+        Order order = orderService.read(id);
+        if (order != null) {
+            List<ServingOrder> drinksOrders = new ArrayList<>();
+            for (ServingOrder o : order.getServingOrders()) {
+                MenuItem item = o.getMenuItem();
+                if (item.getCategory().getName().equals("Drinks")) {
+                    drinksOrders.add(o);
+                }
+            }
+            return drinksOrders;
         } else {
             return new ArrayList<>();
         }

@@ -76,25 +76,25 @@ public class Order {
         return cost;
     }
 
-    private List<MenuItem> getItemsOnCategory(String category) {
-        List<MenuItem> items = new ArrayList<>();
+    private List<ServingOrder> getItemsOnCategory(String category) {
+        List<ServingOrder> items = new ArrayList<>();
 
         for (ServingOrder order : this.servingOrders) {
             MenuItem item = order.getMenuItem();
             if (item.getCategory().getName().equals(category)) {
-                items.add(item);
+                items.add(order);
             }
         }
         return items;
     }
 
     @Transient
-    public List<MenuItem> getFoodItems() {
+    public List<ServingOrder> getFoodItems() {
         return getItemsOnCategory("Food");
     }
 
     @Transient
-    public List<MenuItem> getDrinkItems() {
+    public List<ServingOrder> getDrinkItems() {
         return getItemsOnCategory("Drinks");
     }
  }
