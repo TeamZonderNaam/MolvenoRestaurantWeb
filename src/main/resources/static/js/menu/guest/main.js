@@ -3,6 +3,17 @@ $(function() {
     var CATEGORY_TEMPLATE = $("#category-template").html();
     var ITEM_TEMPLATE = $("#item-template").html();
 
+    console.log($(".pay-hotel"));
+    $(".pay-hotel").click(function() {
+        $("#pay-modal").modal("toggle");
+        $("#hotel-modal").modal("toggle");
+    });
+
+    $(".pay").click(function() {
+        var name = $("#hotel .name").val();
+        console.log("TODO Pay for customer: "+name);
+    });
+
     URLUtil.get(BASE_URL).then(function(arr) {
         // Create buckets of arrays based on the categories.
         var bucket = sortToBuckets(arr);
