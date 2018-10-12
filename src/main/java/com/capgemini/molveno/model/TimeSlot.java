@@ -1,9 +1,12 @@
 package com.capgemini.molveno.model;
 
+import java.util.List;
+
 public class TimeSlot {
     private Time startTime;
     private Time endTime;
     private boolean available;
+    private List<Table> tables;
 
     public TimeSlot(Time startTime) {
         this.startTime = startTime;
@@ -33,5 +36,13 @@ public class TimeSlot {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    public List<Table> getTables() {
+        return tables;
+    }
+
+    public void setTables(List<Table> tables) {
+        this.tables = tables;
     }
 }
