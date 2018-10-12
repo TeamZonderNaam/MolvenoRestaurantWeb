@@ -2,6 +2,7 @@ package com.capgemini.molveno.controller.api;
 
 import com.capgemini.molveno.model.Order;
 import com.capgemini.molveno.service.OrderService;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class OrderController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Optional<Order> getSingle(@PathVariable int id) {
+    public Order getSingle(@PathVariable int id) {
         return this.orderService.read(id);
     }
 
@@ -32,17 +33,13 @@ public class OrderController {
     }
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Order update(@RequestBody Order order) {
-        return this.orderService.update(order);
+    public Order update(@PathVariable int id, @RequestBody Order order) {
+        return this.orderService.update(id, order);
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean delete(@PathVariable int id, @RequestBody Order order) {
-        if (id >= 0) {
-            this.orderService.delete(id);
-            return true;
-        } else {
-            return false;
-        }
+    public String delete(@PathVariable int id) {
+        this.orderService.delete(id);
+        return "{}";
     }
 }

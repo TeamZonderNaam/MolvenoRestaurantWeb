@@ -19,8 +19,14 @@ public class MenuItemService {
     @Autowired
     private MenuItemRepository menuItemRepository;
 
+    @Autowired
+    private CategoryService categoryService;
+
     public int create(MenuItem menuItem) {
         MenuItem created = this.menuItemRepository.save(menuItem);
+        created.setCategory(
+                categoryService.read(created.getCategory().getId())
+        );
         return created.getId();
     }
 
@@ -54,8 +60,16 @@ public class MenuItemService {
             if (changedItem.getServings() != null) {
                 oldItem.get().setServings(changedItem.getServings());
             }
+            if (changedItem.getMenuItemMargin() != 0) {
+                oldItem.get().setMenuItemMargin(changedItem.getMenuItemMargin());
+            }
             if (changedItem.getCategory() != null) {
-                oldItem.get().setCategory(changedItem.getCategory());
+                // If we don't get the whole object here, the program will return just the ID of the category
+                int categoryId = changedItem.getCategory().getId();
+                oldItem.get().setCategory(
+                        categoryService.read(categoryId)
+                );
+
             }
         }
         return menuItemRepository.save(oldItem.get());

@@ -3,6 +3,8 @@ package com.capgemini.molveno.model;
 import com.capgemini.molveno.enums.OrderStatus;
 
 import javax.persistence.*;
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,8 +14,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<MenuItem> items;
+    @OneToMany
+    private List<ServingOrder> servingOrders;
 
     @ManyToOne(cascade=CascadeType.ALL)
     private Table table;
@@ -47,11 +49,52 @@ public class Order {
         this.status = status;
     }
 
-    public List<MenuItem> getItems() {
+    public List<ServingOrder> getServingOrders() {
+        return servingOrders;
+    }
+
+    public void setServingOrders(List<ServingOrder> servingOrders) {
+        this.servingOrders = servingOrders;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    @Transient
+    public double getMenuCostPrice() {
+        double cost = 0;
+        if (this.servingOrders != null) {
+            for (ServingOrder servingOrder : this.servingOrders) {
+                cost += servingOrder.getNumberOfMenuItems() * servingOrder.getMenuItem().getPrice();
+            }
+        }
+        return cost;
+    }
+
+    private List<MenuItem> getItemsOnCategory(String category) {
+        List<MenuItem> items = new ArrayList<>();
+
+        for (ServingOrder order : this.servingOrders) {
+            MenuItem item = order.getMenuItem();
+            if (item.getCategory().getName().equals(category)) {
+                items.add(item);
+            }
+        }
         return items;
     }
 
-    public void setItems(List<MenuItem> items) {
-        this.items = items;
+    @Transient
+    public List<MenuItem> getFoodItems() {
+        return getItemsOnCategory("Food");
     }
-}
+
+    @Transient
+    public List<MenuItem> getDrinkItems() {
+        return getItemsOnCategory("Drinks");
+    }
+ }

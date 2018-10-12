@@ -7,6 +7,7 @@ $(function() {
     // selector matches the one that was clicked on. This allows us to get click events on dynamic content.
     form.on("click", ".save", function() {
         var model = FormUtil.formToValues(DATA_PAIRS, form);
+        model.category = {id: model.category};
 
         URLUtil.post(BASE_URL, model).then(function(obj) {
             DATA_TABLE.row.add(obj).draw(false);
@@ -18,5 +19,7 @@ $(function() {
         // It's possible that a new value will be added after editing.
         // Editing an item sets the edit state, so we need to revert it back if that's the case
         FormUtil.makeFormSave(form);
+
+        fillFormWithCategories(form);
     });
 });
