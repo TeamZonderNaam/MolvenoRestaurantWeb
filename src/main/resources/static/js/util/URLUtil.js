@@ -41,7 +41,7 @@ URLUtil.put = function(url, data) {
         }).fail(function(a, b, c) {
             // Jquery returns stupid amount of variables when failing
             // Just return b, which is probably the text: ERROR. SO far the error messages of jQuery aren't helpfull.
-            reject(b);
+            reject(a, b, c);
         });
     });
     return promise;
