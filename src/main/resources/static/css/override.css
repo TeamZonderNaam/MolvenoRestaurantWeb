@@ -1,0 +1,38 @@
+a {
+    color: #204B93;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #84B0C4;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: #309bcf;
+    border-color: #309bcf
+}
+
+a {
+    color: #309bcf;
+}
+
+a:hover {
+    color: #006ead !important;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary  {
+    background-color: #006ead;
+    border-color: #006ead
+}
+
+.page-item.active .page-link {
+    background-color: #309bcf !important;
+    border-color: #309bcf !important;
+}
+
+.page-link {
+    color: #309bcf;
+}

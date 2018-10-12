@@ -62,6 +62,9 @@ public class TableService {
             throw new NotFoundException();
         } else {
             Table oldTable = readById(id);
+            if (newTable.getNumber() == 0) {
+
+            }
             if (newTable.getNumber() != 0 && newTable.getNumber() != oldTable.getNumber())
                 if (uniqueNumber(newTable.getNumber())) {
                     oldTable.setNumber(newTable.getNumber());

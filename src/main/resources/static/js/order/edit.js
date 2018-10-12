@@ -5,22 +5,32 @@ $(function() {
     // We can't use the default click function, because the data is loaded in dynamically.
     // The following line lets jQuery listen on all clicks on the body and only filter out those whose
     // selector matches the one that was clicked on. This allows us to get click events on dynamic content.
-    $("body").on("click", "a[href*='edit']", function(e) {
+    $("body").on("click", ".dataTable a[href*='edit']", function(e) {
         // Call parent() two times to get the original table row and get the data via DataTable.
         var tr = $(this).parent().parent();
         var data = DATA_TABLE.row(tr).data();
 
         modal.modal("toggle");
-
         // Set the form into a editable state, this allows us to wait for a click on button.edit.
         FormUtil.makeFormEdit(form);
-        FormUtil.fillForm(DATA_PAIRS, data, form);
+
+        // FormUtil.fillForm(DATA_PAIRS, data, form);
+
+        form.find(".id").val(data.id);
+        form.find(".number").val(data.table.number);
+
+        modal.find(".status option").filter(function() {
+            return $(this).text().toUpperCase() === data.status.toUpperCase();
+        }).prop('selected', true);
+
 
 
         form.find("button.edit").click(function() {
             var model = FormUtil.formToValues(DATA_PAIRS, form);
             // We don't keep a reference of the id on the form, so use the original data to set the correct id.
             model.id = data.id;
+            model.table = {number: model.table};
+
 
             URLUtil.put(BASE_URL+model.id, model).then(function(obj) {
                 DATA_TABLE.row(tr).data(obj).invalidate();

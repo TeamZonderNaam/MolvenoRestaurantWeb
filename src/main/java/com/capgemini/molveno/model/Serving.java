@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 public class Serving {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @ManyToOne
@@ -48,5 +48,10 @@ public class Serving {
 
     public void setNumberOfUnits(double numberOfUnits) {
         this.numberOfUnits = numberOfUnits;
+    }
+
+    @Transient
+    public double getServingPrice() {
+        return (numberOfUnits * ingredient.getPricePerUnit());
     }
 }

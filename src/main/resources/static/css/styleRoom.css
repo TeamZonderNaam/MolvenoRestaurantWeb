@@ -1,0 +1,23 @@
+td.details-control {
+    cursor: pointer;
+}
+
+#roomTable {
+    margin-top: 50px; 
+}
+
+.edit-btn {
+    margin-left: 10px; 
+}
+
+.modal-delete-cance-btn {
+    margin-top: 20px; 
+}
+
+#deleteRoomForm {
+    padding-left: 0px; 
+}
+
+#roomTable_wrapper {
+    margin-top: 100px; 
+}
