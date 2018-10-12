@@ -1,14 +1,17 @@
 package com.capgemini.molveno.model;
 
 import com.capgemini.molveno.enums.OrderStatus;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Order {
+public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,13 +20,11 @@ public class Order {
     @OneToMany
     private List<ServingOrder> servingOrders;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.REFRESH)
     private Table table;
 
     //it would be ideal if you could set this property for every individual order of the order
     private OrderStatus status;
-    //this variable should be composed of the separate prices of every menu-order
-    private int totalPrice;
 
     public int getId() {
         return Id;
@@ -57,14 +58,6 @@ public class Order {
         this.servingOrders = servingOrders;
     }
 
-    public int getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
     @Transient
     public double getMenuCostPrice() {
         double cost = 0;
@@ -79,13 +72,17 @@ public class Order {
     private List<ServingOrder> getItemsOnCategory(String category) {
         List<ServingOrder> items = new ArrayList<>();
 
-        for (ServingOrder order : this.servingOrders) {
-            MenuItem item = order.getMenuItem();
-            if (item.getCategory().getName().equals(category)) {
-                items.add(order);
+        if (this.servingOrders != null) {
+            for (ServingOrder order : this.servingOrders) {
+                MenuItem item = order.getMenuItem();
+                if (item.getCategory().getName().equals(category)) {
+                    items.add(order);
+                }
             }
+            return items;
         }
-        return items;
+
+        return null;
     }
 
     @Transient
@@ -97,4 +94,4 @@ public class Order {
     public List<ServingOrder> getDrinkItems() {
         return getItemsOnCategory("Drinks");
     }
- }
+}

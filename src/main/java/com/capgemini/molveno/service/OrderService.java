@@ -1,15 +1,10 @@
 package com.capgemini.molveno.service;
 
 import com.capgemini.molveno.enums.OrderStatus;
-import com.capgemini.molveno.model.MenuItem;
-import com.capgemini.molveno.model.Order;
-import com.capgemini.molveno.model.Table;
-import com.capgemini.molveno.model.TableStatus;
+import com.capgemini.molveno.model.*;
 import com.capgemini.molveno.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,9 +17,19 @@ public class OrderService {
     @Autowired
     private TableService tableService;
 
+    @Autowired
+    private ServingOrderService servingService;
+
     public int create(Order order) {
-        Order created = repository.save(order);
-        return created.getId();
+        if (order.getTable() != null) {
+            int number = order.getTable().getNumber();
+            order.setTable(
+                    tableService.readByNumber(number)
+            );
+            Order created = repository.save(order);
+            return created.getId();
+        }
+        return -1;
     }
 
     public List<Order> all() {
@@ -55,9 +60,6 @@ public class OrderService {
             if (changedOrder.getStatus() != null) {
                 oldOrder.get().setStatus(changedOrder.getStatus());
             }
-            if (changedOrder.getTotalPrice() != 0) {
-                oldOrder.get().setTotalPrice(changedOrder.getTotalPrice());
-            }
             if (changedOrder.getServingOrders() != null) {
                 oldOrder.get().setServingOrders(changedOrder.getServingOrders());
             }
@@ -67,5 +69,39 @@ public class OrderService {
 
     public void delete(final int id) {
         this.repository.deleteById(id);
+    }
+
+    public void addMenuItem(int orderId, MenuItem item) {
+        Order order = read(orderId);
+        if (order == null) {
+            order = new Order();
+            // TODO: For now :C
+            order.setTable(tableService.readByNumber(2));
+            order.setStatus(OrderStatus.OPEN);
+            create(order);
+        }
+
+        if (order.getServingOrders() == null) {
+            order.setServingOrders(new ArrayList<>());
+        }
+
+        ServingOrder foundServing = null;
+        for (ServingOrder serving : order.getServingOrders()) {
+            if (serving.getMenuItem() != null && serving.getMenuItem().getId() == item.getId()) {
+                foundServing = serving;
+            }
+        }
+
+        if (foundServing == null) {
+            foundServing = new ServingOrder(item, 1);
+            servingService.create(foundServing);
+
+            order.getServingOrders().add(foundServing);
+            update(order.getId(), order);
+        } else {
+            double newCount = foundServing.getNumberOfMenuItems() + 1;
+            foundServing.setNumberOfMenuItems(newCount);
+            servingService.update(foundServing.getId(), foundServing);
+        }
     }
 }
