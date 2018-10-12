@@ -75,27 +75,25 @@ public class Order {
         }
         return cost;
     }
+    private List<MenuItem> getItemsOnCategory(String category) {
+        List<MenuItem> items = new ArrayList<>();
 
-    //TODO: functie voor het filteren van food en drink items
-    @Transient
-    public List<MenuItem> getFoodItems() {
-        List<MenuItem> foodItems = new ArrayList<>();
-        for (MenuItem i : this.items) {
-            if (i.getCategory().getName().equals("Food")) {
-                foodItems.add(i);
+        for (ServingOrder order : this.servingOrders) {
+            MenuItem item = order.getMenuItem();
+            if (item.getCategory().getName().equals(category)) {
+                items.add(item);
             }
         }
-        return foodItems;
+        return items;
+    }
+
+    @Transient
+    public List<MenuItem> getFoodItems() {
+        return getItemsOnCategory("Food");
     }
 
     @Transient
     public List<MenuItem> getDrinkItems() {
-        List<MenuItem> drinkItems = new ArrayList<>();
-        for (MenuItem i : this.items) {
-            if (i.getCategory().getName().equals("Drinks")) {
-                drinkItems.add(i);
-            }
-        }
-        return drinkItems;
+        return getItemsOnCategory("Drinks");
     }
  }
