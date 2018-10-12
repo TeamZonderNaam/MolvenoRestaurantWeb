@@ -1,7 +1,7 @@
 package com.capgemini.molveno.service;
 
+import com.capgemini.molveno.model.MenuItem;
 import com.capgemini.molveno.model.Unit;
-import com.capgemini.molveno.repository.UnitRepository;
 import com.capgemini.molveno.repository.UnitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,8 +12,12 @@ import java.util.Optional;
 
 @Service
 public class UnitService {
-    @Autowired
     private UnitRepository repository;
+
+    @Autowired
+    public void setRepository(UnitRepository repository) {
+        this.repository = repository;
+    }
 
     public int create(Unit unit) {
         Unit created = repository.save(unit);
@@ -37,7 +41,15 @@ public class UnitService {
     }
 
     public Unit update(Unit unit) {
-        return repository.save(unit);
+        Optional<Unit> oldItem = repository.findById(unit.getId());
+        if (oldItem.isPresent()) {
+            if (unit.getName() != null) {
+                oldItem.get().setName(unit.getName());
+            }
+            return repository.save(oldItem.get());
+        }
+
+        return null;
     }
 
     public void delete(final int id) {

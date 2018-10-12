@@ -1,6 +1,7 @@
 package com.capgemini.molveno.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Table {
@@ -8,8 +9,11 @@ public class Table {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotNull
     private int number;
+    @NotNull
     private int numberOfPersons;
+    @NotNull
     private TableShape shape;
 
     public Table() {}

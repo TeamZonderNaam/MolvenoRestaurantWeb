@@ -1,6 +1,8 @@
 package com.capgemini.molveno.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,10 +15,15 @@ public class MenuItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String category;
+
+    @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private Category category;
 
     @OneToMany
     private List<Serving> servings;
+
+    private double menuItemMargin;
 
     public MenuItem(String name, double price, int number) {
         this.name = name;
@@ -60,11 +67,11 @@ public class MenuItem {
         this.number = number;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -76,6 +83,14 @@ public class MenuItem {
         this.servings = servings;
     }
 
+    public double getMenuItemMargin() {
+        return menuItemMargin;
+    }
+
+    public void setMenuItemMargin(double menuItemMargin) {
+        this.menuItemMargin = menuItemMargin;
+    }
+
     @Transient
     public double getCostPrice() {
         double cost = 0;
@@ -85,5 +100,10 @@ public class MenuItem {
             }
         }
         return cost;
+    }
+
+    @Transient
+    public double getSellingPrice() {
+        return (this.getCostPrice() + (this.getCostPrice() * this.menuItemMargin)/100);
     }
 }

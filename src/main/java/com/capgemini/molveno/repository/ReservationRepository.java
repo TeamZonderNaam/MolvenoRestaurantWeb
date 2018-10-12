@@ -1,19 +1,14 @@
 package com.capgemini.molveno.repository;
 
-import com.capgemini.molveno.model.Customer;
 import com.capgemini.molveno.model.Reservation;
-import com.capgemini.molveno.service.TableService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import javax.annotation.PostConstruct;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
+import java.time.LocalDate;
+import java.util.List;
 
 @Repository
-public interface ReservationRepository extends CrudRepository<Reservation, Integer> { }
+public interface ReservationRepository extends CrudRepository<Reservation, Integer> {
+
+    // Custom JPA query
+    public List<Reservation> findAllByDate(LocalDate date);
+}

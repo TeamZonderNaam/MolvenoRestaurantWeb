@@ -22,7 +22,6 @@ $(function() {
 
         // Set the MenuItem id for the serving at this stage, because you can only reach this modal
         // when you press the "View ingredients" link.
-
         URLUtil.get(SERVING_URL+"for/"+data.id).then(function(arr) {
             emptyIngredientList();
             $.each(arr, function(i, obj) {

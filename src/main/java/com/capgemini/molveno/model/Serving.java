@@ -49,4 +49,9 @@ public class Serving {
     public void setNumberOfUnits(double numberOfUnits) {
         this.numberOfUnits = numberOfUnits;
     }
+
+    @Transient
+    public double getServingPrice() {
+        return (numberOfUnits * ingredient.getPricePerUnit());
+    }
 }

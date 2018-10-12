@@ -1,4 +1,7 @@
-{{> data/header}}
+{{> data/dashboardresto/header}}
+{{> data/dashboardresto/navbar}}
+{{> data/dashboardresto/sidebar}}
+
 
 <div class="container">
     <div class="row">
@@ -54,11 +57,12 @@
                     <div class="form-group">
                         <label>Table number</label>
                         <input class="form-control number" type="number" name="category" placeholder="Enter a table number">
-                        <p style="color: red;" id="error"></p>
+                        <p style="color: red;" id="errorNumber"></p>
                     </div>
                     <div class="form-group">
                         <label>Capacity</label>
                         <input class="form-control capacity" type="number" name="category" placeholder="Enter the table capacity">
+                        <p style="color: red;" id="errorCapacity"></p>
                     </div>
 
                     <div class="form-group">
@@ -111,4 +115,4 @@
 <script src="/js/table/edit.js"></script>
 <script src="/js/table/delete.js"></script>
 
-{{> data/footer}}
+{{> data/dashboardresto/footer}}

@@ -1,11 +1,15 @@
 package com.capgemini.molveno.controller.api;
 
 import com.capgemini.molveno.model.Reservation;
+import com.capgemini.molveno.model.Table;
+import com.capgemini.molveno.model.TimeSlot;
 import com.capgemini.molveno.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -23,6 +27,13 @@ public class ReservationController {
     @GetMapping(value = "/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
     public Reservation getSingle(@PathVariable(name="id") int id) {
         return service.read(id);
+    }
+
+    @GetMapping(value = "ymd/{year}-{month}-{day}-{numberOfPersons}", produces= MediaType.APPLICATION_JSON_VALUE)
+    public List<TimeSlot> getAvailableTimeSlots(@PathVariable Integer year, @PathVariable Integer month, @PathVariable Integer day, @PathVariable int numberOfPersons) {
+        LocalDate reservationDate = LocalDate.of(year, month, day);
+        System.out.println("The date of the reservation is: " + reservationDate);
+        return service.availableTimeSlots(reservationDate, numberOfPersons);
     }
 
     @PostMapping(value = "/", produces=MediaType.APPLICATION_JSON_VALUE)

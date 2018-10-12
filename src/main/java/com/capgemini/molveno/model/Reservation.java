@@ -1,51 +1,44 @@
 package com.capgemini.molveno.model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
 public class Reservation {
-    //een reservering heeft klantgegevens, aantal personen, een tafelnummer, kinderzitjes nodig, parkeerplaats nodig en een tijd (begintijd en tijdsduur)
-    private boolean parkingSpaceNeeded;
-    private int numberOfChildSeats;
-    private int numberOfPersons;
-    //dit zou eigenlijk een list moeten worden
-
-    private LocalDateTime startReservation;
-    private int totalTimeInMinutes;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private String name;
+    private int numberOfPersons;
+    private int numberOfChildSeats;
+    private LocalDate date;
+    private LocalTime startTime;
+    private int hours;
     @ManyToMany
     private List<Table> tables;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Customer customer;
+    private boolean parkingSpaceNeeded;
 
-    public Customer getCustomer() {
-        return customer;
+    public Reservation() {
+        this.hours = 2;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public int getId() {
+        return id;
     }
 
-    public boolean isParkingSpaceNeeded() {
-        return parkingSpaceNeeded;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setParkingSpaceNeeded(boolean parkingSpaceNeeded) {
-        this.parkingSpaceNeeded = parkingSpaceNeeded;
+    public String getName() {
+        return name;
     }
 
-    public int getNumberOfChildSeats() {
-        return numberOfChildSeats;
-    }
-
-    public void setNumberOfChildSeats(int numberOfChildSeats) {
-        this.numberOfChildSeats = numberOfChildSeats;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getNumberOfPersons() {
@@ -56,6 +49,38 @@ public class Reservation {
         this.numberOfPersons = numberOfPersons;
     }
 
+    public int getNumberOfChildSeats() {
+        return numberOfChildSeats;
+    }
+
+    public void setNumberOfChildSeats(int numberOfChildSeats) {
+        this.numberOfChildSeats = numberOfChildSeats;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return startTime.plusHours(this.hours);
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
     public List<Table> getTables() {
         return tables;
     }
@@ -64,27 +89,11 @@ public class Reservation {
         this.tables = tables;
     }
 
-    public LocalDateTime getStartReservation() {
-        return startReservation;
+    public boolean isParkingSpaceNeeded() {
+        return parkingSpaceNeeded;
     }
 
-    public void setStartReservation(LocalDateTime startReservation) {
-        this.startReservation = startReservation;
-    }
-
-    public int getTotalTimeInMinutes() {
-        return totalTimeInMinutes;
-    }
-
-    public void setTotaslTimeInMinutes(int totalTimeInMinutes) {
-        this.totalTimeInMinutes = totalTimeInMinutes;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int ID) {
-        this.id = ID;
+    public void setParkingSpaceNeeded(boolean parkingSpaceNeeded) {
+        this.parkingSpaceNeeded = parkingSpaceNeeded;
     }
 }

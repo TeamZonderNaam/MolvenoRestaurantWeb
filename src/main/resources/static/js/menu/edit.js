@@ -16,11 +16,17 @@ $(function() {
         FormUtil.makeFormEdit(form);
         FormUtil.fillForm(DATA_PAIRS, data, form);
 
+        // A category could've been added while staying on this page, so request all the units again
+        fillFormWithCategories(form).then(function() {
+            // Because the function does IO calls, we wait until it's completely done.
+            form.find("select.category").val(data.category.id);
+        });
 
         form.find("button.edit").click(function() {
             var model = FormUtil.formToValues(DATA_PAIRS, form);
             // We don't keep a reference of the id on the form, so use the original data to set the correct id.
             model.id = data.id;
+            model.category = {id: model.category};
 
             URLUtil.put(BASE_URL+model.id, model).then(function(obj) {
                 DATA_TABLE.row(tr).data(obj).invalidate();

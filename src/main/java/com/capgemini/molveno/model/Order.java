@@ -3,6 +3,8 @@ package com.capgemini.molveno.model;
 import com.capgemini.molveno.enums.OrderStatus;
 
 import javax.persistence.*;
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -73,4 +75,27 @@ public class Order {
         }
         return cost;
     }
-}
+
+    //TODO: functie voor het filteren van food en drink items
+    @Transient
+    public List<MenuItem> getFoodItems() {
+        List<MenuItem> foodItems = new ArrayList<>();
+        for (MenuItem i : this.items) {
+            if (i.getCategory().getName().equals("Food")) {
+                foodItems.add(i);
+            }
+        }
+        return foodItems;
+    }
+
+    @Transient
+    public List<MenuItem> getDrinkItems() {
+        List<MenuItem> drinkItems = new ArrayList<>();
+        for (MenuItem i : this.items) {
+            if (i.getCategory().getName().equals("Drinks")) {
+                drinkItems.add(i);
+            }
+        }
+        return drinkItems;
+    }
+ }
