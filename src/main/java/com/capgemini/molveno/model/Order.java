@@ -1,6 +1,8 @@
 package com.capgemini.molveno.model;
 
 import com.capgemini.molveno.enums.OrderStatus;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.awt.*;
@@ -18,7 +20,7 @@ public class Order implements Serializable {
     @OneToMany
     private List<ServingOrder> servingOrders;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.REFRESH)
     private Table table;
 
     //it would be ideal if you could set this property for every individual order of the order
