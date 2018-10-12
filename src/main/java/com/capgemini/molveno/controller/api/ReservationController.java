@@ -1,6 +1,7 @@
 package com.capgemini.molveno.controller.api;
 
 import com.capgemini.molveno.model.Reservation;
+import com.capgemini.molveno.model.Table;
 import com.capgemini.molveno.model.TimeSlot;
 import com.capgemini.molveno.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
