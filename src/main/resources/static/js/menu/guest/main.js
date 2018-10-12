@@ -31,12 +31,18 @@ $(function() {
         var item = $(this).closest(".item");
         var id = item.find(".id").val();
         console.log("Item ID:", id);
-
-        // TODO: Add the call to order an item!
-        var name = item.find(".title").html();
-        var modal = $("#added-order-modal");
-        modal.find(".name").html(name);
-        modal.modal("toggle");
+        
+        var order = {
+            id: id
+        };
+        URLUtil.post("/api/order/add/70", order).then(function() {
+            var name = item.find(".title").html();
+            var modal = $("#added-order-modal");
+            modal.find(".name").html(name);
+            modal.modal("toggle");
+        }, function() {
+            alert("Something went wrong");
+        });
     }
 
     /**
