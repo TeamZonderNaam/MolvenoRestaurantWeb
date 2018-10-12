@@ -1,11 +1,10 @@
 var dp;
 let dropdown = $('#time');
 var personCount = $( ".amount" ).val();
+//var personCount = 12;
 
 $(document).ready(function ()
 {
-    var personCount = 32;
-    //var personCount = $( ".amount" ).val();
     dp = $('#datepicker');
     dp.datepicker({
         dateFormat: 'dd-mm-yy',
