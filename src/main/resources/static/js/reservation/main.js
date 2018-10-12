@@ -1,22 +1,23 @@
 // The main file is meant to construct the dataTable and provide a global variable for other javascript files to use
 var DATA_TABLE;
 var BASE_URL = "/api/reservation/";
-
 var DATA_PAIRS = {
-    customer            : ".customer.name",
+    name                : ".name",
     numberOfPersons     : ".amount",
-    numberOfChildSeats  : ".childseats",
-    time                : "#time",
+    numberOfChildSeats  : ".child-seats",
+    date                : "#datepicker",
+    startTime           : "#time",
     parkingSpaceNeeded  : "#parking"
 };
 
 $(function() {
     DATA_TABLE = $("table").DataTable({
         columns: [
-            {data: "customer.name"},
+            {data: "name"},
             {data: "numberOfPersons"},
             {data: "numberOfChildSeats"},
-            {data: "time"},
+            {data: "startTime"},
+            {data: "endTime"},
             {data: "parkingSpaceNeeded", render: function(data) {
                 return (data == true) ? "Yes" : "No";
                 }},
