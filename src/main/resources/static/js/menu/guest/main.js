@@ -3,6 +3,17 @@ $(function() {
     var CATEGORY_TEMPLATE = $("#category-template").html();
     var ITEM_TEMPLATE = $("#item-template").html();
 
+    console.log($(".pay-hotel"));
+    $(".pay-hotel").click(function() {
+        $("#pay-modal").modal("toggle");
+        $("#hotel-modal").modal("toggle");
+    });
+
+    $(".pay").click(function() {
+        var name = $("#hotel .name").val();
+        console.log("TODO Pay for customer: "+name);
+    });
+
     URLUtil.get(BASE_URL).then(function(arr) {
         // Create buckets of arrays based on the categories.
         var bucket = sortToBuckets(arr);
@@ -31,12 +42,18 @@ $(function() {
         var item = $(this).closest(".item");
         var id = item.find(".id").val();
         console.log("Item ID:", id);
-
-        // TODO: Add the call to order an item!
-        var name = item.find(".title").html();
-        var modal = $("#added-order-modal");
-        modal.find(".name").html(name);
-        modal.modal("toggle");
+        
+        var order = {
+            id: id
+        };
+        URLUtil.post("/api/order/add/70", order).then(function() {
+            var name = item.find(".title").html();
+            var modal = $("#added-order-modal");
+            modal.find(".name").html(name);
+            modal.modal("toggle");
+        }, function() {
+            alert("Something went wrong");
+        });
     }
 
     /**
@@ -49,7 +66,6 @@ $(function() {
      */
     function constructItemsOnCategory(items, category) {
         $.each(items, function(i, item) {
-            console.log("Item:", item);
             var template = $(ITEM_TEMPLATE);
             template.find(".id").val(item.id);
 
@@ -59,7 +75,20 @@ $(function() {
             name += " (¥ " + item.price + ")";
 
             template.find(".title").html(name);
-            template.find(".description").html("Lorem ipsum sit amet");
+            var description = "Contains the following ingredients: ";
+
+            var len = item.servings.length;
+            $.each(item.servings, function(i, serving) {
+                var name = serving.ingredient.name;
+                description += name;
+                if (i < len - 1) {
+                    description += ", ";
+                } else {
+                    description += ".";
+                }
+            });
+
+            template.find(".description").html(description);
             category.find(".items").append(template);
 
             template.find(".order").click(orderItem);
