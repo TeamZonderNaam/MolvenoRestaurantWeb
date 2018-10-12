@@ -13,7 +13,7 @@ public class MenuItem {
     private double price;
     private int number;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @ManyToOne

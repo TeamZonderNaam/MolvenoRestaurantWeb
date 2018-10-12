@@ -14,8 +14,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<MenuItem> items;
+    @OneToMany
+    private List<ServingOrder> servingOrders;
 
     @ManyToOne(cascade=CascadeType.ALL)
     private Table table;
@@ -49,12 +49,31 @@ public class Order {
         this.status = status;
     }
 
-    public List<MenuItem> getItems() {
-        return items;
+    public List<ServingOrder> getServingOrders() {
+        return servingOrders;
     }
 
-    public void setItems(List<MenuItem> items) {
-        this.items = items;
+    public void setServingOrders(List<ServingOrder> servingOrders) {
+        this.servingOrders = servingOrders;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    @Transient
+    public double getMenuCostPrice() {
+        double cost = 0;
+        if (this.servingOrders != null) {
+            for (ServingOrder servingOrder : this.servingOrders) {
+                cost += servingOrder.getNumberOfMenuItems() * servingOrder.getMenuItem().getPrice();
+            }
+        }
+        return cost;
     }
 
     //TODO: functie voor het filteren van food en drink items
