@@ -55,14 +55,12 @@ function getTimeSlots(day, month, year, personCount)
                 dropdown.append($('<option></option>')
                 .attr('value', d)
                 .text(tString(timeSlot.startTime.hours, timeSlot.startTime.minutes)));
-
-
               })
-            document.getElementById("timeDiv").style.display = 'block';
-            document.getElementById("save").style.display = 'block';
-            document.getElementById("parkingDiv").style.display = 'block';
-            document.getElementById("choosetimeframelabel").style.display = 'block';
-            document.getElementById("choosetimelabel").style.display = 'none';
+            $("#timeDiv").css("display", "block");
+            $("#save").css("display", "block");
+            $("#parkingDiv").css("display", "block");
+            $("#choosetimeframelabel").css("display", "block");
+            $("#choosetimelabel").css("display", "block");
             console.log(data);
         }
     });
