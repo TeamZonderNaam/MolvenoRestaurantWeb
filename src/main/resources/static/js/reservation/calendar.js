@@ -1,13 +1,12 @@
 var dp;
 let dropdown = $('#time');
 var personCount = $( ".amount" ).val();
-//var personCount = 12;
 
 $(document).ready(function ()
 {
     dp = $('#datepicker');
     dp.datepicker({
-        dateFormat: 'dd-mm-yy',
+        dateFormat: 'yy-mm-dd',
         autoPick: false,
         startDate: new Date(),
         changeMonth: false,
@@ -34,7 +33,7 @@ function setupCalendarTable()
     });
 }
 
-function getTimeSlots(day, month, year, personCount)
+function getTimeSlots(year, month, day, personCount)
 {
     // Get the data from endpoint.
     $.ajax({
@@ -50,19 +49,15 @@ function getTimeSlots(day, month, year, personCount)
                         d.setHours(timeSlot.startTime.hours);
                         d.setMinutes(timeSlot.startTime.minutes);
                         console.log(d);
-
                 dropdown.append($('<option></option>')
-                .attr('value', d)
+                .attr('value', tString(timeSlot.startTime.hours, timeSlot.startTime.minutes), timeSlot.tables)
                 .text(tString(timeSlot.startTime.hours, timeSlot.startTime.minutes)));
-
-
               })
             $("#timeDiv").css("display", "block");
             $("#save").css("display", "block");
             $("#parkingDiv").css("display", "block");
             $("#choosetimeframelabel").css("display", "block");
-            $("#choosetimelabel").css("display", "block");
-            console.log(data);
+            $("#choosetimelabel").css("display", "none");
         }
     });
 }

@@ -30,8 +30,15 @@ public class ReservationService {
     private TableRepository tableRepository;
 
     public int create(Reservation reservation){
-        Reservation created = repository.save(reservation);
-        return created.getId();
+        List<Table> allTables = new ArrayList<>();
+        List<Reservation> reservations = repository.findAllByDate(reservation.getDate());
+        for (Table table : tableRepository.findAll()) {
+            allTables.add(table);
+        }
+        List<Table> availableTables = availableTablesAtTimeSlot(reservation.getStartTime(), reservation.getStartTime(), reservations, allTables);
+        List<Table> reservedTables = determineTables(availableTables, reservation.getNumberOfPersons());
+        reservation.setTables(reservedTables);
+        return repository.save(reservation).getId();
     }
 
     public Iterable<Reservation> all() {
