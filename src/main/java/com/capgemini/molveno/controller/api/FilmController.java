@@ -14,6 +14,7 @@ public class FilmController {
     @Autowired
     private FilmService service;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
     public List<Film> get() {
         return service.all();
